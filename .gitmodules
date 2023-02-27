@@ -1,0 +1,9 @@
+[submodule "formal-methods/assignment-1"]
+	path = formal-methods/assignment-1
+	url = git@github.com:EliaScandaletti/FMCPS-ASS1
+[submodule "formal-methods/assignment-2"]
+	path = formal-methods/assignment-2
+	url = git@github.com:albertolazari/cyber-cose-2.git
+[submodule "functional-languages/FunctionalLanguages-UniPD"]
+	path = functional-languages/FunctionalLanguages-UniPD
+	url = git@github.com:alvisespano/FunctionalLanguages-UniPD.git
