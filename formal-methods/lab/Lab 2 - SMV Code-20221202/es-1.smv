@@ -1,0 +1,44 @@
+MODULE main
+	VAR
+		state	: {q1, q2, q3, q4};
+		a		: boolean;
+		b		: boolean;
+
+	ASSIGN
+		init(state) := q3;
+		next(state) := case
+			state = q3 : {q1, q2, q4};
+			state = q1 : q2;
+			state = q2 : q2;
+			state = q4 : q3;
+		esac;
+
+		init(a) := TRUE;
+		next(a) := case
+			next(state) = q1 | next(state) = q2	: FALSE;
+			TRUE								: TRUE;
+		esac;
+
+		init(b) := FALSE;
+		next(b) := case
+			next(state) = q1 | next(state) = q3	: FALSE;
+			TRUE								: TRUE;
+		esac;
+
+LTLSPEC F b;		-- TRUE
+LTLSPEC !F b;		-- FALSE
+
+LTLSPEC G a;		-- FALSE
+LTLSPEC !G a;		-- FALSE
+
+LTLSPEC a U b;		-- FALSE
+LTLSPEC !(a U b);	-- FALSE
+
+LTLSPEC a U X b;		-- TRUE
+LTLSPEC !(a U X b);	-- FALSE
+
+LTLSPEC G F b;	-- TRUE
+LTLSPEC !(G F b);	-- FALSE
+
+LTLSPEC F G b;	-- FALSE
+LTLSPEC !(F G b);	-- FALSE
