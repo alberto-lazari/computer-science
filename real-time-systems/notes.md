@@ -82,13 +82,11 @@ An interrupt does not actually require preemption. It uses a minimal CPU space t
 When a new job arrives it is pushed into the queue with an interruption. If the job is located on the head of the queue preemption happens -> the current job is suspended and the new, high priority job is done
 
 ## Earliest Deadline First (EDF)
-Priority is based on absolute deadlines. The closer the deadline, the higher the priority of the job
-
+Priority is based on absolute deadlines. The closer the deadline, the higher the priority of the job. \
 EDF scheduling is **optimal** for single-CPU systems (with independent jobs and preemption)
 
 ## Least Laxity First (LLF)
-**Laxity**: L_i(t) = time left before the deadline, after the end of the execution of job i (if the job was started right now, at time t)
-
+**Laxity**: L_i(t) = time left before the deadline, after the end of the execution of job i (if the job was started right now, at time t). \
 The algorithm chooses the one that has the less margin to complete in time
 
 Problem: priority keeps changing during time, so it's highly expensive because of continuous preemption -> in reality it's not used at all
