@@ -51,7 +51,7 @@ We want to remove complexity of OS (with embedded system structure), because it 
 ### Job
 Actual work to do, in a certain time, defined by task
 
-Task τ knows the time its first job has to start, which can be delayed from the actual start (boot) by a phase φ
+Task $\tau$ knows the time its first job has to start, which can be delayed from the actual start (boot) by a phase $\phi$
 
 <!-- TODO: complete up to jitter etc -->
 ### Release time
@@ -86,7 +86,7 @@ Priority is based on absolute deadlines. The closer the deadline, the higher the
 EDF scheduling is **optimal** for single-CPU systems (with independent jobs and preemption)
 
 ## Least Laxity First (LLF)
-**Laxity**: L_i(t) = time left before the deadline, after the end of the execution of job i (if the job was started right now, at time t). \
+**Laxity**: $L_i(t) = time$ left before the deadline, after the end of the execution of job i (if the job was started right now, at time t). \
 The algorithm chooses the one that has the less margin to complete in time
 
 Problem: priority keeps changing during time, so it's highly expensive because of continuous preemption -> in reality it's not used at all
