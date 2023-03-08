@@ -95,5 +95,3 @@ Problem: priority keeps changing during time, so it's highly expensive because o
 ## Clock-based schedule
 - No preemption
 - Result: a table representing scheduling actions to do
-
-homework: look new lesson and this lesson
