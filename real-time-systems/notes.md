@@ -1,3 +1,7 @@
+---
+title: Real-time Kernels and Systems course notes
+...
+
 # Introduction
 ## Real-time system
 - Aggregate of computers, i/o and software interacting with a **physical environment**
@@ -84,6 +88,7 @@ When a new job arrives it is pushed into the queue with an interruption. If the 
 <!-- TODO: watch definition of deadlines p 28 -->
 ## Earliest Deadline First (EDF)
 Priority is based on absolute deadlines. The closer the deadline, the higher the priority of the job.
+
 > EDF scheduling is **optimal** for single-CPU systems (with independent jobs and preemption)
 
 *Liu & Layland: 1973*
@@ -103,6 +108,7 @@ Problem: priority keeps changing during time, so it's highly expensive because o
 Period of time between clock signals in which more than one job can fit (without doing preemption)
 
 Contraints on frame duration $f$:
+
 1. $\forall J \in Jobs.\ f > max(|J|)$
 2. ...
 <!-- TODO: complete -->
@@ -115,7 +121,7 @@ System with preemption: two methods to choose priority
 
 ### Rate Monotonic (RMS)
 - Faster rate jobs (lower period) has precedence
-- At least $ln(2) < 70%$ of utilization -> not always RMS can satisfy all jobs
+- At least ln(2) < 70% of utilization -> not always RMS can satisfy all jobs
 - 100% if periods are harmonic
 - Has better performances than EDF on utilization > 100%
 
@@ -132,4 +138,4 @@ $$
 
 Fix-point equation, because $\omega$ appears in both members
 
-<!-- Homework: to look graphs on p 95 -->
+<!-- Homework: look graphs on p 95 -->
