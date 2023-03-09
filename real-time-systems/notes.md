@@ -1,7 +1,3 @@
----
-title: Real-time Kernels and Systems course notes
-...
-
 # Introduction
 ## Real-time system
 - Aggregate of computers, i/o and software interacting with a **physical environment**
