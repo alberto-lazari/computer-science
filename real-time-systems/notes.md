@@ -83,8 +83,10 @@ When a new job arrives it is pushed into the queue with an interruption. If the 
 
 <!-- TODO: watch definition of deadlines p 28 -->
 ## Earliest Deadline First (EDF)
-Priority is based on absolute deadlines. The closer the deadline, the higher the priority of the job. \
-EDF scheduling is **optimal** for single-CPU systems (with independent jobs and preemption)
+Priority is based on absolute deadlines. The closer the deadline, the higher the priority of the job.
+> EDF scheduling is **optimal** for single-CPU systems (with independent jobs and preemption)
+
+*Liu & Layland: 1973*
 
 ## Least Laxity First (LLF)
 **Laxity**: $L_i(t) = time$ left before the deadline, after the end of the execution of job i (if the job was started right now, at time t). \
@@ -96,3 +98,38 @@ Problem: priority keeps changing during time, so it's highly expensive because o
 ## Clock-based schedule
 - No preemption
 - Result: a table representing scheduling actions to do
+
+### Frame (minor cycle)
+Period of time between clock signals in which more than one job can fit (without doing preemption)
+
+Contraints on frame duration $f$:
+1. $\forall J \in Jobs.\ f > max(|J|)$
+2. ...
+<!-- TODO: complete -->
+
+# Lecture 4 (09/03)
+Priority schedulings
+
+## Fixed Priority Scheduling (FPS)
+System with preemption: two methods to choose priority
+
+### Rate Monotonic (RMS)
+- Faster rate jobs (lower period) has precedence
+- At least $ln(2) < 70%$ of utilization -> not always RMS can satisfy all jobs
+- 100% if periods are harmonic
+- Has better performances than EDF on utilization > 100%
+
+### Deadline Monotonic
+Higher urgency (shorter relative deadline) has precedence
+
+### Job duration
+$\omega_{i, j} = e_i + Interference$, where
+
+<!-- TODO: complete -->
+$$
+    Interference = \sum_{k = 1 .. i - 1} \omega_{i, j} + \varphi_i - \varphi_k ...
+$$
+
+Fix-point equation, because $\omega$ appears in both members
+
+<!-- Homework: to look graphs on p 95 -->
