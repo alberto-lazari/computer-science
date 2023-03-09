@@ -51,9 +51,9 @@ We want to remove complexity of OS (with embedded system structure), because it 
 ### Job
 Actual work to do, in a certain time, defined by task
 
-Task $\tau$ knows the time its first job has to start, which can be delayed from the actual start (boot) by a phase $\phi$
+Task $\tau$ knows the time its first job has to start, which can be delayed from the actual start (boot) by a phase $\varphi$
 
-<!-- TODO: complete up to jitter etc -->
+<!-- TODO: complete up to jitter etc p 25 -->
 ### Release time
 
 # Lecture 3 (03/06)
@@ -81,6 +81,7 @@ An interrupt does not actually require preemption. It uses a minimal CPU space t
 ### Preemption
 When a new job arrives it is pushed into the queue with an interruption. If the job is located on the head of the queue preemption happens -> the current job is suspended and the new, high priority job is done
 
+<!-- TODO: watch definition of deadlines p 28 -->
 ## Earliest Deadline First (EDF)
 Priority is based on absolute deadlines. The closer the deadline, the higher the priority of the job. \
 EDF scheduling is **optimal** for single-CPU systems (with independent jobs and preemption)
