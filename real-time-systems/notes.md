@@ -31,7 +31,8 @@ Flow is controlled by time in a rts -> bounded
 
 We want to remove complexity of OS (with embedded system structure), because it adds unpredictable behavior -> determinism is needed
 
-**Predictable** -> pre-dictable, know before it happens
+Predictable
+: pre-dictable, know before it happens
 
 ## Predictable vs determinism
 - Predicibility is weaker than determinism, it's easier to relate to. Determinism is not always manageable, too many details (registers, bus, CPU, memory, ...)
@@ -90,7 +91,8 @@ Priority is based on absolute deadlines. The closer the deadline, the higher the
 *Liu & Layland: 1973*
 
 ## Least Laxity First (LLF)
-**Laxity**: $L_i(t) = time$ left before the deadline, after the end of the execution of job i (if the job was started right now, at time t). \
+Laxity
+: $L_i(t) = time$ left before the deadline, after the end of the execution of job i (if the job was started right now, at time t). \
 The algorithm chooses the one that has the less margin to complete in time
 
 Problem: priority keeps changing during time, so it's highly expensive because of continuous preemption -> in reality it's not used at all
