@@ -137,3 +137,7 @@ $$
 Fix-point equation, because $\omega$ appears in both members
 
 <!-- Homework: look graphs on p 95 -->
+
+## Time Demand Analysis (TDA)
+Study when $\omega(t) \leq t$ \
+$\implies$ when supply satisfies demand
