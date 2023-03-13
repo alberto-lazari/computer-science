@@ -136,8 +136,19 @@ $$
 
 Fix-point equation, because $\omega$ appears in both members
 
-<!-- Homework: look graphs on p 95 -->
-
 ## Time Demand Analysis (TDA)
 Study when $\omega(t) \leq t$ \
 $\implies$ when supply satisfies demand
+
+# Lecture 5 (13/03)
+Priority of a task is relative to its deadline (or period) and criticality.
+
+Solutions to unwanted preemption in critical situations:
+- Deferred preemption: temporarly ignore preemption to complete a more important job. Delay must be small
+- Cooperative dispatching: job gives the CPU to another (specific) job
+
+## Events
+Can be:
+- Periodic
+- Aperiodic
+- Sporadic: not below a minimal frequency
