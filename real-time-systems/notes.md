@@ -140,11 +140,13 @@ Fix-point equation, because $\omega$ appears in both members
 Study when $\omega(t) \leq t$ \
 $\implies$ when supply satisfies demand
 
+<!-- TODO: resume lecture 6 -->
+
 # Lecture 5 (13/03)
 Priority of a task is relative to its deadline (or period) and criticality.
 
 Solutions to unwanted preemption in critical situations:
-- Deferred preemption: temporarly ignore preemption to complete a more important job. Delay must be small
+- Deferred preemption: temporarily ignore preemption to complete a more important job. Delay must be small
 - Cooperative dispatching: job gives the CPU to another (specific) job
 
 ## Events
@@ -152,3 +154,20 @@ Can be:
 - Periodic
 - Aperiodic
 - Sporadic: not below a minimal frequency
+
+# Lecture 7 (20/03)
+Up to now tasks are independent. In reality they are concurrent (they collaborate)
+
+## Information passing
+Can be
+- Asynchronous: memory sharing. Tasks write information on memory locations; everyone can read
+- Synchronous: communication with messages. Uses a communication channel in which to send and receive information, instead of writing on memory
+
+Communication though has to live with preemption. What happens if a task gets interrupted while working on something important? And if a message never arrives in a synchronous communication?
+
+Asynchronous communication is way more acceptable: no unlimited waiting of a message. If the precedent task did not write a result in time, the next reads an old value, it won't wait forever
+
+<!-- Various disses to Sperduti -->
+
+## Self-suspension
+Happens when a job knows it will wait for something (probably external world related)
