@@ -45,3 +45,32 @@ PhoneGap is now dismissed, Cordova open-source
 ## Corona -> Solar2D
 - Game-oriented framework. 2D engine, fast learning curve
 - Uses Lua
+
+## Flutter
+- Cross-compiled approach -> native performances
+- Multi platform (also for desktop)
+- Can produce a web app for easier testing
+- Allows lots of widget reuse
+- Hot reload: build and update the app at runtime, while running
+- Has two predifined styles: Material for Android and Cupertino for iOS
+- It's **accessible**
+
+### Dart
+- OOP language by Google. Born as Dash (not the shell)
+- Has native support for:
+    - Lists
+    - Sets
+    - Associative arrays
+- Supports generics
+- Single inheritance
+- Private variables with '\_' prefix
+- Uses UTF-16
+- Can be compiled to binary or to VM bytecode, which supports JIT and hot reload. When compiled to binary the runtime is embedded in the executable
+- Can also be compiled to JS
+
+#### Const vs final
+Const has to be used at the beginning, final everywhere in the code (why?)
+
+### Widgets
+- Define UI. Are unchangeable
+- Can be Stateful or Stateless if static
