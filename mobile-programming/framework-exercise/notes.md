@@ -17,4 +17,7 @@
 - From Ionic, but does not require to use it. Ionic provides the UI elements (buttons, input, ...) Capacitor is the tool to compile and bundle the web app into a native mobile app and provides access from the web app to mobile specific features (camera, storage, location, ...)
 
 ## NativeScript
+[Introduction](https://code.tutsplus.com/articles/an-introduction-to-nativescript--cms-26771)
 [Stack](https://v7.docs.nativescript.org/core-concepts/technical-overview)
+
+NativeScript is cool because it lets you use anything for the application code (Angular, React, Vue, ...) but still uses native APIs for UI render. It doesn't need compilation, because it uses runtimes, called by the js library
