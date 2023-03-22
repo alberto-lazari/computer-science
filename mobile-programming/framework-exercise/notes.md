@@ -21,3 +21,11 @@
 [Stack](https://v7.docs.nativescript.org/core-concepts/technical-overview)
 
 NativeScript is cool because it lets you use anything for the application code (Angular, React, Vue, ...) but still uses native APIs for UI render. It doesn't need compilation, because it uses runtimes, called by the js library
+
+Native look and feel, because uses native components. This means accessibility support
+
+### Cons
+- No old devices support. Recommended SDKs:
+    - iOS 11 SDK
+    - Android 6.0 SDK (4.2 minimum)
+- Low community support
