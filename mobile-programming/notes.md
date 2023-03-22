@@ -74,3 +74,7 @@ Const has to be used at the beginning, final everywhere in the code (why?)
 ### Widgets
 - Define UI. Are unchangeable
 - Can be Stateful or Stateless if static
+
+## React Native
+- Mixes html and components. Everything is a component actually
+- It's able to alter the DOM structure, to update only the modified elements -> fast
