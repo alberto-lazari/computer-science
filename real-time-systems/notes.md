@@ -31,7 +31,7 @@ Flow is controlled by time in a rts -> bounded
 
 We want to remove complexity of OS (with embedded system structure), because it adds unpredictable behavior -> determinism is needed
 
-Predictable
+**Predictable**
 : pre-dictable, know before it happens
 
 ## Predictable vs determinism
@@ -91,7 +91,7 @@ Priority is based on absolute deadlines. The closer the deadline, the higher the
 *Liu & Layland: 1973*
 
 ## Least Laxity First (LLF)
-Laxity
+**Laxity**
 : $L_i(t) = time$ left before the deadline, after the end of the execution of job i (if the job was started right now, at time t). \
 The algorithm chooses the one that has the less margin to complete in time
 
@@ -171,3 +171,38 @@ Asynchronous communication is way more acceptable: no unlimited waiting of a mes
 
 ## Self-suspension
 Happens when a job knows it will wait for something (probably external world related)
+
+# Lecture 8 (24/03)
+Preemption is guided by microcode in the CPU. It can be ignored mechanically (by making the microcode temporarily read-only) or via software (ignore the microcode on fetch phase)
+
+**Scheduling anomaly**
+: case in which it is not true that the global worst case is the composition of all the local worst cases -> local better case is global worse case!
+
+## Concurrency problems
+**Critical section**
+: code section operating on shared resources
+
+Critical sections should be explicitly defined and highlighted
+
+### Atomicity
+The only way to avoid data races is to have support for atomicity. It doesn't allow preemption when doing an atomic operation
+
+A task gets **directly blocked** by another one when it has higher priority, but is blocked on a resource because of atomicity (priority inversion?)
+
+Inhibiting preemption globally for atomic operations and critical sections blocks *all tasks* for preemption, even the ones that don't require shared resources to the running task, but only for the critical section duration (time period is bounded).
+This can be solved using preemption, but making the higher priority task self-suspends (giving control to the one that controls the resource) if it wants to access the resource blocked by atomicity
+
+Blocking inhibits execution, not preemption (higher priority can preempt, but gets blocked)
+
+Blocking is not enough (circular waiting) \
+$\implies$ give priorities to resources
+
+## Basic Priority Ceiling Protocol (BPCP)
+$\forall R \in Resources.\ ceiling(R) = max(priority(\tau_i), ceiling(R_i)), \forall \tau_i \in \{\tau | \tau$ uses $R\}, \forall R_i \in \{R_i | R_i$ depends on $R\}$
+
+<!-- TODO: complete -->
+System ceiling $\pi_s(t) = \begin{cases}
+    \Omega & if no resource is used
+\end{cases}$
+
+Combining priority and system ceiling, if a task is able to preempt it can acquire resources without any harm
