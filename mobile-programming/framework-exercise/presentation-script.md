@@ -14,6 +14,7 @@ Core Modules and other plugins provide cross-platform abstractions for native UI
 Can be written with any framework, or just defining UI elements using XML files
 
 # Motivations
+Without mentioning Raj and Tolety pros of interpreted
 - App code with anything
 - While keeping native look and feel
-- Capacitor is a viable solution for better performance with compilation
+- It can integrate with existing Capacitor projects, to provide actual native looks to web apps
