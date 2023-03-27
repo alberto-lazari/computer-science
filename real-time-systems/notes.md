@@ -187,12 +187,14 @@ Critical sections should be explicitly defined and highlighted
 ### Atomicity
 The only way to avoid data races is to have support for atomicity. It doesn't allow preemption when doing an atomic operation
 
-A task gets **directly blocked** by another one when it has higher priority, but is blocked on a resource because of atomicity (priority inversion?)
+A task gets **directly blocked** by another one when it has higher priority, but is blocked on a resource because of atomicity -> priority inversion when the lower priority is not able to execute, but it's blocking higher priorities for a long time
 
 Inhibiting preemption globally for atomic operations and critical sections blocks *all tasks* for preemption, even the ones that don't require shared resources to the running task, but only for the critical section duration (time period is bounded).
 This can be solved using preemption, but making the higher priority task self-suspends (giving control to the one that controls the resource) if it wants to access the resource blocked by atomicity
 
 Blocking inhibits execution, not preemption (higher priority can preempt, but gets blocked)
+
+When a resource is released the tasks blocked by that resource get pushed back into the queue (they were released and put away) -> they can do preemption
 
 Blocking is not enough (circular waiting) \
 $\implies$ give priorities to resources
@@ -202,7 +204,11 @@ $\forall R \in Resources.\ ceiling(R) = max(priority(\tau_i), ceiling(R_i)), \fo
 
 <!-- TODO: complete -->
 System ceiling $\pi_s(t) = \begin{cases}
-    \Omega & if no resource is used
+    \Omega & \text{if no resource is used}
 \end{cases}$
 
 Combining priority and system ceiling, if a task is able to preempt it can acquire resources without any harm
+
+## Ceiling Priority Protocol (CPP)
+Task acquires the resource ceiling priority when using it.
+Lockfiles are not even necessary, becuase it can't happen that a taks that uses a resource gets preempted by another one that uses it (not even the highest proirity, because it has the same priority)
