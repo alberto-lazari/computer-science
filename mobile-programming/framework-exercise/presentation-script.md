@@ -1,5 +1,5 @@
 # NativeScript
-Open-source framework to build cross platform applications using JavaScript
+Open-source framework to build cross platform mobile applications using JavaScript
 
 # Interpreted
 ## Runtimes
@@ -17,4 +17,4 @@ Can be written with any framework, or just defining UI elements using XML files
 Without mentioning Raj and Tolety pros of interpreted
 - App code with anything
 - While keeping native look and feel
-- It can integrate with existing Capacitor projects, to provide actual native looks to web apps
+- It can integrate with existing Capacitor projects, to provide native mobile behaviors when using the actual app, instead of web app
