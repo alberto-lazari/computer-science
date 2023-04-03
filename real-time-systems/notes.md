@@ -200,7 +200,7 @@ Blocking is not enough (circular waiting) \
 $\implies$ give priorities to resources
 
 ## Basic Priority Ceiling Protocol (BPCP)
-$\forall R \in Resources.\ ceiling(R) = max(priority(\tau_i), ceiling(R_i)), \forall \tau_i \in \{\tau | \tau$ uses $R\}, \forall R_i \in \{R_i | R_i$ depends on $R\}$
+$\forall R \in Resources. ceiling(R) = max(priority(\tau_i), ceiling(R_i)), \forall \tau_i \in \{\tau | \tau$ uses $R\}, \forall R_i \in \{R_i | R_i$ depends on $R\}$
 
 <!-- TODO: complete -->
 System ceiling $\pi_s(t) = \begin{cases}
@@ -212,3 +212,21 @@ Combining priority and system ceiling, if a task is able to preempt it can acqui
 ## Ceiling Priority Protocol (CPP)
 Task acquires the resource ceiling priority when using it.
 Lockfiles are not even necessary, becuase it can't happen that a taks that uses a resource gets preempted by another one that uses it (not even the highest proirity, because it has the same priority)
+
+# Lecture 10 (03/04)
+In an embedded environment a program has access to the entire system
+
+## Threads
+A program may create threads, other `main`'s inside the program's `main`.
+They can be seen as never-ending loops, representing task jobs
+
+Tasks are main loops that spawn threads
+
+## Ada
+Tasks have bodies. In `begin` `end` blocks loops are defined. They are jobs
+
+Jobs have to be synchronized $\implies$ they get delayed at the beginning, because the language will have a startup sequencial delay time
+
+The compiler allows for `pragma` restrictions
+
+<!-- TODO: install and learn Ada -->
