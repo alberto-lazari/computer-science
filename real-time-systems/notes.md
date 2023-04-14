@@ -213,7 +213,7 @@ Combining priority and system ceiling, if a task is able to preempt it can acqui
 Task acquires the resource ceiling priority when using it.
 Lockfiles are not even necessary, becuase it can't happen that a taks that uses a resource gets preempted by another one that uses it (not even the highest proirity, because it has the same priority)
 
-# Lecture 10 (03/04)
+# Lecture 11 (03/04)
 In an embedded environment a program has access to the entire system
 
 ## Threads
@@ -230,3 +230,8 @@ Jobs have to be synchronized $\implies$ they get delayed at the beginning, becau
 The compiler allows for `pragma` restrictions
 
 <!-- TODO: install and learn Ada -->
+
+# Lecture 12 (14/04)
+Language runtime has to manage singular tasks Program Counters
+
+Sporadic tasks are placed in a guard queue. They require an entry an, if the guard is false, they are removed from execution and pushed inside the guard queue
