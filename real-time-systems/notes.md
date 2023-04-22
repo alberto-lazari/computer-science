@@ -229,9 +229,31 @@ Jobs have to be synchronized $\implies$ they get delayed at the beginning, becau
 
 The compiler allows for `pragma` restrictions
 
-<!-- TODO: install and learn Ada -->
-
 # Lecture 12 (14/04)
 Language runtime has to manage singular tasks Program Counters
 
 Sporadic tasks are placed in a guard queue. They require an entry an, if the guard is false, they are removed from execution and pushed inside the guard queue
+
+# Lecture 14 (21/04)
+Priorities available in the implementation may not be enough to cover the ones assigned by the design
+
+## Mapping
+There are two ways to map different priorities in one (hash mapping basically)
+
+### Uniform mapping
+Ranges of priorities gets assigned to the same
+
+ex: [1..3] -> all priority 1 \
+$\implies$ higher priorities will have the same priority as lower (3 = 1)
+
+### Constant ratio mapping (CRM)
+Higher priorities have smaller mappings
+
+ex: [5] -> 3, [4..3] -> 2, [2..0] -> 1
+
+When inverting priorities (the lower the higher) map sizes keep increasing with priority
+
+## Time management
+Clock ticks are the smallest human time period (ms)
+
+Interrupts are checked every block of ticks (tick scheduling)
