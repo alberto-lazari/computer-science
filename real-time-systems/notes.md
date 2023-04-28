@@ -257,3 +257,9 @@ When inverting priorities (the lower the higher) map sizes keep increasing with 
 Clock ticks are the smallest human time period (ms)
 
 Interrupts are checked every block of ticks (tick scheduling)
+
+# Lecture 15 (28/04)
+Greatest variability of response is the distance Best case response time - Worst case response time. Jitter depends on response time
+
+**Holistic**
+: From Wholistic, analyze a complex system, made by more components, as a whole
