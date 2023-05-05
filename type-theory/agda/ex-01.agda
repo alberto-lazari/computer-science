@@ -17,7 +17,7 @@ succ a + b = succ (a + b)
 -- and "succ zero - succ (succ zero)" should both be "zero".
 _-_ : ℕ → ℕ → ℕ
 zero   - b      = zero
-a      - zero   = a
+succ a - zero   = succ a
 succ a - succ b = a - b
 
 -- EXERCISE: Define multiplication and exponentiation.
@@ -29,7 +29,9 @@ succ a · b = b + (a · b)
 -- For instance "half (succ (succ (succ (succ zero))))" should be "succ (succ zero)"
 -- and "half (succ (succ (succ zero)))" should be "succ zero" (so we round down).
 half : ℕ → ℕ
-half n = {!!}
+half zero            = zero
+half (succ zero)     = zero
+half (succ (succ n)) = succ (half n)
 
 
 data Bool : Set where
@@ -69,8 +71,8 @@ a == b = (a ≤ b) ∧ (b ≤ a)
 _eq?_ : ℕ → ℕ → Bool
 zero     eq? zero     = true
 zero     eq? succ b   = false
-(succ a) eq? zero     = false
-(succ a) eq? (succ b) = a eq? b
+succ a   eq? zero     = false
+succ a   eq? succ b   = a eq? b
 
 _⇒_ : Bool → Bool → Bool
 false ⇒ b = true
