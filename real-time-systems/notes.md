@@ -263,3 +263,15 @@ Greatest variability of response is the distance Best case response time - Worst
 
 **Holistic**
 : From Wholistic, analyze a complex system, made by more components, as a whole
+
+# Lecture 16 (05/05)
+<!-- TODO: Look at end-to-end analysis for exam (p. ~315) -->
+
+## WCET (Worst-Case Execution-Time) analysis
+To minimize worst cases euristics are used. Average time is reduced by guessing
+
+Execution time can be controlled with:
+- High-level analysis: software control flow graph. It is done on the compiled binary, because compilers re-arrange code to make optimizations (ex. less jumps)
+- Low-level analysis: hardware-dependent. In modern hardware it's not always deterministic
+
+Both solutions are difficult -> hybrid analysis is actually used now: randomness and execution testing
