@@ -23,7 +23,7 @@ succ a - succ b = a - b
 -- EXERCISE: Define multiplication and exponentiation.
 _·_ : ℕ → ℕ → ℕ
 zero   · b = zero
-succ a · b = a + (a · b)
+succ a · b = b + (a · b)
 
 -- EXERCISE: Define the function "half" which divides its input by two.
 -- For instance "half (succ (succ (succ (succ zero))))" should be "succ (succ zero)"
