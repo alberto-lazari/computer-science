@@ -64,7 +64,9 @@ congₙ f refl = refl
 
 infix 5 _≡_
 data _≡_ {X : Set} : X → X → Set where
-  refl : {a : X} → a ≡ a
+  refl : (a : X) → a ≡ a
+-- Commenting out the implicit version, because it's too easy and doesn't allow to understand what's actually going on
+-- refl : {a : X} → a ≡ a
 
 {-# BUILTIN EQUALITY _≡_ #-}
 
@@ -94,21 +96,22 @@ de-morgan₂ p b = p (right b)
 -- by this lemma, we can apply the same operation to the two sides of an equation
 -- and still be sure that the equation holds.
 cong : {A B : Set} {x y : A} → (f : A → B) → x ≡ y → f x ≡ f y
-cong f refl = refl
+cong f (refl x) = refl (f x)
 
 -- EXERCISE: Prove that equality is symmetric.
 symm : {A : Set} {x y : A} → x ≡ y → y ≡ x
-symm refl = refl
+symm (refl x) = refl x
 
 -- EXERCISE: Fill in this hole, thereby proving that equality is transitive.
 trans : {A : Set} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
-trans refl refl = refl
+trans (refl x) (refl _) = refl x
 
 -- EXERCISE: Prove that equal functions have equal values. (The
 -- converse is a principle known as "function extensionality" which
 -- can be postulated in Agda but is not assumed by default.)
 equal→pwequal : {A B : Set} {f g : A → B} {x : A} → f ≡ g → f x ≡ g x
-equal→pwequal refl = refl
+-- TODO: Is it possible to write it in a more elegant way, without the implicit parameters?
+equal→pwequal {A} {B} {f} {g} {x} (refl f) = refl (f x)
 
 -- EXERCISE: Think about the expression "(⊥ ≡ ℕ)". Is it well-defined?
 -- What would be its meaning?
@@ -116,7 +119,7 @@ equal→pwequal refl = refl
 -- EXERCISE: Fill in this hole. This lemma will be used below
 -- in the proof that the double of any number is even.
 transport : {A : Set} {x y : A} → (F : A → Set) → x ≡ y → F x → F y
-transport F p s = {!!}
+transport F (refl _) s = s
 
 
 ---------------------------------
@@ -125,7 +128,7 @@ transport F p s = {!!}
 
 -- EXERCISE: Show that the predecessor of the successor of a number is that number again.
 lemma-pred-succ : (a : ℕ) → pred (succ a) ≡ a
-lemma-pred-succ a = {!!}
+lemma-pred-succ a = refl a
 
 -- EXERCISE: Show that the two functions "even?" and "even?'" have the same values.
 even? : ℕ → Bool
@@ -138,7 +141,7 @@ even?' (succ zero)     = false
 even?' (succ (succ n)) = even?' n
 
 lemma-even?-even?' : (a : ℕ) → even? a ≡ even?' a
-lemma-even?-even?' zero     = refl
+lemma-even?-even?' zero     = refl (even? zero)
 lemma-even?-even?' (succ a) = {!!}
 
 -- EXERCISE: Show that it is not the case that "succ (pred a) ≡ a" for all natural numbers a.
@@ -154,13 +157,12 @@ data Positive : ℕ → Set where
 
 -- EXERCISE: Fill in this hole.
 lemma-succ-pred' : (a : ℕ) → Positive a → succ (pred a) ≡ a
-lemma-succ-pred' (succ b) p = refl
+lemma-succ-pred' a = {!!}
 
 -- EXERCISE: Verify the following two auxiliary lemmas, establishing that we
 -- could have equivalently defined addition also by recursion on the second argument.
 lemma-+-zero : (n : ℕ) → n + zero ≡ n
-lemma-+-zero zero = refl
-lemma-+-zero (succ n) = cong succ (lemma-+-zero n)
+lemma-+-zero n = {!!}
 
 lemma-+-succ : (a b : ℕ) → (a + succ b) ≡ succ (a + b)
 lemma-+-succ a b = {!!}
