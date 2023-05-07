@@ -73,17 +73,17 @@ data _≡_ {X : Set} : X → X → Set where
 ----[ LOGICAL TAUTOLOGIES ]---------
 ------------------------------------
 
-dni : {A B : Set} → A → ¬ (¬ A)
-dni p = {!!}
+dni : {A : Set} → A → ¬ (¬ A)
+dni p a = a p
 
 contraposition : {A B : Set} → (A → B) → (¬ B → ¬ A)
-contraposition f p = {!!}
+contraposition f p a = p (f a)
 
 de-morgan₁ : {A B : Set} → ¬ (A ⊎ B) → ¬ A
-de-morgan₁ = {!!}
+de-morgan₁ p a = p (left a)
 
 de-morgan₂ : {A B : Set} → ¬ (A ⊎ B) → ¬ B
-de-morgan₂ = {!!}
+de-morgan₂ p b = p (right b)
 
 
 ------------------------------------
@@ -94,7 +94,7 @@ de-morgan₂ = {!!}
 -- by this lemma, we can apply the same operation to the two sides of an equation
 -- and still be sure that the equation holds.
 cong : {A B : Set} {x y : A} → (f : A → B) → x ≡ y → f x ≡ f y
-cong f p = {!!}
+cong f refl = refl
 
 -- EXERCISE: Prove that equality is symmetric.
 symm : {A : Set} {x y : A} → x ≡ y → y ≡ x
@@ -252,8 +252,8 @@ take zero      xs        = []
 take (succ k') (x ∷ xs') = x ∷ take k' xs'
 
 _++ᵥ_ : {A : Set} {n m : ℕ} → Vector A n → Vector A m → Vector A (n + m)
-[]        ++ᵥ ys = ys 
-(x ∷ xs') ++ᵥ ys = x ∷ (xs' ++ᵥ ys) 
+[]        ++ᵥ ys = ys
+(x ∷ xs') ++ᵥ ys = x ∷ (xs' ++ᵥ ys)
 
 -- EXERCISE: Verify the following lemma.
 lemma-take-drop : {A : Set} {n : ℕ} → (k : ℕ) → (xs : Vector A (k + n)) → (take k xs ++ᵥ drop k xs) ≡ xs
