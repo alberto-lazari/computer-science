@@ -116,7 +116,7 @@ equal→pwequal refl = refl
 -- EXERCISE: Fill in this hole. This lemma will be used below
 -- in the proof that the double of any number is even.
 transport : {A : Set} {x y : A} → (F : A → Set) → x ≡ y → F x → F y
-transport F p s = {!!}
+transport F refl s = s
 
 
 ---------------------------------
