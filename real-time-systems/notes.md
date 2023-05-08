@@ -211,7 +211,7 @@ Combining priority and system ceiling, if a task is able to preempt it can acqui
 
 ## Ceiling Priority Protocol (CPP)
 Task acquires the resource ceiling priority when using it.
-Lockfiles are not even necessary, becuase it can't happen that a taks that uses a resource gets preempted by another one that uses it (not even the highest proirity, because it has the same priority)
+Lock-files are not even necessary, because it can't happen that a tasks that uses a resource gets preempted by another one that uses it (not even the highest priority, because it has the same priority)
 
 # Lecture 11 (03/04)
 In an embedded environment a program has access to the entire system
@@ -225,7 +225,7 @@ Tasks are main loops that spawn threads
 ## Ada
 Tasks have bodies. In `begin` `end` blocks loops are defined. They are jobs
 
-Jobs have to be synchronized $\implies$ they get delayed at the beginning, because the language will have a startup sequencial delay time
+Jobs have to be synchronized $\implies$ they get delayed at the beginning, because the language will have a startup sequential delay time
 
 The compiler allows for `pragma` restrictions
 
@@ -268,10 +268,24 @@ Greatest variability of response is the distance Best case response time - Worst
 <!-- TODO: Look at end-to-end analysis for exam (p. ~315) -->
 
 ## WCET (Worst-Case Execution-Time) analysis
-To minimize worst cases euristics are used. Average time is reduced by guessing
+To minimize worst cases heuristics are used. Average time is reduced by guessing
 
 Execution time can be controlled with:
 - High-level analysis: software control flow graph. It is done on the compiled binary, because compilers re-arrange code to make optimizations (ex. less jumps)
 - Low-level analysis: hardware-dependent. In modern hardware it's not always deterministic
 
 Both solutions are difficult -> hybrid analysis is actually used now: randomness and execution testing
+
+# Lecture 17 (08/05)
+## Multi-core
+Are tightly coupled systems, with shared memory. Multiprocessors can be
+- Homogeneous: cores of the same type (evolution mostly on real-time systems)
+- Heterogeneous: different kind of processors on the same system (CPU, GPU, TPU etc)
+
+### Cache levels
+L1 cache is needed because sharing the direct cache between more cores would extremely slow down the execution
+
+## WCET
+It is not composable anymore, because it depends on who is executing with
+
+Global scheduling may not be better than local scheduling
