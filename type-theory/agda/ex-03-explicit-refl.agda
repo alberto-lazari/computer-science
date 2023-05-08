@@ -168,8 +168,23 @@ lemma-+-succ : (a b : ℕ) → (a + succ b) ≡ succ (a + b)
 lemma-+-succ a b = {!!}
 
 -- EXERCISE: Verify that addition is commutative.
+{-
+Goal: a + succ b = succ (b + a)
+
+lemma-succ a b: a + succ b = succ (a + b)
+lemma-succ b a: b + succ a = succ (b + a)
+
+lemma-commutative a b: a + b = b + a
+cong succ (lemma-commutative a b): succ (a + b) = succ (b + a)
+
+=> trans (lemma-succ a b) (cong succ (lemma-commutative a b))
+=> trans (a + succ b = succ (a + b)) (succ (a + b) = succ (b + a)): a + succ b = succ (b + a)
+-}
 lemma-+-commutative : (a b : ℕ) → (a + b) ≡ (b + a)
-lemma-+-commutative a b = {!!}
+lemma-+-commutative a zero     = lemma-+-zero a
+lemma-+-commutative a (succ b) = trans (lemma-+-succ a b)
+                                       (cong succ
+                                             (lemma-+-commutative a b))
 
 -- EXERCISE: Verify that addition is associative.
 lemma-+-associative : (a b c : ℕ) → (a + (b + c)) ≡ ((a + b) + c)
