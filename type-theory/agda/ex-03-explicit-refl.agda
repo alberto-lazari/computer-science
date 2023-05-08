@@ -140,9 +140,15 @@ even?' zero            = true
 even?' (succ zero)     = false
 even?' (succ (succ n)) = even?' n
 
+double-negation : (a : Bool) → a ≡ ! (! a)
+double-negation false = refl false
+double-negation true  = refl true
+
 lemma-even?-even?' : (a : ℕ) → even? a ≡ even?' a
-lemma-even?-even?' zero     = refl (even? zero)
-lemma-even?-even?' (succ a) = {!!}
+lemma-even?-even?' zero            = refl (even? zero)
+lemma-even?-even?' (succ zero)     = refl false
+lemma-even?-even?' (succ (succ a)) = trans (symm (double-negation (even? a)))
+                                           (lemma-even?-even?' a)
 
 -- EXERCISE: Show that it is not the case that "succ (pred a) ≡ a" for all natural numbers a.
 lemma-succ-pred : ((a : ℕ) → succ (pred a) ≡ a) → ⊥
@@ -157,15 +163,17 @@ data Positive : ℕ → Set where
 
 -- EXERCISE: Fill in this hole.
 lemma-succ-pred' : (a : ℕ) → Positive a → succ (pred a) ≡ a
-lemma-succ-pred' a = {!!}
+lemma-succ-pred' a succs-are-positive = refl a
 
 -- EXERCISE: Verify the following two auxiliary lemmas, establishing that we
 -- could have equivalently defined addition also by recursion on the second argument.
 lemma-+-zero : (n : ℕ) → n + zero ≡ n
-lemma-+-zero n = {!!}
+lemma-+-zero zero     = refl zero
+lemma-+-zero (succ n) = cong succ (lemma-+-zero n)
 
 lemma-+-succ : (a b : ℕ) → (a + succ b) ≡ succ (a + b)
-lemma-+-succ a b = {!!}
+lemma-+-succ zero     b = refl (succ b)
+lemma-+-succ (succ a) b = cong succ (lemma-+-succ a b)
 
 -- EXERCISE: Verify that addition is commutative.
 {-
