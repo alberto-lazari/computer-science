@@ -203,22 +203,45 @@ lemma-+-commutative a (succ b) = trans (lemma-+-succ a b)
 
 -- EXERCISE: Verify that addition is associative.
 lemma-+-associative : (a b c : ℕ) → (a + (b + c)) ≡ ((a + b) + c)
-lemma-+-associative a b c = {!!}
+lemma-+-associative zero     b c = refl (b + c)
+lemma-+-associative (succ a) b c = cong succ (lemma-+-associative a b c)
 
 -- EXERCISE: Verify the distributive law. Similar as the implementation/proof
 -- of lemma-+-commutative, the result will not be easy to read.
 -- By a technique called "equational reasoning", to be introduced next week,
 -- we will be able to clean up the proof.
+{-
+Goal: (c + ((a + b) · c)) ≡ ((c + (a · c)) + (b · c))
+
+lemma-distributive a b c: ((a + b) · c) ≡ ((a · c) + (b · c))
+cong (c +_) (lemma-distributive a b c): (c + ((a + b) · c)) ≡ (c + ((a · c) + (b · c)))
+lemma-+-associative c (a · c) (b · c): (c + ((a · c) + (b · c))) ≡ ((c + (a · c)) + (b · c))
+-}
 lemma-distributive : (a b c : ℕ) → ((a + b) · c) ≡ ((a · c) + (b · c))
-lemma-distributive a b c = {!!}
+lemma-distributive zero     b c = refl (b · c)
+lemma-distributive (succ a) b c = trans (cong (c +_)
+                                              (lemma-distributive a b c))
+                                        (lemma-+-associative c (a · c) (b · c))
 
 -- EXERCISE: Show that the double of any number is even.
 data Even : ℕ → Set where
   base-even : Even zero
   step-even : {n : ℕ} → Even n → Even (succ (succ n))
 
+{-
+Goal: Even (succ (a + succ a))
+
+cong succ (lemma-+-commutative (succ a) a): succ (succ (a + a)) ≡ succ (a + succ a)
+step-even (Even (a + a)): Even (succ (succ (a + a)))
+lemma-double-even a: Even (a + a)
+transport: Even → x ≡ y → Even x → Even y
+-}
 lemma-double-even : (a : ℕ) → Even (a + a)
-lemma-double-even a = {!!}
+lemma-double-even zero     = base-even
+lemma-double-even (succ a) = transport (Even)
+                                       (cong succ
+                                             (lemma-+-commutative (succ a) a))
+                                       (step-even (lemma-double-even a))
 
 
 -------------------------------
