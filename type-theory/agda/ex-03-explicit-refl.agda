@@ -150,9 +150,16 @@ lemma-even?-even?' (succ zero)     = refl false
 lemma-even?-even?' (succ (succ a)) = trans (symm (double-negation (even? a)))
                                            (lemma-even?-even?' a)
 
+zero-≠-one : succ zero ≡ zero → ⊥
+zero-≠-one ()
+
 -- EXERCISE: Show that it is not the case that "succ (pred a) ≡ a" for all natural numbers a.
 lemma-succ-pred : ((a : ℕ) → succ (pred a) ≡ a) → ⊥
-lemma-succ-pred f = {!!}
+lemma-succ-pred f = zero-≠-one (f zero)
+{-
+lemma-succ-pred f with f zero
+...                  | ()
+-}
 
 -- The following defines a type family "Positive : ℕ → Set" such that "Positive a" is the
 -- type of witnesses that a is positive: The type "Positive zero" is empty
