@@ -266,10 +266,12 @@ module _ {A : Set} where
 
   -- EXERCISE: Verify the following lemma.
   lemma-reverse-∷ʳ : (ys : List A) (x : A) → reverse (ys ∷ʳ x) ≡ (x ∷ reverse ys)
-  lemma-reverse-∷ʳ ys x = {!!}
+  lemma-reverse-∷ʳ []       x = refl (x ∷ [])
+  lemma-reverse-∷ʳ (y ∷ ys) x = {!refl (x ∷ ys)!}
 
   lemma-reverse-reverse : (xs : List A) → reverse (reverse xs) ≡ xs
-  lemma-reverse-reverse xs = {!!}
+  lemma-reverse-reverse []       = refl []
+  lemma-reverse-reverse (x ∷ xs) = {!!}
 
   -- EXERCISE: State and prove that _++_ on lists is associative.
   _++_ : List A → List A → List A
@@ -284,11 +286,14 @@ module _ {A : Set} where
 
   -- EXERCISE: Show that equal lists are related by _≈_.
   ≡→≈ : {xs ys : List A} → xs ≡ ys → xs ≈ ys
-  ≡→≈ p = {!!}
+  ≡→≈ (refl [])       = both-empty
+  ≡→≈ (refl (x ∷ xs)) = both-same-cons (refl x) (≡→≈ (refl xs))
 
   -- EXERCISE: Show that related lists are equal.
   ≈→≡ : {xs ys : List A} → xs ≈ ys → xs ≡ ys
-  ≈→≡ p = {!!}
+  ≈→≡ both-empty = refl []
+  ≈→≡ (both-same-cons (refl x) p) with ≈→≡ p
+  ...                                | refl xs = refl (x ∷ xs)
 
 
 ---------------------------------
@@ -313,7 +318,8 @@ _++ᵥ_ : {A : Set} {n m : ℕ} → Vector A n → Vector A m → Vector A (n + 
 
 -- EXERCISE: Verify the following lemma.
 lemma-take-drop : {A : Set} {n : ℕ} → (k : ℕ) → (xs : Vector A (k + n)) → (take k xs ++ᵥ drop k xs) ≡ xs
-lemma-take-drop = {!!}
+lemma-take-drop zero     xs = refl xs
+lemma-take-drop (succ k) (x ∷ xs) = {!lemma-take-drop k (xs)!}
 
 -- EXERCISE: Find out where the difficulty is in stating that _++ᵥ_ on
 -- vectors is associative.
