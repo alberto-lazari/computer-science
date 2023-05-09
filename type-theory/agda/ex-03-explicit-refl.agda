@@ -265,9 +265,9 @@ module _ {A : Set} where
   reverse (x ∷ xs) = reverse xs ∷ʳ x
 
   -- EXERCISE: Verify the following lemma.
-  lemma-reverse-∷ʳ : (ys : List A) (x : A) → reverse (ys ∷ʳ x) ≡ (x ∷ reverse ys)
+  lemma-reverse-∷ʳ : (xs : List A) (x : A) → reverse (xs ∷ʳ x) ≡ (x ∷ reverse xs)
   lemma-reverse-∷ʳ []       x = refl (x ∷ [])
-  lemma-reverse-∷ʳ (y ∷ ys) x = {!refl (x ∷ ys)!}
+  lemma-reverse-∷ʳ (y ∷ xs) x = {!!}
 
   lemma-reverse-reverse : (xs : List A) → reverse (reverse xs) ≡ xs
   lemma-reverse-reverse []       = refl []
@@ -277,6 +277,10 @@ module _ {A : Set} where
   _++_ : List A → List A → List A
   []       ++ ys = ys
   (x ∷ xs) ++ ys = x ∷ (xs ++ ys)
+
+  lemma-++-associative : (xs ys zs : List A) → (xs ++ ys) ++ zs ≡ xs ++ (ys ++ zs)
+  lemma-++-associative []       ys zs = refl (ys ++ zs)
+  lemma-++-associative (x ∷ xs) ys zs = cong (x ∷_) (lemma-++-associative xs ys zs)
 
   -- The following relation relates exactly those lists which have the same length
   -- and whose corresponding entries are equal.
@@ -318,8 +322,8 @@ _++ᵥ_ : {A : Set} {n m : ℕ} → Vector A n → Vector A m → Vector A (n + 
 
 -- EXERCISE: Verify the following lemma.
 lemma-take-drop : {A : Set} {n : ℕ} → (k : ℕ) → (xs : Vector A (k + n)) → (take k xs ++ᵥ drop k xs) ≡ xs
-lemma-take-drop zero     xs = refl xs
-lemma-take-drop (succ k) (x ∷ xs) = {!lemma-take-drop k (xs)!}
+lemma-take-drop zero     xs       = refl xs
+lemma-take-drop (succ k) (x ∷ xs) = cong (x ∷_) (lemma-take-drop k (xs))
 
 -- EXERCISE: Find out where the difficulty is in stating that _++ᵥ_ on
 -- vectors is associative.
