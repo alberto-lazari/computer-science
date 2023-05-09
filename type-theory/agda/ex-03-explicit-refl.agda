@@ -198,8 +198,7 @@ cong succ (lemma-commutative a b): succ (a + b) = succ (b + a)
 lemma-+-commutative : (a b : ℕ) → (a + b) ≡ (b + a)
 lemma-+-commutative a zero     = lemma-+-zero a
 lemma-+-commutative a (succ b) = trans (lemma-+-succ a b)
-                                       (cong succ
-                                             (lemma-+-commutative a b))
+                                       (cong succ (lemma-+-commutative a b))
 
 -- EXERCISE: Verify that addition is associative.
 lemma-+-associative : (a b c : ℕ) → (a + (b + c)) ≡ ((a + b) + c)
@@ -219,8 +218,7 @@ lemma-+-associative c (a · c) (b · c): (c + ((a · c) + (b · c))) ≡ ((c + (
 -}
 lemma-distributive : (a b c : ℕ) → ((a + b) · c) ≡ ((a · c) + (b · c))
 lemma-distributive zero     b c = refl (b · c)
-lemma-distributive (succ a) b c = trans (cong (c +_)
-                                              (lemma-distributive a b c))
+lemma-distributive (succ a) b c = trans (cong (c +_) (lemma-distributive a b c))
                                         (lemma-+-associative c (a · c) (b · c))
 
 -- EXERCISE: Show that the double of any number is even.
@@ -239,8 +237,7 @@ transport: Even → x ≡ y → Even x → Even y
 lemma-double-even : (a : ℕ) → Even (a + a)
 lemma-double-even zero     = base-even
 lemma-double-even (succ a) = transport (Even)
-                                       (cong succ
-                                             (lemma-+-commutative (succ a) a))
+                                       (cong succ (lemma-+-commutative (succ a) a))
                                        (step-even (lemma-double-even a))
 
 
@@ -267,11 +264,12 @@ module _ {A : Set} where
   -- EXERCISE: Verify the following lemma.
   lemma-reverse-∷ʳ : (xs : List A) (x : A) → reverse (xs ∷ʳ x) ≡ (x ∷ reverse xs)
   lemma-reverse-∷ʳ []       x = refl (x ∷ [])
-  lemma-reverse-∷ʳ (y ∷ xs) x = {!!}
+  lemma-reverse-∷ʳ (y ∷ xs) x = cong (_∷ʳ y) (lemma-reverse-∷ʳ xs x)
 
   lemma-reverse-reverse : (xs : List A) → reverse (reverse xs) ≡ xs
   lemma-reverse-reverse []       = refl []
-  lemma-reverse-reverse (x ∷ xs) = {!!}
+  lemma-reverse-reverse (x ∷ xs) = trans (lemma-reverse-∷ʳ (reverse xs) x)
+                                         (cong (x ∷_) (lemma-reverse-reverse xs))
 
   -- EXERCISE: State and prove that _++_ on lists is associative.
   _++_ : List A → List A → List A
@@ -327,3 +325,6 @@ lemma-take-drop (succ k) (x ∷ xs) = cong (x ∷_) (lemma-take-drop k (xs))
 
 -- EXERCISE: Find out where the difficulty is in stating that _++ᵥ_ on
 -- vectors is associative.
+lemma-++ᵥ-associative : {A : Set} {n : ℕ} → (xs ys zs : Vector A n) → (xs ++ᵥ ys) ++ᵥ zs ≡ (ys ++ᵥ zs) ++ᵥ xs
+lemma-++ᵥ-associative []       ys zs = {!!}
+lemma-++ᵥ-associative (x ∷ xs) ys zs = {!!}
