@@ -125,7 +125,7 @@ transport F refl s = s
 
 -- EXERCISE: Show that the predecessor of the successor of a number is that number again.
 lemma-pred-succ : (a : ℕ) → pred (succ a) ≡ a
-lemma-pred-succ a = {!!}
+lemma-pred-succ a = refl
 
 -- EXERCISE: Show that the two functions "even?" and "even?'" have the same values.
 even? : ℕ → Bool
@@ -137,13 +137,26 @@ even?' zero            = true
 even?' (succ zero)     = false
 even?' (succ (succ n)) = even?' n
 
+double-negation : (a : Bool) → a ≡ ! (! a)
+double-negation false = refl
+double-negation true  = refl
+
 lemma-even?-even?' : (a : ℕ) → even? a ≡ even?' a
-lemma-even?-even?' zero     = refl
-lemma-even?-even?' (succ a) = {!!}
+lemma-even?-even?' zero            = refl
+lemma-even?-even?' (succ zero)     = refl
+lemma-even?-even?' (succ (succ a)) = trans (symm (double-negation (even? a)))
+                                           (lemma-even?-even?' a)
+
+zero-≠-one : succ zero ≡ zero → ⊥
+zero-≠-one ()
 
 -- EXERCISE: Show that it is not the case that "succ (pred a) ≡ a" for all natural numbers a.
 lemma-succ-pred : ((a : ℕ) → succ (pred a) ≡ a) → ⊥
-lemma-succ-pred f = {!!}
+lemma-succ-pred f = zero-≠-one (f zero)
+{-
+lemma-succ-pred f with f zero
+...                  | ()
+-}
 
 -- The following defines a type family "Positive : ℕ → Set" such that "Positive a" is the
 -- type of witnesses that a is positive: The type "Positive zero" is empty
@@ -154,39 +167,75 @@ data Positive : ℕ → Set where
 
 -- EXERCISE: Fill in this hole.
 lemma-succ-pred' : (a : ℕ) → Positive a → succ (pred a) ≡ a
-lemma-succ-pred' (succ b) p = refl
+lemma-succ-pred' a succs-are-positive = refl
 
 -- EXERCISE: Verify the following two auxiliary lemmas, establishing that we
 -- could have equivalently defined addition also by recursion on the second argument.
 lemma-+-zero : (n : ℕ) → n + zero ≡ n
-lemma-+-zero zero = refl
+lemma-+-zero zero     = refl
 lemma-+-zero (succ n) = cong succ (lemma-+-zero n)
 
 lemma-+-succ : (a b : ℕ) → (a + succ b) ≡ succ (a + b)
-lemma-+-succ a b = {!!}
+lemma-+-succ zero     b = refl
+lemma-+-succ (succ a) b = cong succ (lemma-+-succ a b)
 
 -- EXERCISE: Verify that addition is commutative.
+{-
+Goal: a + succ b = succ (b + a)
+
+lemma-succ a b: a + succ b = succ (a + b)
+lemma-succ b a: b + succ a = succ (b + a)
+
+lemma-commutative a b: a + b = b + a
+cong succ (lemma-commutative a b): succ (a + b) = succ (b + a)
+
+=> trans (lemma-succ a b) (cong succ (lemma-commutative a b))
+=> trans (a + succ b = succ (a + b)) (succ (a + b) = succ (b + a)): a + succ b = succ (b + a)
+-}
 lemma-+-commutative : (a b : ℕ) → (a + b) ≡ (b + a)
-lemma-+-commutative a b = {!!}
+lemma-+-commutative a zero     = lemma-+-zero a
+lemma-+-commutative a (succ b) = trans (lemma-+-succ a b)
+                                       (cong succ (lemma-+-commutative a b))
 
 -- EXERCISE: Verify that addition is associative.
 lemma-+-associative : (a b c : ℕ) → (a + (b + c)) ≡ ((a + b) + c)
-lemma-+-associative a b c = {!!}
+lemma-+-associative zero     b c = refl
+lemma-+-associative (succ a) b c = cong succ (lemma-+-associative a b c)
 
 -- EXERCISE: Verify the distributive law. Similar as the implementation/proof
 -- of lemma-+-commutative, the result will not be easy to read.
 -- By a technique called "equational reasoning", to be introduced next week,
 -- we will be able to clean up the proof.
+{-
+Goal: (c + ((a + b) · c)) ≡ ((c + (a · c)) + (b · c))
+
+lemma-distributive a b c: ((a + b) · c) ≡ ((a · c) + (b · c))
+cong (c +_) (lemma-distributive a b c): (c + ((a + b) · c)) ≡ (c + ((a · c) + (b · c)))
+lemma-+-associative c (a · c) (b · c): (c + ((a · c) + (b · c))) ≡ ((c + (a · c)) + (b · c))
+-}
 lemma-distributive : (a b c : ℕ) → ((a + b) · c) ≡ ((a · c) + (b · c))
-lemma-distributive a b c = {!!}
+lemma-distributive zero     b c = refl
+lemma-distributive (succ a) b c = trans (cong (c +_) (lemma-distributive a b c))
+                                        (lemma-+-associative c (a · c) (b · c))
 
 -- EXERCISE: Show that the double of any number is even.
 data Even : ℕ → Set where
   base-even : Even zero
   step-even : {n : ℕ} → Even n → Even (succ (succ n))
 
+{-
+Goal: Even (succ (a + succ a))
+
+cong succ (lemma-+-commutative (succ a) a): succ (succ (a + a)) ≡ succ (a + succ a)
+step-even (Even (a + a)): Even (succ (succ (a + a)))
+lemma-double-even a: Even (a + a)
+transport: Even → x ≡ y → Even x → Even y
+-}
 lemma-double-even : (a : ℕ) → Even (a + a)
-lemma-double-even a = {!!}
+lemma-double-even zero     = base-even
+lemma-double-even (succ a) = transport (Even)
+                                       (cong succ (lemma-+-commutative (succ a) a))
+                                       (step-even (lemma-double-even a))
 
 
 -------------------------------
@@ -210,16 +259,23 @@ module _ {A : Set} where
   reverse (x ∷ xs) = reverse xs ∷ʳ x
 
   -- EXERCISE: Verify the following lemma.
-  lemma-reverse-∷ʳ : (ys : List A) (x : A) → reverse (ys ∷ʳ x) ≡ (x ∷ reverse ys)
-  lemma-reverse-∷ʳ ys x = {!!}
+  lemma-reverse-∷ʳ : (xs : List A) (x : A) → reverse (xs ∷ʳ x) ≡ (x ∷ reverse xs)
+  lemma-reverse-∷ʳ []       x = refl
+  lemma-reverse-∷ʳ (y ∷ xs) x = cong (_∷ʳ y) (lemma-reverse-∷ʳ xs x)
 
   lemma-reverse-reverse : (xs : List A) → reverse (reverse xs) ≡ xs
-  lemma-reverse-reverse xs = {!!}
+  lemma-reverse-reverse []       = refl
+  lemma-reverse-reverse (x ∷ xs) = trans (lemma-reverse-∷ʳ (reverse xs) x)
+                                         (cong (x ∷_) (lemma-reverse-reverse xs))
 
   -- EXERCISE: State and prove that _++_ on lists is associative.
   _++_ : List A → List A → List A
   []       ++ ys = ys
   (x ∷ xs) ++ ys = x ∷ (xs ++ ys)
+
+  lemma-++-associative : (xs ys zs : List A) → (xs ++ ys) ++ zs ≡ xs ++ (ys ++ zs)
+  lemma-++-associative []       ys zs = refl
+  lemma-++-associative (x ∷ xs) ys zs = cong (x ∷_) (lemma-++-associative xs ys zs)
 
   -- The following relation relates exactly those lists which have the same length
   -- and whose corresponding entries are equal.
@@ -229,11 +285,14 @@ module _ {A : Set} where
 
   -- EXERCISE: Show that equal lists are related by _≈_.
   ≡→≈ : {xs ys : List A} → xs ≡ ys → xs ≈ ys
-  ≡→≈ p = {!!}
+  ≡→≈ {[]}     refl = both-empty
+  ≡→≈ {x ∷ xs} refl = both-same-cons refl (≡→≈ refl)
 
   -- EXERCISE: Show that related lists are equal.
   ≈→≡ : {xs ys : List A} → xs ≈ ys → xs ≡ ys
-  ≈→≡ p = {!!}
+  ≈→≡ both-empty = refl
+  ≈→≡ (both-same-cons refl p) with ≈→≡ p
+  ...                            | refl = refl
 
 
 ---------------------------------
@@ -258,7 +317,11 @@ _++ᵥ_ : {A : Set} {n m : ℕ} → Vector A n → Vector A m → Vector A (n + 
 
 -- EXERCISE: Verify the following lemma.
 lemma-take-drop : {A : Set} {n : ℕ} → (k : ℕ) → (xs : Vector A (k + n)) → (take k xs ++ᵥ drop k xs) ≡ xs
-lemma-take-drop = {!!}
+lemma-take-drop zero     xs       = refl
+lemma-take-drop (succ k) (x ∷ xs) = cong (x ∷_) (lemma-take-drop k (xs))
 
 -- EXERCISE: Find out where the difficulty is in stating that _++ᵥ_ on
 -- vectors is associative.
+lemma-++ᵥ-associative : {A : Set} {n : ℕ} → (xs ys zs : Vector A n) → (xs ++ᵥ ys) ++ᵥ zs ≡ (ys ++ᵥ zs) ++ᵥ xs
+lemma-++ᵥ-associative []       ys zs = {!!}
+lemma-++ᵥ-associative (x ∷ xs) ys zs = {!!}
