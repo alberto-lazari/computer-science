@@ -303,25 +303,26 @@ data Vector (A : Set) : ℕ → Set where
   []  : Vector A zero
   _∷_ : {n : ℕ} → A → Vector A n → Vector A (succ n)
 
-drop : {A : Set} {n : ℕ} (k : ℕ) → Vector A (k + n) → Vector A n
-drop zero      xs        = xs
-drop (succ k') (x ∷ xs') = drop k' xs'
+module _ {A : Set} where
+  drop : {n : ℕ} (k : ℕ) → Vector A (k + n) → Vector A n
+  drop zero      xs        = xs
+  drop (succ k') (x ∷ xs') = drop k' xs'
 
-take : {A : Set} {n : ℕ} (k : ℕ) → Vector A (k + n) → Vector A k
-take zero      xs        = []
-take (succ k') (x ∷ xs') = x ∷ take k' xs'
+  take : {n : ℕ} (k : ℕ) → Vector A (k + n) → Vector A k
+  take zero      xs        = []
+  take (succ k') (x ∷ xs') = x ∷ take k' xs'
 
-_++ᵥ_ : {A : Set} {n m : ℕ} → Vector A n → Vector A m → Vector A (n + m)
-[]        ++ᵥ ys = ys
-(x ∷ xs') ++ᵥ ys = x ∷ (xs' ++ᵥ ys)
+  _++ᵥ_ : {n m : ℕ} → Vector A n → Vector A m → Vector A (n + m)
+  []        ++ᵥ ys = ys
+  (x ∷ xs') ++ᵥ ys = x ∷ (xs' ++ᵥ ys)
 
--- EXERCISE: Verify the following lemma.
-lemma-take-drop : {A : Set} {n : ℕ} → (k : ℕ) → (xs : Vector A (k + n)) → (take k xs ++ᵥ drop k xs) ≡ xs
-lemma-take-drop zero     xs       = refl
-lemma-take-drop (succ k) (x ∷ xs) = cong (x ∷_) (lemma-take-drop k (xs))
+  -- EXERCISE: Verify the following lemma.
+  lemma-take-drop : {n : ℕ} (k : ℕ) → (xs : Vector A (k + n)) → (take k xs ++ᵥ drop k xs) ≡ xs
+  lemma-take-drop zero     xs       = refl
+  lemma-take-drop (succ k) (x ∷ xs) = cong (x ∷_) (lemma-take-drop k (xs))
 
--- EXERCISE: Find out where the difficulty is in stating that _++ᵥ_ on
--- vectors is associative.
-lemma-++ᵥ-associative : {A : Set} {n : ℕ} → (xs ys zs : Vector A n) → (xs ++ᵥ ys) ++ᵥ zs ≡ (ys ++ᵥ zs) ++ᵥ xs
-lemma-++ᵥ-associative []       ys zs = {!!}
-lemma-++ᵥ-associative (x ∷ xs) ys zs = {!!}
+  -- EXERCISE: Find out where the difficulty is in stating that _++ᵥ_ on
+  -- vectors is associative.
+  lemma-++ᵥ-associative : {a b c : ℕ} (xs : Vector A a) → (ys : Vector A b) → (zs : Vector A c) → (xs ++ᵥ ys) ++ᵥ zs ≡ xs ++ᵥ (ys ++ᵥ zs)
+  lemma-++ᵥ-associative []       ys zs = {!!}
+  lemma-++ᵥ-associative (x ∷ xs) ys zs = {!!}
