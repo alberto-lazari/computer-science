@@ -78,3 +78,28 @@ Const has to be used at the beginning, final everywhere in the code (why?)
 ## React Native
 - Mixes html and components. Everything is a component actually
 - It's able to alter the DOM structure, to update only the modified elements -> fast
+
+# Encodings
+## Run length encoding
+- Linear encoding of the literal data, only specifying repetitions instead of writing the same piece of data various times
+- Used in bitmap for images
+- Used in artificial images (omogeneous areas of color)
+
+Ex: RGGGRBBBB -> R@3GR@4B
+
+It only actually compress on $\geq$ 3 repetitions and shouldn't be used for text or real images -> it enlarges its size
+
+## Shannon-Fano algorithm
+Top down binary tree algorithm
+
+## Huffman
+Bottom up, creates a more balanced tree than Shannon-Fano -> values are encoded with similar sizes
+
+They both require tables to encode
+
+## LZW compression
+Dynamic dictionary creation
+
+# Color representation
+- RGB is an addictive model -> you add colors
+- CYMK is a subtractive model -> you start from white and add pigments that absorb all colors apart from a specific one
