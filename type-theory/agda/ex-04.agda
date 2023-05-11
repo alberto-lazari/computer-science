@@ -51,6 +51,7 @@ x ≡⟨ p ⟩ q = trans p q
 _≡⟨⟩_ : {A : Set} {y : A} → (x : A) → (q : x ≡ y) → x ≡ y
 x ≡⟨⟩ q = q
 
+-- ∎ = \qed
 _∎ : {A : Set} → (x : A) → x ≡ x
 x ∎ = refl
 
@@ -78,14 +79,19 @@ lemma-+-commutative (succ a) b =
   trans (cong succ (lemma-+-commutative a b)) (symm (lemma-+-succ b a))
 
 lemma-+-associative : (a b c : ℕ) → (a + (b + c)) ≡ ((a + b) + c)
-lemma-+-associative a b c = {!!}
+lemma-+-associative zero     b c = refl
+lemma-+-associative (succ a) b c = begin
+  succ (a + (b + c)) ≡⟨ cong succ (lemma-+-associative a b c) ⟩
+  succ (a + b + c)   ∎
 
 lemma-·-distributive : (a b c : ℕ) → ((a + b) · c) ≡ ((a · c) + (b · c))
 lemma-·-distributive zero b c = refl
 lemma-·-distributive (succ a) b c = begin
-  ((succ a + b) · c)      ≡⟨ {!!} ⟩
+  (succ a + b) · c         ≡⟨⟩
+  succ (a + b) · c         ≡⟨ {!!} ⟩
+  c + ((succ (a + b)) · c) ≡⟨ {!!} ⟩
   {- ... add more steps as needed ... -}
-  (succ a · c) + (b · c)  ∎
+  (succ a · c) + (b · c)   ∎
 
 -- EXERCISE: Prove this theorem.
 lemma-+-swap : (a b c : ℕ) → (a + (b + c)) ≡ (b + (a + c))
