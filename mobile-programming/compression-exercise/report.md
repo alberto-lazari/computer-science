@@ -31,8 +31,8 @@ while read k; do
     # Check if wk is in dictionary
     if [[ -n ${dict[$w$k]} ]]; then
         w=$w$k
-        # Output extended output only if option -c was not provided
-        $compact || echo $w$'\t'$k$'\t'
+        # Print extended output only if option -c was not provided
+        $compact || echo $w$'\t'$k
     else
         # Add normal characters to dictionary with their own symbol (instead of code)
         if [[ -z ${dict[$k]} ]]; then
@@ -51,10 +51,11 @@ while read k; do
         else
             $compact || echo NULL$'\t'$k
         fi
-
         w=$k
     fi
 done
+# Print last line
+$compact || echo $w$'\t'EOF
 
 echo $'\n'Encoded sequence:
 echo $enc
