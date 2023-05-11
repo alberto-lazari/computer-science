@@ -1,5 +1,10 @@
 # Mobile Programming and Multimedia - Compression exercise
 ## LZW algorithm
+Instead of writing down all the algorithm steps by hand, I've implemented it in a simple shell script. \
+The script outputs the dictionary while it's created, as shown in the slides of the lesson, and finally three different encoding results (based on the encoding method).
+
+Here's the source code of the used script and, following, its output.
+
 ### Code
 ```bash
 #!/usr/bin/env bash
@@ -14,34 +19,47 @@ declare -A dict
 # Initial code value
 code=256
 
+# Table header
 echo w$'\t'k$'\t'output$'\t'code =\> symbol
 echo ======================================
 
+# Actual algorithm implementation
 while read k; do
+    # Trace the input while reading k
     input="$input $k"
 
+    # Check if wk is in dictionary
     if [[ -n ${dict[$w$k]} ]]; then
         w=$w$k
+        # Output extended output only if option -c was not provided
         $compact || echo $w$'\t'$k$'\t'
     else
+        # Add normal characters to dictionary with their own symbol (instead of code)
         if [[ -z ${dict[$k]} ]]; then
             dict+=([$k]=$k)
         fi
 
+        # Do only if it's not the first iteration (w is empty)
         if [[ -n $w ]]; then
+            # Add wk => code to dictionary
+            # using wk as key makes retrieving the code for printing and existting checks easier
             dict+=([$w$k]=$code)
             echo $w$'\t'$k$'\t'${dict[$w]}$'\t'$code =\> $w$k
+            # Trace the encoded sequence
             enc="$enc ${dict[$w]}"
             code=$(( $code + 1 ))
         else
             $compact || echo NULL$'\t'$k
         fi
+
         w=$k
     fi
 done
 
 echo $'\n'Encoded sequence:
 echo $enc
+
+# Compress ratio output
 o_size=$(echo $input | wc -w | sed -e 's/[^0-9]*//g')
 o_bits=$(( $o_size * 8 ))
 echo $'\n'Original size: $o_size bytes \* 8 = $o_bits bits
@@ -117,12 +135,17 @@ Encoding ratio: 0.705
 ```
 
 The script reports three different ways of encoding the final result:
-1. Using the minimum number of bits: normal characters are encoded in a byte, while sequence codes need an additional bit (because > 255). It's the most efficient, however it cannot be decoded: "Do I need to read 8 or 9 bits now?". \
-Some sort of escaping is needed
-2. 9 bits per character: the easyiest one. Every character is encoded using 9 bits, so it's always sure how to obtain the characters during decoding
-3. Using an additional byte for sequence codes, instead of just 9 bits. This can be done, for instance, with UTF-8 encoding, that uses just one byte for ASCII characters and an additional one (or more) to encode Unicode symbols
+#### Minimum number of bits
+Normal characters are encoded in a byte, while sequence codes need an additional bit (because > 255). It's the most efficient, however it cannot be decoded: "Do I need to read 8 or 9 bits now?" $\implies$ Some sort of escaping is needed.
 
-Here's the expanded version of the table (with all the steps)
+#### 9 bits per character
+The easiest one. Every character is encoded using 9 bits, so it's always sure how to obtain the characters during decoding.
+
+#### Byte for characters, two bytes for codes
+Using an additional byte for sequence codes, instead of just 9 bits. This can be done, for instance, with UTF-8 encoding, that uses just one byte for ASCII characters and an additional one (or more) to encode Unicode symbols. \
+It's more convenient than method (2.) for modern systems, since they usually work with whole bytes, so working with 9 bits sets requires some low level parsing, while UTF-8 is well supported on every system.
+
+Here's the expanded version of the table (with all the steps).
 ```
 w       k       output  code => symbol
 ======================================
