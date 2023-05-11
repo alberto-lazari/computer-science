@@ -70,8 +70,8 @@ echo $'\n'Original size: $o_size bytes \* 8 = $o_bits bits
 
 e_size=$(echo $enc | wc -w | sed -e 's/[^0-9]*//g')
 
-e_bytes=$(echo $enc | sed -e 's/ .[0-9][0-9]//g' | wc -w | sed -e 's/[^0-9]*//g')
-e_codes=$(echo $enc | sed -e 's/[^0-9] //g' | sed -e 's/[^0-9]. / /g' | wc -w | sed -e 's/[^0-9]*//g')
+e_bytes=$(echo $enc | sed -e 's/[0-9][0-9][0-9]//g' | wc -w | sed -e 's/[^0-9]*//g')
+e_codes=$(echo $enc | sed -e 's/[^0-9 ]//g' | sed -e 's/[^0-9]. / /g' | wc -w | sed -e 's/[^0-9]*//g')
 
 echo $'\n'- ASCII 1 byte, codes 9 bits:
 e_bits=$(( $e_bytes * 8 + e_codes * 9 ))
@@ -127,16 +127,16 @@ f 256 257 256 0 260 258 259 0 262 260 264 265 0 a b c 270 272 260 271 273 277 27
 Original size: 61 bytes * 8 = 488 bits
 
 - ASCII 1 byte, codes 9 bits:
-Encoded size: 26 characters -> 8 characters * 8 + 19 codes * 9 = 235 bits
-Encoding ratio: 0.482
+Encoded size: 26 characters -> 8 characters * 8 + 18 codes * 9 = 226 bits
+Encoding ratio: 0.463
 
 - 9 bits per character:
-Encoded size: 26 characters * 9 = (8 characters + 19 codes) * 9 = 243 bits
-Encoding ratio: 0.498
+Encoded size: 26 characters * 9 = (8 characters + 18 codes) * 9 = 234 bits
+Encoding ratio: 0.480
 
 - ASCII 1 byte, codes 2 bytes:
-Encoded size: 26 characters -> 8 characters * 8 + 19 codes * 16 = 368 bits
-Encoding ratio: 0.754
+Encoded size: 26 characters -> 8 characters * 8 + 18 codes * 16 = 352 bits
+Encoding ratio: 0.721
 ```
 
 The script reports three different ways of encoding the final result:

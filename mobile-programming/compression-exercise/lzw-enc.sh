@@ -59,8 +59,8 @@ echo $'\n'Original size: $o_size bytes \* 8 = $o_bits bits
 
 e_size=$(echo $enc | wc -w | sed -e 's/[^0-9]*//g')
 
-e_bytes=$(echo $enc | sed -e 's/ .[0-9][0-9]//g' | wc -w | sed -e 's/[^0-9]*//g')
-e_codes=$(echo $enc | sed -e 's/[^0-9] //g' | sed -e 's/[^0-9]. / /g' | wc -w | sed -e 's/[^0-9]*//g')
+e_bytes=$(echo $enc | sed -e 's/[0-9][0-9][0-9]//g' | wc -w | sed -e 's/[^0-9]*//g')
+e_codes=$(echo $enc | sed -e 's/[^0-9 ]//g' | sed -e 's/[^0-9]. / /g' | wc -w | sed -e 's/[^0-9]*//g')
 
 echo $'\n'- ASCII 1 byte, codes 9 bits:
 e_bits=$(( $e_bytes * 8 + e_codes * 9 ))
