@@ -15,7 +15,7 @@ echo w$'\t'k$'\t'output$'\t'code =\> symbol
 echo ======================================
 
 # Actual algorithm implementation
-while read k; do
+while read k && [[ -n $k ]]; do
     # Trace the input while reading k
     input="$input $k"
 
@@ -46,7 +46,8 @@ while read k; do
     fi
 done
 # Print last line
-$compact || echo $w$'\t'EOF
+enc="$enc ${dict[$w]}"
+echo $w$'\t'EOF$'\t'${dict[$w]}
 
 echo $'\n'Encoded sequence:
 echo $enc
