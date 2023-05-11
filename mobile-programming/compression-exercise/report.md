@@ -213,3 +213,12 @@ bcab    b
 bcab    c       279     280 => bcabc
 c       EOF
 ```
+
+## Shannon-Fano algorithm
+| Character | Occurrences | Code |
+|-----------|-------------|------|
+|f          |25           |      |
+|0          |12           |      |
+|a          |8            |      |
+|b          |8            |      |
+|c          |8            |      |
