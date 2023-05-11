@@ -9,52 +9,84 @@ Here's the source code of the used script and, following, its output.
 
 ### Code
 ```bash
-echo ffffffff000ffffff00fffff000ffffff00abcabca00bcabcabcabcabcabc | sed -e 's/./&\n/g' | ./lzw-enc.sh -c
-w       k       output  code => symbol
-======================================
-f       f       f       256 => ff
-ff      f       256     257 => fff
-fff     f       257     258 => ffff
-ff      0       256     259 => ff0
-0       0       0       260 => 00
-00      f       260     261 => 00f
-ffff    f       258     262 => fffff
-ff0     0       259     263 => ff00
-0       f       0       264 => 0f
-fffff   0       262     265 => fffff0
-00      0       260     266 => 000
-0f      f       264     267 => 0ff
-fffff0  0       265     268 => fffff00
-0       a       0       269 => 0a
-a       b       a       270 => ab
-b       c       b       271 => bc
-c       a       c       272 => ca
-ab      c       270     273 => abc
-ca      0       272     274 => ca0
-00      b       260     275 => 00b
-bc      a       271     276 => bca
-abc     a       273     277 => abca
-abca    b       277     278 => abcab
-bca     b       276     279 => bcab
-bcab    c       279     280 => bcabc
-c       EOF     c
+#!/usr/bin/env bash
 
-Encoded sequence:
-f 256 257 256 0 260 258 259 0 262 260 264 265 0 a b c 270 272 260 271 273 277 276 279 c
+if [[ $1 == '-c' ]]; then
+    compact=true
+else
+    compact=false
+fi
 
-Original size: 61 bytes * 8 = 488 bits
+declare -A dict
+# Initial code value
+code=256
 
-- ASCII 1 byte, codes 9 bits:
-Encoded size: 26 characters -> 8 characters * 8 + 19 codes * 9 = 235 bits
-Encoding ratio: 0.482
+# Table header
+echo w$'\t'k$'\t'output$'\t'code =\> symbol
+echo ======================================
 
-- 9 bits per character:
-Encoded size: 26 characters * 9 = (8 characters + 19 codes) * 9 = 243 bits
-Encoding ratio: 0.498
+# Actual algorithm implementation
+while read k && [[ -n $k ]]; do
+    # Trace the input while reading k
+    input="$input $k"
 
-- ASCII 1 byte, codes 2 bytes:
-Encoded size: 26 characters -> 8 characters * 8 + 19 codes * 16 = 368 bits
-Encoding ratio: 0.754
+    # Check if wk is in dictionary
+    if [[ -n ${dict[$w$k]} ]]; then
+        w=$w$k
+        # Print extended output only if option -c was not provided
+        $compact || echo $w$'\t'$k
+    else
+        # Add normal characters to dictionary with their own symbol (instead of code)
+        if [[ -z ${dict[$k]} ]]; then
+            dict+=([$k]=$k)
+        fi
+
+        # Do only if it's not the first iteration (w is empty)
+        if [[ -n $w ]]; then
+            # Add wk => code to dictionary
+            # using wk as key makes retrieving the code for printing and existting checks easier
+            dict+=([$w$k]=$code)
+            echo $w$'\t'$k$'\t'${dict[$w]}$'\t'$code =\> $w$k
+            # Trace the encoded sequence
+            enc="$enc ${dict[$w]}"
+            code=$(( $code + 1 ))
+        else
+            $compact || echo NULL$'\t'$k
+        fi
+        w=$k
+    fi
+done
+# Print last line
+enc="$enc ${dict[$w]}"
+echo $w$'\t'EOF$'\t'${dict[$w]}
+
+echo $'\n'Encoded sequence:
+echo $enc
+
+# Compress ratio output
+o_size=$(echo $input | wc -w | sed -e 's/[^0-9]*//g')
+o_bits=$(( $o_size * 8 ))
+echo $'\n'Original size: $o_size bytes \* 8 = $o_bits bits
+
+e_size=$(echo $enc | wc -w | sed -e 's/[^0-9]*//g')
+
+e_bytes=$(echo $enc | sed -e 's/ .[0-9][0-9]//g' | wc -w | sed -e 's/[^0-9]*//g')
+e_codes=$(echo $enc | sed -e 's/[^0-9] //g' | sed -e 's/[^0-9]. / /g' | wc -w | sed -e 's/[^0-9]*//g')
+
+echo $'\n'- ASCII 1 byte, codes 9 bits:
+e_bits=$(( $e_bytes * 8 + e_codes * 9 ))
+echo "Encoded size: $e_size characters -> $e_bytes characters * 8 + $e_codes codes * 9 = $e_bits bits"
+printf 'Encoding ratio: %.3f\n' $(bc -le "$e_bits / $o_bits")
+
+echo $'\n'- 9 bits per character:
+e_bits=$(( $e_bytes * 9 + e_codes * 9 ))
+echo "Encoded size: $e_size characters * 9 = ($e_bytes characters + $e_codes codes) * 9 = $e_bits bits"
+printf 'Encoding ratio: %.3f\n' $(bc -le "$e_bits / $o_bits")
+
+echo $'\n'- ASCII 1 byte, codes 2 bytes:
+e_bits=$(( $e_bytes * 8 + e_codes * 16 ))
+echo "Encoded size: $e_size characters -> $e_bytes characters * 8 + $e_codes codes * 16 = $e_bits bits"
+printf 'Encoding ratio: %.3f\n' $(bc -le "$e_bits / $o_bits")
 ```
 
 ### Output
@@ -203,15 +235,52 @@ The table presents the algorithm results, with the encodings of every character
 |b          |8            |110   |
 |c          |8            |111   |
 
-### Encoding
-The final encoded string is:
-```
-```
+### Code
+The encoded sequence and the compress ratio were calculated using another script. Here's the source code:
 
-Where every code is a sequence of just 2 or 3 bits.
-
-The sequence can be obtained with the command:
 ```bash
+#!/usr/bin/env bash
+
+f=00
+zero=10
+a=01
+b=110
+c=111
+
+read input
+
+enc=$(echo $input | sed -e 's/./& /g' | sed -e "s/0/$zero/g" | sed -e "s/f/$f/g" | sed -e "s/a/$a/g" | sed -e "s/b/$b/g" | sed -e "s/c/$c/g")
+echo Encoded sequence:
+echo $enc
+
+# Compress ratio
+o_size=$(echo $input | sed -e 's/./& /g' | wc -w | sed -e 's/[^0-9]*//g')
+o_bits=$(( $o_size * 8 ))
+echo $'\n'Original size: $o_size bytes \* 8 = $o_bits bits
+
+e_bits=$(echo $enc | sed -e 's/[^ ]/& /g' | wc -w | sed -e 's/[^0-9]*//g')
+echo Encoded size: $e_bits bits
+
+# Table size
+t_bits=$(( 5 * 2 * 8 ))
+echo Encoded size \(with table\): \(5 \* 2\) bytes \* 8 = $(( $e_bits + $t_bits )) bits
+
+printf '\nEncoding ratio: %.3f\n' $(bc -le "($e_bits + $t_bits) / $o_bits")
 ```
 
-### Compress ratio
+### Output
+This is the output of the script. It shows the sizes of the original, encoded and encoded + table sequences.
+
+The size of the table is considered to be 1 byte per code and per character. The string uses 5 character, so the table is considered to be 10 bytes large
+
+```
+$ echo ffffffff000ffffff00fffff000ffffff00abcabca00bcabcabcabcabcabc | ./shannon-fano.sh
+Encoded sequence:
+00 00 00 00 00 00 00 00 10 10 10 00 00 00 00 00 00 10 10 00 00 00 00 00 10 10 10 00 00 00 00 00 00 10 10 01 110 111 01 110 111 01 10 10 110 111 01 110 111 01 110 111 01 110 111 01 110 111 01 110 111
+
+Original size: 61 bytes * 8 = 488 bits
+Encoded size: 138 bits
+Encoded size (with table): (5 * 2) bytes * 8 = 218 bits
+
+Encoding ratio: 0.447
+```
