@@ -137,15 +137,52 @@ even?' zero            = true
 even?' (succ zero)     = false
 even?' (succ (succ n)) = even?' n
 
-double-negation : {a : Bool} → a ≡ ! (! a)
-double-negation {false} = refl
-double-negation {true}  = refl
+lemma-!-! : {a : Bool} → ! (! a) ≡ a
+lemma-!-! {false} = refl
+lemma-!-! {true}  = refl
 
-lemma-even?-even?' : (a : ℕ) → even? a ≡ even?' a
-lemma-even?-even?' zero            = refl
-lemma-even?-even?' (succ zero)     = refl
-lemma-even?-even?' (succ (succ a)) = trans (symm (double-negation))
-                                           (lemma-even?-even?' a)
+lemma-even?-even?'₁ : (a : ℕ) → even? a ≡ even?' a
+lemma-even?-even?'₁ zero            = refl
+lemma-even?-even?'₁ (succ zero)     = refl
+lemma-even?-even?'₁ (succ (succ a)) = trans (lemma-!-!) (lemma-even?-even?'₁ a)
+
+lemma-even?-even?'₂ : (a : ℕ) → even? a ≡ even?' a
+lemma-even?-even?'₂ zero            = refl
+lemma-even?-even?'₂ (succ zero)     = refl
+lemma-even?-even?'₂ (succ (succ a)) with even? a with lemma-even?-even?'₂ a
+... | false | rec = rec
+... | true  | rec = rec
+
+-- EQUATIONAL REASONING
+-- From ex-04, for lemma-even?-even?'₃
+
+infix  3 _∎
+infixr 2 _≡⟨_⟩_ _≡⟨⟩_
+infix  1 begin_
+
+_≡⟨_⟩_ : {A : Set} {y z : A} → (x : A) → x ≡ y → y ≡ z → x ≡ z
+x ≡⟨ p ⟩ q = trans p q
+
+_≡⟨⟩_ : {A : Set} {y : A} → (x : A) → (q : x ≡ y) → x ≡ y
+x ≡⟨⟩ q = q
+
+-- ∎ = \qed
+_∎ : {A : Set} → (x : A) → x ≡ x
+x ∎ = refl
+
+begin_ : {A : Set} {x y : A} → x ≡ y → x ≡ y
+begin p = p
+
+lemma-even?-even?'₃ : (a : ℕ) → even? a ≡ even?' a
+lemma-even?-even?'₃ zero            = refl
+lemma-even?-even?'₃ (succ zero)     = refl
+lemma-even?-even?'₃ (succ (succ a)) = begin
+  even? (succ (succ a))  ≡⟨⟩
+  ! (even? (succ a))     ≡⟨⟩
+  ! (! (even? a))        ≡⟨ lemma-!-! ⟩
+  even? a                ≡⟨ lemma-even?-even?'₃ a ⟩
+  even?' a               ≡⟨⟩
+  even?' (succ (succ a)) ∎
 
 zero-≠-one : succ zero ≡ zero → ⊥
 zero-≠-one ()
