@@ -137,14 +137,14 @@ even?' zero            = true
 even?' (succ zero)     = false
 even?' (succ (succ n)) = even?' n
 
-double-negation : (a : Bool) → a ≡ ! (! a)
-double-negation false = refl
-double-negation true  = refl
+double-negation : {a : Bool} → a ≡ ! (! a)
+double-negation {false} = refl
+double-negation {true}  = refl
 
 lemma-even?-even?' : (a : ℕ) → even? a ≡ even?' a
 lemma-even?-even?' zero            = refl
 lemma-even?-even?' (succ zero)     = refl
-lemma-even?-even?' (succ (succ a)) = trans (symm (double-negation (even? a)))
+lemma-even?-even?' (succ (succ a)) = trans (symm (double-negation))
                                            (lemma-even?-even?' a)
 
 zero-≠-one : succ zero ≡ zero → ⊥
@@ -323,6 +323,4 @@ module _ {A : Set} where
 
   -- EXERCISE: Find out where the difficulty is in stating that _++ᵥ_ on
   -- vectors is associative.
-  lemma-++ᵥ-associative : {a b c : ℕ} (xs : Vector A a) → (ys : Vector A b) → (zs : Vector A c) → (xs ++ᵥ ys) ++ᵥ zs ≡ xs ++ᵥ (ys ++ᵥ zs)
-  lemma-++ᵥ-associative []       ys zs = {!!}
-  lemma-++ᵥ-associative (x ∷ xs) ys zs = {!!}
+  -- lemma-++ᵥ-associative : {a b c : ℕ} (xs : Vector A a) → (ys : Vector A b) → (zs : Vector A c) → (xs ++ᵥ ys) ++ᵥ zs ≡ xs ++ᵥ (ys ++ᵥ zs)

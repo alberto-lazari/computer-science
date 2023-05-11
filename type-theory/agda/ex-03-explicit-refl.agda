@@ -140,14 +140,14 @@ even?' zero            = true
 even?' (succ zero)     = false
 even?' (succ (succ n)) = even?' n
 
-double-negation : (a : Bool) → a ≡ ! (! a)
-double-negation false = refl false
-double-negation true  = refl true
+double-negation : {a : Bool} → a ≡ ! (! a)
+double-negation {false} = refl false
+double-negation {true}  = refl true
 
 lemma-even?-even?' : (a : ℕ) → even? a ≡ even?' a
 lemma-even?-even?' zero            = refl (even? zero)
 lemma-even?-even?' (succ zero)     = refl false
-lemma-even?-even?' (succ (succ a)) = trans (symm (double-negation (even? a)))
+lemma-even?-even?' (succ (succ a)) = trans (symm (double-negation))
                                            (lemma-even?-even?' a)
 
 zero-≠-one : succ zero ≡ zero → ⊥
