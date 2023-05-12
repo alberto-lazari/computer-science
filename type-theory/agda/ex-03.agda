@@ -184,6 +184,12 @@ lemma-even?-even?'₃ (succ (succ a)) = begin
   even?' a               ≡⟨⟩
   even?' (succ (succ a)) ∎
 
+lemma-even?-even?'₄ : (a : ℕ) → even? a ≡ even?' a
+lemma-even?-even?'₄ zero            = refl
+lemma-even?-even?'₄ (succ zero)     = refl
+lemma-even?-even?'₄ (succ (succ a)) rewrite lemma-!-! {even? a}
+  = lemma-even?-even?'₄ a
+
 zero-≠-one : succ zero ≡ zero → ⊥
 zero-≠-one ()
 
