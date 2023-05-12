@@ -289,3 +289,15 @@ L1 cache is needed because sharing the direct cache between more cores would ext
 It is not composable anymore, because it depends on who is executing with
 
 Global scheduling may not be better than local scheduling
+
+# Lecture 18 (12/05)
+Multi-core anomalies:
+1. ...
+2. Increasing period times may not decrease interference, it may only decrease general CPU utilization
+
+## P-fairness
+- Proportional progress based scheduling (1996)
+- Dynamic priorities to satisfy the conditions
+- Adds a dummy task to keep the scheduling consistent
+
+It's actually not applicable in reality
