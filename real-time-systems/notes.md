@@ -295,9 +295,34 @@ Multi-core anomalies:
 1. ...
 2. Increasing period times may not decrease interference, it may only decrease general CPU utilization
 
-## P-fairness
+## P-Fair
 - Proportional progress based scheduling (1996)
 - Dynamic priorities to satisfy the conditions
 - Adds a dummy task to keep the scheduling consistent
 
-It's actually not applicable in reality
+It's actually not applicable in reality, because it schedules periodically, at every instant
+
+# Lecture 19 (15/05)
+## Optimal scheduling
+- Impossible to achieve with partitioned scheduling: various counter examples
+- Could be achievable with global scheduling (not greedy), but it's difficult to find the right migrations to do -> optimal with fewest is NP-complete
+
+## Feasible work region
+P-Fair considers the diagonal of execution, while the entire feasible region is bigger:
+bounded by the line of 100% CPU utilization and zero laxity, it creates a parallelogram, the longer diagonal being P-Fair line
+
+## Solve greedy algorithms
+They fail on multicore, because they can't see opportunities on more CPUs.
+The solution is to split longer deadline tasks in smaller periodic pieces.
+Every piece will periodically raise an alert of zero laxity to the scheduler, making it aware of the problem of being greedy
+
+P-Fair solved that problem by scheduling at every instant, but the actual solution is to have the same deadline for every task
+
+## DP-Fair (Deadline Proportional - Fairness)
+- Guarantees optimality for periodic tasks
+- It's based on parallelogram for laxity, job completeness checks
+
+**Problem**: periods (and thus, scheduling moments) are based on a combination of tasks periods -> they can be greatly different and irregular.
+Also, checks, in order to be precise, need to be made early in reality
+
+Finally, even this algorithm can't be implemented
