@@ -326,3 +326,18 @@ P-Fair solved that problem by scheduling at every instant, but the actual soluti
 Also, checks, in order to be precise, need to be made early in reality
 
 Finally, even this algorithm can't be implemented
+
+## RUN
+Uses duality
+
+# Lecture 20 (19/05)
+## Duality
+If we solve the problem of scheduling the dual of task scheduling (when is the CPU idle?)
+
+When having n CPUs and n + 1 tasks the dual can be scheduled on a single CPU
+
+### Packing
+Combining dual and packing every case can be reduced to the n + 1 / n case
+
+## RUN
+Reaches optimality and is implementable, at the cost of a greater preemption and migrations (but no deadline misses up to 100% actual CPU utilization)
