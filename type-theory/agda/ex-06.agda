@@ -1,7 +1,3 @@
-{-# OPTIONS --allow-unsolved-metas #-}
--- AGDA IN PADOVA 2023
--- Exercise sheet 6
-
 -- The usual naturals, the constructor names shortened to "zer" and "suc"
 -- to not confuse them with the ordinal zero and ordinal successor
 -- (Agda wouldn't mind, but we might).
@@ -129,7 +125,9 @@ example₃ = ≤-limiting (λ n → ≤-cocone {n = suc n} (lemma n))
 
 -- EXERCISE: Prove this.
 +-zero : (a : O) → (zero + a) ≤ a
-+-zero = {!!}
++-zero zero      = refl
++-zero (succ a)  = ≤-succ-mon (+-zero a)
++-zero (lim f x) = ≤-cocone (≤-limiting {!(λ n → +-zero (f n))!})
 
 -- EXERCISE: Prove this. For some clauses, you may need to case split
 -- on the implicit variable a.
