@@ -113,7 +113,10 @@ module CorrectByConstruction₀
   head (cons x xs _) = x
 
   insert : A → OList → OList
-  insert x ys = {!!}
+  insert x nil = cons x nil ≤max
+  insert x (cons y ys y≤hys) with cmp x y
+  ... | left  x≤y = cons x (cons y ys y≤hys) x≤y
+  ... | right y≤x = cons y (insert x ys) {!!}
 
   sort : List A → OList
   sort []       = nil
