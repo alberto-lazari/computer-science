@@ -340,4 +340,15 @@ When having n CPUs and n + 1 tasks the dual can be scheduled on a single CPU
 Combining dual and packing every case can be reduced to the n + 1 / n case
 
 ## RUN
-Reaches optimality and is implementable, at the cost of a greater preemption and migrations (but no deadline misses up to 100% actual CPU utilization)
+Reaches optimality and is implementable, at the cost of a greater preemption and migrations (but no deadline misses up to 100% actual CPU utilization).
+Still, it's too different from conventional methods => no one uses it today.
+It's not convenient to change the entire stack
+
+# Lecture 21 (22/05)
+## Multiprocessor Priority Ceiling Protocol (PCP)
+Rules for global resource management in the protocol:
+1. Lock holders can't be preempted
+2.  Global shared resource denial follows task suspension. The task is pushed into a priority based queue for the resource
+
+## O(m) locking
+Uses FIFO queue (granting linear await time) that can be accessed after passing a priority queue
