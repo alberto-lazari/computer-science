@@ -26,7 +26,7 @@ Can be:
 
 The sampling period is harmonic if periods are multiple of one another. They can be made artificially harmonic with over/undersampling
 
-# Lecture 2 (03/01)
+# Lecture 2 (01/03)
 Flow is controlled by time in a rts -> bounded
 
 We want to remove complexity of OS (with embedded system structure), because it adds unpredictable behavior -> determinism is needed
@@ -57,7 +57,7 @@ Task $\tau$ knows the time its first job has to start, which can be delayed from
 <!-- TODO: complete up to jitter etc p 25 -->
 ### Release time
 
-# Lecture 3 (03/06)
+# Lecture 3 (06/03)
 ## Time-driven scheduling
 - Schedule is fixed during design period
 - A clock intervals time periods
@@ -111,7 +111,7 @@ Contraints on frame duration $f$:
 2. ...
 <!-- TODO: complete -->
 
-# Lecture 4 (09/03)
+# Lecture 4 (03/09)
 Priority schedulings
 
 ## Fixed Priority Scheduling (FPS)
@@ -348,7 +348,12 @@ It's not convenient to change the entire stack
 ## Multiprocessor Priority Ceiling Protocol (PCP)
 Rules for global resource management in the protocol:
 1. Lock holders can't be preempted
-2.  Global shared resource denial follows task suspension. The task is pushed into a priority based queue for the resource
+2. Global shared resource denial follows task suspension. The task is pushed into a priority based queue for the resource
 
 ## O(m) locking
-Uses FIFO queue (granting linear await time) that can be accessed after passing a priority queue
+Uses FIFO queue (granting linear await time) that can be accessed after passing a priority queue. It's linear on the number of CPUs (m)
+
+# Lecture 22 (26/05)
+## MrsP
+Spinning when a resource is owned by a task of another partition (partitioned scheduling).
+Blocking occurs when a process of lower priority is spinning because waiting for another resource
