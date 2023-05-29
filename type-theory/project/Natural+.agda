@@ -8,3 +8,7 @@ module Natural+ where
   _+_ : ℕ⁺ → ℕ⁺ → ℕ⁺
   one    + y = succ y
   succ x + y = succ (x + y)
+
+  _×_ : ℕ⁺ → ℕ⁺ → ℕ⁺
+  one    × y = y
+  succ x × y = y + (x × y)

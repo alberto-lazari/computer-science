@@ -1,20 +1,20 @@
 {-# OPTIONS --allow-unsolved-metas #-}
 open import Natural+
-  renaming (ℕ⁺ to ℕ)
   renaming (_+_ to _+ₙ_)
+  renaming (_×_ to _×ₙ_)
 
 module Integer where
   data ℤ : Set where
     zero : ℤ
-    pos  : ℕ → ℤ
-    neg  : ℕ → ℤ
+    pos  : ℕ⁺ → ℤ
+    neg  : ℕ⁺ → ℤ
   
   -_ : ℤ → ℤ
   - zero  = zero
   - pos x = neg x
   - neg x = pos x
 
-  _-ₙ_ : ℕ → ℕ → ℤ
+  _-ₙ_ : ℕ⁺ → ℕ⁺ → ℤ
   one    -ₙ one    = zero
   one    -ₙ succ y = neg y
   succ x -ₙ one    = pos x
@@ -31,3 +31,13 @@ module Integer where
 
   _-_ : ℤ → ℤ → ℤ
   x - y = x + (- y)
+
+  _×_ : ℤ → ℕ⁺ → ℤ
+  zero  × y = zero
+  pos x × y = pos (x ×ₙ y)
+  neg x × y = neg (x ×ₙ y)
+
+  _·_ : ℤ → ℤ → ℤ
+  zero  · y = zero
+  pos x · y = y × x
+  neg x · y = - (y × x)
