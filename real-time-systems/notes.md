@@ -357,3 +357,6 @@ Uses FIFO queue (granting linear await time) that can be accessed after passing 
 ## MrsP
 Spinning when a resource is owned by a task of another partition (partitioned scheduling).
 Blocking occurs when a process of lower priority is spinning because waiting for another resource
+
+# Lecture 23 (29/05)
+Hypervisor partitions resources over time and space -> resource scheduling
