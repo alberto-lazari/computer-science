@@ -7,3 +7,6 @@
 [submodule "functional-languages/FunctionalLanguages-UniPD"]
 	path = functional-languages/FunctionalLanguages-UniPD
 	url = git@github.com:alvisespano/FunctionalLanguages-UniPD.git
+[submodule "type-theory/project"]
+	path = type-theory/project
+	url = git@github.com:albertolazari/agda-rationals.git
