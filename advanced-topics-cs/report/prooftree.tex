@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{bussproofs}
+
+\begin{document}
+    $\mathcal{I}_{DY}$:
+
+    \begin{prooftree}
+        \AxiomC{$x$} \AxiomC{$y$}
+        \BinaryInfC{$\langle x, y \rangle$}
+
+        \AxiomC{$x$} \AxiomC{$y$}
+        \BinaryInfC{senc($x, y$)}
+
+        \AxiomC{$x$} \AxiomC{$y$}
+        \BinaryInfC{aenc($x, y$)}
+
+        \noLine
+        \TrinaryInfC{}
+    \end{prooftree}
+
+    \begin{prooftree}
+        \AxiomC{$\langle x, y \rangle$}
+        \UnaryInfC{$x$}
+
+        \AxiomC{$\langle x, y \rangle$}
+        \UnaryInfC{$y$}
+
+        \noLine
+        \BinaryInfC{}
+    \end{prooftree}
+
+    \begin{prooftree}
+        \AxiomC{senc($x, y$)} \AxiomC{$y$}
+        \BinaryInfC{$x$}
+
+        \AxiomC{aenc($x, $pk($y$))} \AxiomC{$y$}
+        \BinaryInfC{$x$}
+
+        \noLine
+        \BinaryInfC{}
+    \end{prooftree}
+\end{document}
