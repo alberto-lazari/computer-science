@@ -11,3 +11,6 @@
 	path = type-theory/project
 	url = git@github.com:albertolazari/agda-rationals.git
 	branch = main
+[submodule "advanced-topics-cs/report"]
+	path = advanced-topics-cs/report
+	url = git@github.com:albertolazari/AASP-exercises.git
