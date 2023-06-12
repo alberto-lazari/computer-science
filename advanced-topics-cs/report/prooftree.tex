@@ -1,42 +1,89 @@
 \documentclass{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
 \usepackage{bussproofs}
 
 \begin{document}
+    \section{Inference system}
     $\mathcal{I}_{DY}$:
 
     \begin{prooftree}
         \AxiomC{$x$} \AxiomC{$y$}
-        \BinaryInfC{$\langle x, y \rangle$}
-
-        \AxiomC{$x$} \AxiomC{$y$}
+        \LeftLabel{(senc)}
         \BinaryInfC{senc($x, y$)}
 
         \AxiomC{$x$} \AxiomC{$y$}
+        \LeftLabel{(aenc)}
         \BinaryInfC{aenc($x, y$)}
+
+        \noLine
+        \BinaryInfC{}
+    \end{prooftree}
+
+    \begin{prooftree}
+        \AxiomC{$x$} \AxiomC{$y$}
+        \LeftLabel{(pair)}
+        \BinaryInfC{$\langle x, y \rangle$}
+
+        \AxiomC{$\langle x, y \rangle$}
+        \LeftLabel{($\mathrm{pair_1}$)}
+        \UnaryInfC{$x$}
+
+        \AxiomC{$\langle x, y \rangle$}
+        \LeftLabel{($\mathrm{pair_2}$)}
+        \UnaryInfC{$y$}
 
         \noLine
         \TrinaryInfC{}
     \end{prooftree}
 
     \begin{prooftree}
-        \AxiomC{$\langle x, y \rangle$}
-        \UnaryInfC{$x$}
+        \AxiomC{senc($x, y$)} \AxiomC{$y$}
+        \LeftLabel{(sdec)}
+        \BinaryInfC{$x$}
 
-        \AxiomC{$\langle x, y \rangle$}
-        \UnaryInfC{$y$}
+        \AxiomC{aenc($x, \mathrm{pk}(y))$} \AxiomC{$y$}
+        \LeftLabel{(adec)}
+        \BinaryInfC{$x$}
 
         \noLine
         \BinaryInfC{}
     \end{prooftree}
+
+    \section{Exercise 1}
+    \subsection{Proof tree solving}
+
+    Let $S =
+        sk_A,
+        sk_B,
+        \mathrm{aenc}(n_A, \mathrm{pk}(sk_B)),
+        \mathrm{senc}(\mathrm{aenc}(n_B, \mathrm{pk}(sk_A)), n_A),
+        \mathrm{senc}(s, \langle n_A, n_B \rangle)
+    $ \\
+    $S \vdash_{\mathcal{I}_{DY}} s$ is solved by the following proof tree:
 
     \begin{prooftree}
-        \AxiomC{senc($x, y$)} \AxiomC{$y$}
-        \BinaryInfC{$x$}
-
-        \AxiomC{aenc($x, $pk($y$))} \AxiomC{$y$}
-        \BinaryInfC{$x$}
-
-        \noLine
-        \BinaryInfC{}
+        \AxiomC{senc($s, \langle n_A, n_B \rangle$)}
+            \AxiomC{$n_A$}
+                    \AxiomC{senc($\mathrm{aenc}(n_B, \mathrm{pk}(sk_A)), n_A$)}
+                    \AxiomC{$n_A$}
+                    \RightLabel{sdec}
+                \BinaryInfC{aenc($n_B, \mathrm{pk}(sk_A)$)}
+                \AxiomC{$sk_A$}
+                \RightLabel{adec}
+            \BinaryInfC{$n_B$}
+            \RightLabel{pair}
+        \BinaryInfC{$\langle n_A, n_B \rangle$}
+        \RightLabel{sdec}
+        \BinaryInfC{$s$}
     \end{prooftree}
+
+    \noindent
+    Given $S \vdash_{\mathcal{I}_{DY}} n_A$, which is solved by the following proof tree:
+
+    \begin{prooftree}
+        \AxiomC{aenc($n_A, \mathrm{pk}(sk_B)$)} \AxiomC{$sk_B$}
+        \RightLabel{adec}
+        \BinaryInfC{$n_A$}
+    \end{prooftree}
+
 \end{document}
