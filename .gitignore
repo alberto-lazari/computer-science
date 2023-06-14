@@ -2,3 +2,6 @@
 
 # Agda interface files (type-checked)
 **/*.agdai
+
+# Moodle cookie for lecture scraping
+cookie
