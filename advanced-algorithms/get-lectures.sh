@@ -8,6 +8,7 @@ links=$(curl -s 'https://stem.elearning.unipd.it/course/view.php?id=4978' --cook
 i=1
 for link in $links; do
     echo Downloading lecture $i
-    curl -s --cookie "$cookie" $link -o lecture-$(printf "%02d\n" $i).pdf
+    redirect=$(curl -s --cookie "$cookie" $link | grep -o 'https.*\.pdf')
+    curl -s --cookie "$cookie" $redirect -o lecture-$(printf "%02d\n" $i).pdf
     i=$(( i + 1 ))
 done
