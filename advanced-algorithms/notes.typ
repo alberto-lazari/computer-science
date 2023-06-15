@@ -94,3 +94,16 @@ In $n - 1$ iterations it reaches a fix-point.
 If it doesn't it means a negative cycle exist
 
 In 2022 a *near-linear* algorithm was found
+
+= APSP (All Pair Shortest Paths)
+Returns: $"dist" (v, u), forall v, u in V$
+
+Running Bellman-Ford $n$ times have complexity $O (m dot n^2)$.
+With dynamic programming complexity can be reduced up to $O (n^3 dot log n)$
+
+== Floyd-Warshal
+*Complexity*: $O (n^3)$
+
+Iterate on 3 vertices $u, v, k in V$ in 3 nested loops, testing whether using $k$ in the path is better
+
+To catch negative cycles it's sufficient to check that $"dist" (v, v) >= 0, forall v in V$
