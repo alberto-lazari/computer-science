@@ -107,3 +107,23 @@ With dynamic programming complexity can be reduced up to $O (n^3 dot log n)$
 Iterate on 3 vertices $u, v, k in V$ in 3 nested loops, testing whether using $k$ in the path is better
 
 To catch negative cycles it's sufficient to check that $"dist" (v, v) >= 0, forall v in V$
+
+= Maximum flows
+== Definitions
+*Flow network*: graph where edges have a capacity $c : E -> RR^+$.
+A source $s$ and a sink $t$ are specified
+
+*Flow*: $f : E -> RR^+, |f| = display(sum_((s, v) in E)) f (s, v)$, basically the flow on the first edges \
+Flow is conserved through the graph and has to be $<=$ than capacity for all edges
+
+== Ford-Fulkerson
+*Complexity*: $O (m dot |f^*|)$
+
+= NP-hardness
+Similar polynomial and NP-hard problems:
+- Eulerian vs Hamiltonian circuit: cycle traversing every edge ($O (n)$) vs vertex (NP-hard) only once
+- MST vs TSP: give paths to (spanning tree, $O (m dot log n)$) vs a tour between (NP-hard) all vertices, minimizing the sum of the weights of the edges used
+
+- Class P: Polynomial time problems
+- Class NP: Non-deterministic Polynomial
+- Class NP-hard: if proving a problem polynomial would mean all NP is polynomial it's NP-hard
