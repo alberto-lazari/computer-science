@@ -4,6 +4,7 @@
   font: ("Helvetica", "Arial")
 )
 #set heading(numbering: "1.1 -")
+#set list(marker: ([•], [--]))
 
 #outline(
   title: "Index",
@@ -15,9 +16,19 @@
 = DFS (Depth First Search)
 *Complexity*: $O (n + m)$
 
+== Applications
+Derived using DFS (or BFS) in $O (n + m)$
+- Path between source vertex $s$ to arbitrary $t$: add a `parent` field to vertices. When $t$ is found return the parents backtrace
+- Find cycle: use `parent` field on vertices and `ancestor` on edges
+- Connected components:
+  + run DFS (or BFS) $n$ times
+  + Keep a counter $k$ to increment on every "untouched" source vertex
+  + Assign $k$ to $v."id"$, instead of 1 $=>$ label vertexes based on its component
+  + If at the end $k > 1$, then multiple components were found
+
 // Lecture 3
 = BFS (Breadth First Search)
-*Complexity*: $O (m_s)$
+*Complexity*: $O (n + m)$
 
 = MST (Minimum[-weight] Spanning Tree)
 $"MST" (G (V, E), s)$
@@ -29,17 +40,17 @@ Tree created from a source vertex $s$, the root of the tree
 *Complexity*: $O (m dot n)$
 
 Make cuts to separate a growing set $A$ (initialized to ${s}$), and find _light edges_.
-Add the light edge found with the cut to $A$ and repeat, until you have a tree (no more vertexes outside $V \\ A$)
+Add the light edge found with the cut to $A$ and repeat, until you have a tree (no more vertices outside $V \\ A$)
 
 The search for the light edge is $O (m)$ and is repeated $n$ times, but it can be optimized
 
 === Prim with heap
 *Complexity*: $O (m log n)$
 
-Use a heap to store vertexes, ordered on their cost to reach from a vertex already processed (light edge that crosses the cut)
-For every vertex that you put in $A$ (actually that you extract from the heap $H$) check if you can update the cost of the vertexes still in $H$
+Use a heap to store vertices, ordered on their cost to reach from a vertex already processed (light edge that crosses the cut)
+For every vertex that you put in $A$ (actually that you extract from the heap $H$) check if you can update the cost of the vertices still in $H$
 
-In order to keep trace of the actual edges, instead of the vertexes, it's needed to save the parent of every vertex you update
+In order to keep trace of the actual edges, instead of the vertices, it's needed to save the parent of every vertex you update
 
 The complexity is actually $O (n log n + m log n)$, but graph $G$ is connected $=> m >= n - 1$
 
