@@ -5,6 +5,11 @@
 )
 #set heading(numbering: "1.1 –")
 #set list(marker: ([•], [--]))
+// Comment-style lecture number annotation (# Lecture n)
+#let lecture(number) = {
+  set text(fill: gray)
+  [\# Lecture #number]
+}
 
 #outline(
   title: "Index",
@@ -12,7 +17,7 @@
 )
 #pagebreak()
 
-// Lecture 2
+#lecture(2)
 = DFS (Depth First Search)
 *Complexity*: $O (n + m)$
 
@@ -26,7 +31,7 @@ Derived using DFS (or BFS) in $O (n + m)$
   + Assign $k$ to $v."id"$, instead of 1 $->$ label vertexes based on its component
   + If at the end $k > 1$, then multiple components were found
 
-// Lecture 3
+#lecture(3)
 = BFS (Breadth First Search)
 *Complexity*: $O (n + m)$
 
@@ -35,7 +40,7 @@ $"MST" (G (V, E), s)$
 
 Tree created from a source vertex $s$, the root of the tree
 
-// Lecture 4
+#lecture(4)
 == Prim
 *Complexity*: $O (m dot n)$
 
@@ -54,7 +59,7 @@ In order to keep trace of the actual edges, instead of the vertices, it's needed
 
 The complexity is actually $O (n log n + m log n)$, but graph $G$ is connected $=> m >= n - 1$
 
-// Lecture 5
+#lecture(5)
 == Kruskal
 *Complexity*: $O (m dot n)$ (when implemented with adjacency list, because of frequent cycle checks)
 
@@ -70,7 +75,7 @@ Use union-find data structure: connected components are disjoint sets to join in
 
 It's still an open problem to find MST implementation in $O (m)$
 
-// Lecture 7
+#lecture(7)
 = SS (Single-Source) Shortest Paths
 $"SSSP" (G (V, E), s in V)$, where $G$ directed, weighted graph
 
@@ -81,7 +86,7 @@ Returns: $"len" (v) = "dist" (s, v), forall v in V$
 
 Complexity can be lowered to $O ((m + n) log n)$ with heaps, similar to Prim
 
-// Lecture 8
+#lecture(8)
 == General case -- Bellman-Ford
 *Complexity*: $O (m dot n)$
 
@@ -108,7 +113,7 @@ Iterate on 3 vertices $u, v, k in V$ in 3 nested loops, testing whether using $k
 
 To catch negative cycles it's sufficient to check that $"dist" (v, v) >= 0, forall v in V$
 
-// Lecture 10
+#lecture(10)
 = Maximum flows
 == Definitions
 *Flow network*: graph where edges have a capacity $c : E -> RR^+$.
@@ -120,7 +125,7 @@ Flow is conserved through the graph and has to be $<=$ than capacity for all edg
 == Ford-Fulkerson
 *Complexity*: $O (m dot |f^*|)$, where $|f^*|$: maximum flow
 
-// Lecture 11
+#lecture(11)
 = NP-hardness
 Similar polynomial and NP-hard problems:
 - Eulerian vs Hamiltonian circuit: cycle traversing every edge ($O (n)$) vs vertex (NP-hard) only once
@@ -146,10 +151,11 @@ if A is NP-hard and A $<_p$ B $==>$ B is NP-hard
 - *Metric TSP*: TSP with triangular inequality on paths (direct paths are always shorter than the ones using other vertices)
 - *Maximum clique*: largest complete sub-graph
 - *Minimum vertex cover*: minimum number of vertices that "touches" all edges
+- *Minimum set cover*: vertex cover $<_p$ set cover (minimum number of subsets tu cover an original set)
 
-// Lecture 12
+#lecture(12)
 = Approximation algorithms
-== Approx vertex cover
+== Vertex cover
 - *Complexity*: $O (n + m)$
 - *Approximation factor*: 2
 
@@ -162,7 +168,8 @@ if A is NP-hard and A $<_p$ B $==>$ B is NP-hard
 Build an MST with Prim/Kruskal and return the full preorder chain (DFS with pre and post visits (with repetitions)) of the tree
 
 === Eulerian circuit approach
-- *Complexity*: $O (?)$
+// TODO: find complexity
+- *Complexity*: polynomial
 - *Approximation factor*: $2 \/ 3$
 
 Find a minimum weight perfect matching between odd-degree vertices and add those edges to the MST.
@@ -171,3 +178,10 @@ Now the graph has all vertices with even degree $=>$ it is Eulerian
 Return the Eulerian cycle of the graph
 
 A $3 \/ 2 - epsilon$ approximation has been found, where $epsilon = 10^(-36)$
+
+#lecture(17)
+== Set cover
+- *Complexity*: $O (??)$
+- *Approximation factor*: ??
+
+=== Greedy approach
