@@ -1,19 +1,35 @@
 #set text(
-  size: 14pt,
+  size: 13pt,
   // Sans serif font
-  font: ("Helvetica", "Arial")
+  font: ("Helvetica", "Arial"),
 )
 #set heading(numbering: "1.1 –")
 #set list(marker: ([•], [--]))
+
+#let make_title(title: none, author: none, date: none) = {
+  v(5em)
+  align(center, text(size: 20pt, title))
+  align(center, text(size: 14pt, author))
+  align(center, text(size: 14pt, date))
+  v(5em)
+}
+
 // Comment-style lecture number annotation (# Lecture n)
 #let lecture(number) = {
-  set text(fill: gray)
+  set text(gray)
   [\# Lecture #number]
 }
 
+
+#make_title(
+  title: "Advanced Algorithms notes",
+  author: "Alberto Lazari",
+  date: "II semester – 2023",
+)
+
 #outline(
   title: "Index",
-  indent: true
+  indent: true,
 )
 #pagebreak()
 
