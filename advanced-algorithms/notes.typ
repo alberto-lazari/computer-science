@@ -35,7 +35,7 @@
 
 #lecture(2)
 = DFS (Depth First Search)
-*Complexity*: $O (n + m)$
+/ Complexity: $O (n + m)$
 
 == Applications
 Derived using DFS (or BFS) in $O (n + m)$
@@ -49,7 +49,7 @@ Derived using DFS (or BFS) in $O (n + m)$
 
 #lecture(3)
 = BFS (Breadth First Search)
-*Complexity*: $O (n + m)$
+/ Complexity: $O (n + m)$
 
 = MST (Minimum[-weight] Spanning Tree)
 $"MST" (G (V, E), s)$
@@ -58,7 +58,7 @@ Tree created from a source vertex $s$, the root of the tree
 
 #lecture(4)
 == Prim
-*Complexity*: $O (m dot n)$
+/ Complexity: $O (m dot n)$
 
 Make cuts to separate a growing set $A$ (initialized to ${s}$), and find _light edges_.
 Add the light edge found with the cut to $A$ and repeat, until you have a tree (no more vertices outside $V \\ A$)
@@ -66,7 +66,7 @@ Add the light edge found with the cut to $A$ and repeat, until you have a tree (
 The search for the light edge is $O (m)$ and is repeated $n$ times, but it can be optimized
 
 === Prim with heap
-*Complexity*: $O (m log n)$
+/ Complexity: $O (m log n)$
 
 Use a heap to store vertices, ordered on their cost to reach from a vertex already processed (light edge that crosses the cut)
 For every vertex that you put in $A$ (actually that you extract from the heap $H$) check if you can update the cost of the vertices still in $H$
@@ -77,7 +77,7 @@ The complexity is actually $O (n log n + m log n)$, but graph $G$ is connected $
 
 #lecture(5)
 == Kruskal
-*Complexity*: $O (m dot n)$ (when implemented with adjacency list, because of frequent cycle checks)
+/ Complexity: $O (m dot n)$ (when implemented with adjacency list, because of frequent cycle checks)
 
 Extremely simple:
 + $A$ is an empty forest;
@@ -85,7 +85,7 @@ Extremely simple:
 + If adding $e in E$ to $A$ keeps it a forest (doesn't introduce cycles) add it
 
 === Kruskal with disjoint sets
-*Complexity*: $O (m log n)$ (same of Prim with heap)
+/ Complexity: $O (m log n)$ (same of Prim with heap)
 
 Use union-find data structure: connected components are disjoint sets to join in $O (log n)$ time. Finds if a node is in a set in $O (log n)$ time $=>$ cycle checks in logarithmic time
 
@@ -98,13 +98,13 @@ $"SSSP" (G (V, E), s in V)$, where $G$ directed, weighted graph
 Returns: $"len" (v) = "dist" (s, v), forall v in V$
 
 == Non-negative weights -- Dijkstra
-*Complexity*: $O (m dot n)$
+/ Complexity: $O (m dot n)$
 
 Complexity can be lowered to $O ((m + n) log n)$ with heaps, similar to Prim
 
 #lecture(8)
 == General case -- Bellman-Ford
-*Complexity*: $O (m dot n)$
+/ Complexity: $O (m dot n)$
 
 Need to forbid negative cycles in shortest paths, they lead to infinitely small paths $->$ doesn't even make sense to speak about shortest paths
 
@@ -123,7 +123,7 @@ Running Bellman-Ford $n$ times have complexity $O (m dot n^2)$.
 With dynamic programming complexity can be reduced up to $O (n^3 dot log n)$
 
 == Floyd-Warshal
-*Complexity*: $O (n^3)$
+/ Complexity: $O (n^3)$
 
 Iterate on 3 vertices $u, v, k in V$ in 3 nested loops, testing whether using $k$ in the path is better
 
@@ -132,14 +132,14 @@ To catch negative cycles it's sufficient to check that $"dist" (v, v) >= 0, fora
 #lecture(10)
 = Maximum flows
 == Definitions
-*Flow network*: graph where edges have a capacity $c : E -> RR^+$.
+/ Flow network: graph where edges have a capacity $c : E -> RR^+$.
 A source $s$ and a sink $t$ are specified
 
-*Flow*: $f : E -> RR^+, |f| = display(sum_((s, v) in E)) f (s, v)$, basically the flow on the first edges \
+/ Flow: $f : E -> RR^+, |f| = display(sum_((s, v) in E)) f (s, v)$, basically the flow on the first edges \
 Flow is conserved through the graph and has to be $<=$ than capacity for all edges
 
 == Ford-Fulkerson
-*Complexity*: $O (m dot |f^*|)$, where $|f^*|$: maximum flow
+/ Complexity: $O (m dot |f^*|)$, where $|f^|$: maximum flow
 
 #lecture(11)
 = NP-hardness
@@ -172,21 +172,21 @@ if A is NP-hard and A $<_p$ B $==>$ B is NP-hard
 #lecture(12)
 = Approximation algorithms
 == Vertex cover
-- *Complexity*: $O (n + m)$
-- *Approximation factor*: 2
+/ Complexity: $O (n + m)$
+/ Approximation factor: 2
 
-*Matching*: set of edges with no common vertex
+/ Matching: set of edges with no common vertex
 
 == Metric TSP
-- *Complexity*: $O (m dot log n)$
-- *Approximation factor*: 2 (tight)
+/ Complexity: $O (m dot log n)$
+/ Approximation factor: 2 (tight)
 
 Build an MST with Prim/Kruskal and return the full preorder chain (DFS with pre and post visits (with repetitions)) of the tree
 
 === Eulerian circuit approach
 // TODO: find complexity
-- *Complexity*: polynomial
-- *Approximation factor*: $2 \/ 3$
+/ Complexity: polynomial
+/ Approximation factor: $2 \/ 3$
 
 Find a minimum weight perfect matching between odd-degree vertices and add those edges to the MST.
 Now the graph has all vertices with even degree $=>$ it is Eulerian
@@ -197,8 +197,8 @@ A $3 \/ 2 - epsilon$ approximation has been found, where $epsilon = 10^(-36)$
 
 #lecture(17)
 == Set cover
-- *Complexity*: $O (n dot |F| dot min {n, |F|})$, where $n = |X|$ (cubic)
-- *Approximation factor*: $ceil(log_2 n) + 1 = Theta (log n)$
+/ Complexity: $O (n dot |F| dot min {n, |F|})$, where $n = |X|$ (cubic)
+/ Approximation factor: $ceil(log_2 n) + 1 = Theta (log n)$
 
 Variables:
 - $X$: original set, with all possible elements
@@ -207,5 +207,17 @@ Variables:
 Greedy algorithm on subset in $F$ with most elements in $X$.
 At each step select the subset and remove its elements from $X$ and repeat
 
-#lecture(18)
 = Randomized algorithms
+- Las Vegas: always correct (randomized quicksort)
+- Monte Carlo: may return wrong values, though high probability of correct result
+  - One sided: decision problems give only false positives/negatives
+  - Two sided: decision problems may fail in any case
+
+#lecture(19)
+
+/ High probability: algorithm $A_Pi$ for problem $Pi$
+$ "has complexity" f (n) \/ "is correct" $
+with high probability if
+$ exists c, d > 0. "Pr" (A "has complexity" > c f (n)) \/ "Pr" (A "is not correct") < 1 / (n^d) $
+
+== Minimum cut -- Karger
