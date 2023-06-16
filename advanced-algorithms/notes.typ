@@ -7,11 +7,11 @@
 #set list(marker: ([•], [--]))
 
 #let make_title(title: none, author: none, date: none) = {
-  v(5em)
+  v(3em)
   align(center, text(size: 20pt, title))
   align(center, text(size: 14pt, author))
   align(center, text(size: 14pt, date))
-  v(5em)
+  v(3em)
 }
 
 // Comment-style lecture number annotation (# Lecture n)
@@ -197,7 +197,15 @@ A $3 \/ 2 - epsilon$ approximation has been found, where $epsilon = 10^(-36)$
 
 #lecture(17)
 == Set cover
-- *Complexity*: $O (??)$
-- *Approximation factor*: ??
+- *Complexity*: $O (n dot |F| dot min {n, |F|})$, where $n = |X|$ (cubic)
+- *Approximation factor*: $ceil(log_2 n) + 1 = Theta (log n)$
 
-=== Greedy approach
+Variables:
+- $X$: original set, with all possible elements
+- $F$: set of subsets of $X$
+
+Greedy algorithm on subset in $F$ with most elements in $X$.
+At each step select the subset and remove its elements from $X$ and repeat
+
+#lecture(18)
+= Randomized algorithms
