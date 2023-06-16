@@ -3,7 +3,7 @@
   // Sans serif font
   font: ("Helvetica", "Arial")
 )
-#set heading(numbering: "1.1 -")
+#set heading(numbering: "1.1 –")
 #set list(marker: ([•], [--]))
 
 #outline(
@@ -23,7 +23,7 @@ Derived using DFS (or BFS) in $O (n + m)$
 - Connected components:
   + run DFS (or BFS) $n$ times
   + Keep a counter $k$ to increment on every "untouched" source vertex
-  + Assign $k$ to $v."id"$, instead of 1 $=>$ label vertexes based on its component
+  + Assign $k$ to $v."id"$, instead of 1 $->$ label vertexes based on its component
   + If at the end $k > 1$, then multiple components were found
 
 // Lecture 3
@@ -71,21 +71,21 @@ Use union-find data structure: connected components are disjoint sets to join in
 It's still an open problem to find MST implementation in $O (m)$
 
 // Lecture 7
-= SSSP (Single-Source Shortest Paths)
+= SS (Single-Source) Shortest Paths
 $"SSSP" (G (V, E), s in V)$, where $G$ directed, weighted graph
 
 Returns: $"len" (v) = "dist" (s, v), forall v in V$
 
-== Non-negative weights - Dijkstra
+== Non-negative weights -- Dijkstra
 *Complexity*: $O (m dot n)$
 
 Complexity can be lowered to $O ((m + n) log n)$ with heaps, similar to Prim
 
 // Lecture 8
-== General case - Bellman-Ford
+== General case -- Bellman-Ford
 *Complexity*: $O (m dot n)$
 
-Need to forbid negative cycles in shortest paths, they lead to infinitely small paths $=>$ doesn't even make sense to speak about shortest paths
+Need to forbid negative cycles in shortest paths, they lead to infinitely small paths $->$ doesn't even make sense to speak about shortest paths
 
 Bellman-Ford returns either $"SSSP" (G, s)$ or a declaration that $G$ has a negative cycle
 
@@ -95,7 +95,7 @@ If it doesn't it means a negative cycle exist
 
 In 2022 a *near-linear* algorithm was found
 
-= APSP (All Pair Shortest Paths)
+= AP (All Pair) Shortest Paths
 Returns: $"dist" (v, u), forall v, u in V$
 
 Running Bellman-Ford $n$ times have complexity $O (m dot n^2)$.
@@ -108,6 +108,7 @@ Iterate on 3 vertices $u, v, k in V$ in 3 nested loops, testing whether using $k
 
 To catch negative cycles it's sufficient to check that $"dist" (v, v) >= 0, forall v in V$
 
+// Lecture 10
 = Maximum flows
 == Definitions
 *Flow network*: graph where edges have a capacity $c : E -> RR^+$.
@@ -117,8 +118,9 @@ A source $s$ and a sink $t$ are specified
 Flow is conserved through the graph and has to be $<=$ than capacity for all edges
 
 == Ford-Fulkerson
-*Complexity*: $O (m dot |f^*|)$
+*Complexity*: $O (m dot |f^*|)$, where $|f^*|$: maximum flow
 
+// Lecture 11
 = NP-hardness
 Similar polynomial and NP-hard problems:
 - Eulerian vs Hamiltonian circuit: cycle traversing every edge ($O (n)$) vs vertex (NP-hard) only once
@@ -127,3 +129,45 @@ Similar polynomial and NP-hard problems:
 - Class P: Polynomial time problems
 - Class NP: Non-deterministic Polynomial
 - Class NP-hard: if proving a problem polynomial would mean all NP is polynomial it's NP-hard
+
+== Reduction
+A $<$ B $->$ B is used to solve A
+
+A $<_p$ B $->$ A reduces to B in polynomial time: a polynomial algorithm exists to convert an input instance for A in one for B that is then used to solve A
+
+if A is NP-hard and A $<_p$ B $==>$ B is NP-hard
+
+== NP-hard Problems
+- *SAT*: first NP-hard proved, by Cook-Levin theorem
+- *3-SAT*: SAT $<_p$ 3-SAT
+- *Maximum Independent Set*: 3-SAT $<_p$ MIS (maximum number of vertices with no edge between them)
+- *Hamiltonian circuit*
+- *TSP* (Traveling Salesperson Problem): Hamiltonian circuit $<_p$ TSP
+- *Metric TSP*: TSP with triangular inequality on paths (direct paths are always shorter than the ones using other vertices)
+- *Maximum clique*: largest complete sub-graph
+- *Minimum vertex cover*: minimum number of vertices that "touches" all edges
+
+// Lecture 12
+= Approximation algorithms
+== Approx vertex cover
+- *Complexity*: $O (n + m)$
+- *Approximation factor*: 2
+
+*Matching*: set of edges with no common vertex
+
+== Metric TSP
+- *Complexity*: $O (m dot log n)$
+- *Approximation factor*: 2 (tight)
+
+Build an MST with Prim/Kruskal and return the full preorder chain (DFS with pre and post visits (with repetitions)) of the tree
+
+=== Eulerian circuit approach
+- *Complexity*: $O (?)$
+- *Approximation factor*: $2 \/ 3$
+
+Find a minimum weight perfect matching between odd-degree vertices and add those edges to the MST.
+Now the graph has all vertices with even degree $=>$ it is Eulerian
+
+Return the Eulerian cycle of the graph
+
+A $3 \/ 2 - epsilon$ approximation has been found, where $epsilon = 10^(-36)$
