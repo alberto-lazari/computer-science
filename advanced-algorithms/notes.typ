@@ -139,7 +139,7 @@ A source $s$ and a sink $t$ are specified
 Flow is conserved through the graph and has to be $<=$ than capacity for all edges
 
 == Ford-Fulkerson
-/ Complexity: $O (m dot |f^*|)$, where $|f^|$: maximum flow
+/ Complexity: $O (m dot |f^*|)$, where $|f|$: maximum flow
 
 #lecture(11)
 = NP-hardness
@@ -255,3 +255,12 @@ Avoids first $display(n / sqrt(2))$ iterations
 / Complexity: $O (m log n)$
 
 #lecture(21)
+= Chernoff bounds
+Upper bounds on probability of the value of a variable $X = display(sum_(i = 1)^n) X_i$
+
+$ "Pr" (X > (1 + delta) mu) < ( e^delta / (1 + delta)^(1 + delta) )^mu $
+$forall delta > 0, mu = E[X]$
+
+== Variants
+- $"Pr" (X < (1 - delta) mu) < e^( (- mu delta^2) / 2 )$, when $0 < delta <= 1$
+- $"Pr" (X > (1 + delta) mu) < e^( (- mu delta^2) / 2 )$, when $0 < delta <= 2e - 1$
