@@ -1,17 +1,17 @@
 #set text(
   size: 13pt,
   // Sans serif font
-  font: ("Helvetica", "Arial"),
+  font: ("Arial"),
 )
 #set heading(numbering: "1.1 –")
 #set list(marker: ([•], [--]))
 
 #let make_title(title: none, author: none, date: none) = {
-  v(3em)
+  v(5em)
   align(center, text(size: 20pt, title))
   align(center, text(size: 14pt, author))
   align(center, text(size: 14pt, date))
-  v(3em)
+  v(5em)
 }
 
 // Comment-style lecture number annotation (# Lecture n)
@@ -22,9 +22,9 @@
 
 
 #make_title(
-  title: "Advanced Algorithms notes",
+  title: "Advanced Algorithms Notes",
   author: "Alberto Lazari",
-  date: "II semester – 2023",
+  date: "II Semester – 2023",
 )
 
 #outline(
@@ -52,7 +52,7 @@ Derived using DFS (or BFS) in $O (n + m)$
 / Complexity: $O (n + m)$
 
 = MST (Minimum[-weight] Spanning Tree)
-$"MST" (G (V, E), s)$
+$"MST" (G = (V, E), s)$
 
 Tree created from a source vertex $s$, the root of the tree
 
@@ -93,7 +93,7 @@ It's still an open problem to find MST implementation in $O (m)$
 
 #lecture(7)
 = SS (Single-Source) Shortest Paths
-$"SSSP" (G (V, E), s in V)$, where $G$ directed, weighted graph
+$"SSSP" (G = (V, E), s in V)$, where $G$ directed, weighted graph
 
 Returns: $"len" (v) = "dist" (s, v), forall v in V$
 
@@ -120,7 +120,7 @@ In 2022 a *near-linear* algorithm was found
 Returns: $"dist" (v, u), forall v, u in V$
 
 Running Bellman-Ford $n$ times have complexity $O (m dot n^2)$.
-With dynamic programming complexity can be reduced up to $O (n^3 dot log n)$
+With dynamic programming complexity can be reduced up to $O (n^3 log n)$
 
 == Floyd-Warshal
 / Complexity: $O (n^3)$
@@ -145,7 +145,7 @@ Flow is conserved through the graph and has to be $<=$ than capacity for all edg
 = NP-hardness
 Similar polynomial and NP-hard problems:
 - Eulerian vs Hamiltonian circuit: cycle traversing every edge ($O (n)$) vs vertex (NP-hard) only once
-- MST vs TSP: give paths to (spanning tree, $O (m dot log n)$) vs a tour between (NP-hard) all vertices, minimizing the sum of the weights of the edges used
+- MST vs TSP: give paths to (spanning tree, $O (m log n)$) vs a tour between (NP-hard) all vertices, minimizing the sum of the weights of the edges used
 
 - Class P: Polynomial time problems
 - Class NP: Non-deterministic Polynomial
@@ -178,7 +178,7 @@ if A is NP-hard and A $<_p$ B $==>$ B is NP-hard
 / Matching: set of edges with no common vertex
 
 == Metric TSP
-/ Complexity: $O (m dot log n)$
+/ Complexity: $O (m log n)$
 / Approximation factor: 2 (tight)
 
 Build an MST with Prim/Kruskal and return the full preorder chain (DFS with pre and post visits (with repetitions)) of the tree
@@ -220,4 +220,38 @@ $ "has complexity" f (n) \/ "is correct" $
 with high probability if
 $ exists c, d > 0. "Pr" (A "has complexity" > c f (n)) \/ "Pr" (A "is not correct") < 1 / (n^d) $
 
-== Minimum cut -- Karger
+= Minimum cut -- Karger
+/ Complexity: $O (n^4 log n)$
+
+Minimum number of edges to remove, in order to disconnect the (multi)graph
+
+== Algorithm
+Repeat _Full Contraction_ $k$ times, to reduce error
+
+Karger returns the minimum with _high probability_ ($"Pr (fail)" < display(1 / n^d)$) with $k = display((d n^2 ln n) / 2) = Theta (n^2 log n)$
+
+== Definitions
+=== Multigraphs
+/ Multiplicity: $m : SS -> NN, m (e) = "occurrences of an element" e in "multiset" SS$
+
+$cal(G = (V, E))$ is a multigraph, where $cal(E)$ is a multiset
+
+=== Full Contraction
+/ Complexity: $O (n^2)$
+
+Choose a random edge and contract on it, until two vertices remain
+
+/ Contraction: contract a graph $cal(G)$ on edge $(u, v) in cal(E)$ (join vertices of the edge):
+- Delete $u$
+- Delete all edges between $u$ and $v$
+- Move all edges of $u$ to $v$
+
+== Karger-Stein
+/ Complexity: $O (n^2 log^3 n)$
+
+Avoids first $display(n / sqrt(2))$ iterations
+
+== 2020 version
+/ Complexity: $O (m log n)$
+
+#lecture(21)
