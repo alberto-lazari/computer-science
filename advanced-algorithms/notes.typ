@@ -100,7 +100,15 @@ Returns: $"len" (v) = "dist" (s, v), forall v in V$
 == Non-negative weights -- Dijkstra
 / Complexity: $O (m dot n)$
 
-Complexity can be lowered to $O ((m + n) log n)$ with heaps, similar to Prim
+Similar to Prim:
++ Growing region (vertices set) $X = {s}$
++ Select minimum-weight vertex $e$ between $X$ and $V \\ X : e = (u, v)$, where $u in X$ and $v in.not X$
++ Add $v$ to $X$ and set $"SP" (v) = "SP" (u) + w (e)$
+
+=== Dijkstra with heap
+/ Complexity: $O ((m + n) log n)$
+
+Similar to Prim implementation with heaps
 
 #lecture(8)
 == General case -- Bellman-Ford
