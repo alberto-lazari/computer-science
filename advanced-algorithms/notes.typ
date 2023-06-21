@@ -106,7 +106,7 @@ Similar to Prim:
 + Add $v$ to $X$ and set $"SP" (v) = "SP" (u) + w (e)$
 
 === Dijkstra with heap
-/ Complexity: $O ((m + n) log n)$
+/ Complexity: $O ((m + n) dot log n)$
 
 Similar to Prim implementation with heaps
 
@@ -149,6 +149,13 @@ Flow is conserved through the graph and has to be $<=$ than capacity for all edg
 == Ford-Fulkerson
 / Complexity: $O (m dot |f^*|)$, where $|f^*|$: maximum flow
 
++ Create residual graph with back edges with capacity 0
++ Find augmenting path from source to sink
++ Find bottleneck edge of the path, the one with minimum capacity $m$
++ Reduce all capacities of the path of $m$ and increase its back edges capacities of $m$
++ Keep searching augmenting paths, until sink gets disconnected (from the inside direction)
++ Maximum flow is minimum cut of sink in outside direction (sum of capacities of back edges of sink)
+
 #lecture(11)
 = NP-hardness
 Similar polynomial and NP-hard problems:
@@ -189,7 +196,8 @@ if A is NP-hard and A $<_p$ B $==>$ B is NP-hard
 / Complexity: $O (m log n)$
 / Approximation factor: 2 (tight)
 
-Build an MST with Prim/Kruskal and return the full preorder chain (DFS with pre and post visits (with repetitions)) of the tree
+Build an MST with Prim/Kruskal and return the full preorder chain (DFS with pre visit) of the tree.
+The path will be possible because of the use of shortcuts, because the graph has to be complete for TSP
 
 === Eulerian circuit approach
 // TODO: find complexity
