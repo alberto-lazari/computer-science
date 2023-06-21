@@ -147,7 +147,7 @@ A source $s$ and a sink $t$ are specified
 Flow is conserved through the graph and has to be $<=$ than capacity for all edges
 
 == Ford-Fulkerson
-/ Complexity: $O (m dot |f^*|)$, where $|f|$: maximum flow
+/ Complexity: $O (m dot |f^*|)$, where $|f^*|$: maximum flow
 
 #lecture(11)
 = NP-hardness
