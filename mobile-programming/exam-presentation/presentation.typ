@@ -55,6 +55,8 @@
 ]
 
 #slide(theme-variant: "wake up")[
+  #set align(center)
+  #set text(weight: "bold")
   Everything was great#uncover(2)[, until it wasn't]
 ]
 
@@ -137,4 +139,22 @@
   ```bash
   $ zip --compression-method=deflate archive.zip dir/*
   ```
+]
+
+#slide(title: "Interlacing")[
+
+]
+
+#section("PNG vs JPEG")
+#slide(title: "Compression")[
+
+]
+
+#slide(title: "Visual artifacts")[
+
+]
+
+#section("WebP")
+#slide(title: "Future of PNG?")[
+
 ]
