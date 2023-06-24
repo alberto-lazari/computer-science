@@ -1,5 +1,4 @@
 # Topics
-
 1. PNG format for encoding of digital images
 2. Play store and Apple store: differences and properties
 
@@ -7,7 +6,6 @@ Selected topic: 1. PNG format
 
 # Colors encoding
 ## Color models
-
 - RGB: additive
 - CYMK: subtractive
 - HSV (Hue Saturation Value/Intensity/Luminosity): Color + Intensity of color (less is white) + Darkness (less is black)
@@ -16,7 +14,6 @@ Selected topic: 1. PNG format
 
 ## Color Depth
 Number of bits used to encode every color:
-
 - Grayscale:
     * 1 bit = black/white (monochromatic)
     * 8 bits = grayscales
@@ -31,7 +28,6 @@ Number of bits used to encode every color:
 
 # GIF
 First standard to be used for image transmission over network
-
 - Uses indexed colors
 - Provides animations and transparency
 - LZW as compression algorithm (patent from Unisys, expired in 2004)
@@ -42,6 +38,7 @@ Was born to provide a patent/license-less alternative to GIF, in transmission ov
 First proposed name: PING = "PING Is Not GIF", an open alternative to GIF.
 Now it's actually Portable Network Graphics
 
+## Features
 - Uses RGB/RGBA color models, not CMYK, because it's not aimed at professional photos encoding
 - Lossless compression
 - Optional _alpha channel_
@@ -55,7 +52,6 @@ Now APNG (Animated PNG) exists and has less space occupation. Extension over PNG
 
 ## Color depth
 PNG supports:
-
 - 1 bit to 2 bytes per channel for true color and greyscale
 - Index colors
 
@@ -63,7 +59,6 @@ PNG supports:
 Uses DEFLATE, combination of LZ77 (or LZ1) and Huffman, also implemented in zlib (Unix `zip` command)
 
 # PNG vs JPEG
-
 - JPEG offers a way greater compression (lossy though) and is great for photographic images.
 - When compared on artificial photos (sharp transitions, high contrast) JPEG produces awful visual artifacts (salt and pepper).
 This is caused by the DCT (Discrete Cosine Transform) coefficient quantization
