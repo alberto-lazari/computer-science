@@ -161,7 +161,7 @@
       - Optional 2-dimensions, 7-pass algorithm (Adam7)
       - Allows low-resolution preview of the image
       - For slower connections
-      #only(2)[
+      #uncover(2)[
         - #text(unipd-red)[Worse compression performances]
       ]
     ],
@@ -185,14 +185,29 @@
   }
 ]
 
-#new-section("PNG vs JPEG")
-#slide(title: "Visual artifacts")[
-  
+#new-section("Animations")
+#slide(title: "What about animations?")[
+  MNG (Multiple-image Network Graphics)
+
+  First attempt to mimic GIF's animated pictures
+
+  #uncover(2)[
+    Complex and different file signature $=>$ never widely adopted
+  ]
+]
+
+#slide(title: "APNG (Animated PNG)")[
+  #line-by-line(mode: "transparent")[
+    - Proposed by Mozilla developers
+    - PNG-compatible
+    - Lighter than MNG
+    - Support by most browsers
+    - Not officially embraced by PNG Group
+  ]
 ]
 
 #new-section("WebP")
 #slide(title: "Future of PNG?")[
-
 ]
 
 #wake-up[
