@@ -61,3 +61,13 @@ PNG supports:
 
 == Compression
 Uses DEFLATE, combination of LZ77 (or LZ1) and Huffman, also implemented in zlib (Unix `zip` command)
+
+= PNG vs JPEG
+
+- JPEG offers a way greater compression (lossy though) and is great for photographic images.
+- When compared on artificial photos (sharp transitions, high contrast) JPEG produces awful visual artifacts (salt and pepper).
+This is caused by the DCT (Discrete Cosine Transform) coding for quantization
+
+= Webp
+In 2010 Google released webp, which aims to replace JPEG, PNG and GIF with lossy and lossless compression (and animation and transparency support).
+It is actively supported and promoted by Google, but support is still not comparable to the wider-known formats yet
