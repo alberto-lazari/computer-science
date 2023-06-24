@@ -29,13 +29,17 @@
 #slide(theme-variant: "title slide")
 
 #section("The history of GIF")
-
 #slide(title: "Let's talk about GIF first")[
-  - Released in 1987
-  - First format for image transmission over a network
-  - Provides animations and transparency
-  - Indexed colors (8 bits - 256 colors)
-  - Lossless compression using LZW
+  // Start with empty slide
+  // on the second sub-slide start the list
+  #show: pause(2)
+  #line-by-line(start: 2, mode: "transparent")[
+    - Released in 1987
+    - First format for image transmission over a network
+    - Provides animations and transparency
+    - Indexed colors (8 bits - 256 colors)
+    - Lossless compression using LZW
+  ]
 ]
 
 #slide(theme-variant: "wake up")[
@@ -45,9 +49,52 @@
 #slide(title: "Licensing")[
   In 1994 Unisys patented the LZW algorithm
 
-  $=>$ _pay royalties_ to support the format #uncover(2)[(until 2004)]
+  $==>$ *pay royalties* to support the format! #uncover(2)[(until 2004)]
 ]
 
 #section("PNG's birth")
+#slide(title: "Time to PING!")[
+  #one-by-one[- Users started to plan a *free* alternative][- GIF's lack of true color support]["PING Is Not GIF" was born!][
 
-#slide(title: "Time to PING!")
+    Later renamed to "Portable Network Graphics" (PNG)
+  ]
+]
+
+#slide(title: "Features")[
+  - True color support (1-16 bits per channel)
+  - Indexed colors
+  - Optional alpha channel (RGB/RBGA color model)
+  - Lossless #text(size: 18pt)[(non-patented!)] compression algorithm
+  - Interlacing for low-resolution image earlier in the transfer
+  - Gamma correction
+  - Extensible (e.g. add other channels)
+]
+
+#section("Features")
+#slide(title: "True color support")[
+  Color depth can be 1-16 bits per channel
+
+  #set text(size: 16pt)
+  #figure(
+    grid(
+      columns: (1fr, 1fr),
+      image("images/test-images/pelmo.gif", width: 80%),
+      image("images/test-images/pelmo.png", width: 80%),
+    ),
+    caption: [GIF vs PNG]
+  )
+]
+
+#slide()[
+  As well as indexed colors (8 bits - 256 colors, just as GIF)
+
+  #set text(size: 16pt)
+  #figure(
+    grid(
+      columns: (1fr, 1fr),
+      image("images/test-images/pelmo.gif", width: 80%),
+      image("images/test-images/pelmo-indexed.png", width: 80%),
+    ),
+    caption: [GIF vs PNG with indexed colors]
+  )
+]
