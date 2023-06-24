@@ -1,7 +1,10 @@
-**/*.pdf
+*.pdf
 
 # Agda interface files (type-checked)
-**/*.agdai
+*.agdai
 
 # Moodle cookie for lecture scraping
 cookie
+
+# Log files
+*.log
