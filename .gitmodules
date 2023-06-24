@@ -14,3 +14,6 @@
 [submodule "advanced-topics-cs/report"]
 	path = advanced-topics-cs/module-2
 	url = git@github.com:albertolazari/AASP-exercises.git
+[submodule "mobile-programming/exam-presentation/typst-slides"]
+	path = mobile-programming/exam-presentation/typst-slides
+	url = https://github.com/andreasKroepelin/typst-slides
