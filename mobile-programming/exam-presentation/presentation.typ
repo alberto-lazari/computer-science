@@ -20,11 +20,19 @@
 )
 
 // Make the section name more visible and distinct from the title
-#let section = name => {
+#let new-section = name => {
   new-section([ #set text(size: 20pt, weight: "bold"); #name ])
 }
 
+// Custom wake up
+#let wake-up = content => [
+  #set align(center)
+  #set text(weight: "bold")
+  #slide(theme-variant: "wake up")[#content]
+]
+
 #set text(font: "Arial")
+
 // Add background to monospace text
 #show raw.where(block: false): box.with(
   fill: luma(220),
@@ -38,9 +46,15 @@
   radius: 10pt,
 )
 
+#show figure: itself => [
+  #set text(size: 16pt)
+  #itself
+]
+
+
 #slide(theme-variant: "title slide")
 
-#section("The history of GIF")
+#new-section("The history of GIF")
 #slide(title: "Let's talk about GIF first")[
   // Start with empty slide
   // on the second sub-slide start the list
@@ -54,7 +68,7 @@
   ]
 ]
 
-#slide(theme-variant: "wake up")[
+#wake-up[
   #set align(center)
   #set text(weight: "bold")
   Everything was great#uncover(2)[, until it wasn't]
@@ -66,7 +80,7 @@
   $==>$ *pay royalties* to support the format! #uncover(2)[(until 2004)]
 ]
 
-#section("PNG's birth")
+#new-section("PNG's birth")
 #slide(title: "Time to PING!")[
   #one-by-one[- Users started to plan a *free* alternative][- GIF's lack of true color support]["PING Is Not GIF" was born!][
 
@@ -85,43 +99,40 @@
   ]
 ]
 
-#section("Features")
+#new-section("Features")
 #slide(title: "Color depth")[
   #only(1)[
     True color has 8/16 bits per channel
 
-    #set text(size: 16pt)
     #figure(
       grid(
         columns: (1fr, 1fr),
         image("images/test-images/pelmo.gif", width: 80%),
         image("images/test-images/pelmo.png", width: 80%),
       ),
-      caption: [GIF vs PNG]
+      caption: "GIF vs PNG"
     )
   ]
 
   #only(2)[
     Also supports indexed colors (1-8 bits - max 256 colors)
 
-    #set text(size: 16pt)
     #figure(
       grid(
         columns: (1fr, 1fr),
         image("images/test-images/pelmo.gif", width: 80%),
         image("images/test-images/pelmo-indexed.png", width: 80%),
       ),
-      caption: [GIF vs PNG with indexed colors]
+      caption: "GIF vs PNG with indexed colors"
     )
   ]
 
   #only(3)[
     Grayscale also supported (1-16 bits per pixel)
 
-    #set text(size: 16pt)
     #figure(
       image("images/test-images/pelmo-grayscale.png", width: 40%),
-      caption: [Grayscale PNG]
+      caption: "Grayscale PNG"
     )
   ]
 ]
@@ -142,10 +153,13 @@
 ]
 
 #slide(title: "Interlacing")[
-
+  #figure(
+    image("images/adam7.png", height: 40%),
+    caption: "Adam7 algorithm visualization",
+  )
 ]
 
-#section("PNG vs JPEG")
+#new-section("PNG vs JPEG")
 #slide(title: "Compression")[
 
 ]
@@ -154,13 +168,11 @@
 
 ]
 
-#section("WebP")
+#new-section("WebP")
 #slide(title: "Future of PNG?")[
 
 ]
 
-#slide(theme-variant: "wake up")[
-  #set align(center)
-  #set text(weight: "bold")
+#wake-up[
   Thanks for your attention!
 ]
