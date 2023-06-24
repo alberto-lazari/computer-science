@@ -25,6 +25,18 @@
 }
 
 #set text(font: "Arial")
+// Add background to monospace text
+#show raw.where(block: false): box.with(
+  fill: luma(220),
+  inset: (x: 3pt, y: 0pt),
+  outset: (y: 8pt),
+  radius: 4pt,
+)
+#show raw.where(block: true): block.with(
+  fill: luma(220),
+  inset: 10pt,
+  radius: 10pt,
+)
 
 #slide(theme-variant: "title slide")
 
@@ -116,4 +128,13 @@
   Either RGB or RGBA for transparency, focus on artificial images
 
   Human color perception out of PNG scope $->$ no YUV / YCbCr with specific optimizations (see JPEG)
+]
+
+#slide(title: "Compression")[
+  - Uses DEFLATE algorithm
+  - Combination of LZ77 (or LZ1) and Huffman
+  - Also implemented in zlib and default compression method in `zip` utility:
+  ```bash
+  $ zip --compression-method=deflate archive.zip dir/*
+  ```
 ]
