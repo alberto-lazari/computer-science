@@ -73,7 +73,7 @@
 #section("Features")
 #slide(title: "True color support")[
   #only(1)[
-    Color depth can be 1-16 bits per channel
+    Color depth can be 8/16 bits per channel
 
     #set text(size: 16pt)
     #figure(
@@ -87,7 +87,7 @@
   ]
 
   #only(2)[
-    As well as indexed colors (8 bits - 256 colors, just as GIF)
+    As well as indexed colors (1-8 bits - max 256 colors, just as GIF)
 
     #set text(size: 16pt)
     #figure(
@@ -99,4 +99,14 @@
       caption: [GIF vs PNG with indexed colors]
     )
   ]
+
+  #only(3)[
+    Grayscale also supported (1-16 bits per pixel)
+  ]
+]
+
+#slide(title: "Color model")[
+  Either RGB or RGBA for transparency, focus on artificial images
+
+  Human color perception out of PNG scope $->$ no YUV / YCbCr with specific optimizations (see JPEG)
 ]
