@@ -72,29 +72,31 @@
 
 #section("Features")
 #slide(title: "True color support")[
-  Color depth can be 1-16 bits per channel
+  #only(1)[
+    Color depth can be 1-16 bits per channel
 
-  #set text(size: 16pt)
-  #figure(
-    grid(
-      columns: (1fr, 1fr),
-      image("images/test-images/pelmo.gif", width: 80%),
-      image("images/test-images/pelmo.png", width: 80%),
-    ),
-    caption: [GIF vs PNG]
-  )
-]
+    #set text(size: 16pt)
+    #figure(
+      grid(
+        columns: (1fr, 1fr),
+        image("images/test-images/pelmo.gif", width: 80%),
+        image("images/test-images/pelmo.png", width: 80%),
+      ),
+      caption: [GIF vs PNG]
+    )
+  ]
 
-#slide()[
-  As well as indexed colors (8 bits - 256 colors, just as GIF)
+  #only(2)[
+    As well as indexed colors (8 bits - 256 colors, just as GIF)
 
-  #set text(size: 16pt)
-  #figure(
-    grid(
-      columns: (1fr, 1fr),
-      image("images/test-images/pelmo.gif", width: 80%),
-      image("images/test-images/pelmo-indexed.png", width: 80%),
-    ),
-    caption: [GIF vs PNG with indexed colors]
-  )
+    #set text(size: 16pt)
+    #figure(
+      grid(
+        columns: (1fr, 1fr),
+        image("images/test-images/pelmo.gif", width: 80%),
+        image("images/test-images/pelmo-indexed.png", width: 80%),
+      ),
+      caption: [GIF vs PNG with indexed colors]
+    )
+  ]
 ]
