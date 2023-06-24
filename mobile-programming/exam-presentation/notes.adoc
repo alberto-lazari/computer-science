@@ -66,7 +66,7 @@ Uses DEFLATE, combination of LZ77 (or LZ1) and Huffman, also implemented in zlib
 
 - JPEG offers a way greater compression (lossy though) and is great for photographic images.
 - When compared on artificial photos (sharp transitions, high contrast) JPEG produces awful visual artifacts (salt and pepper).
-This is caused by the DCT (Discrete Cosine Transform) coding for quantization
+This is caused by the DCT (Discrete Cosine Transform) coefficient quantization
 
 = Webp
 In 2010 Google released webp, which aims to replace JPEG, PNG and GIF with lossy and lossless compression (and animation and transparency support).
