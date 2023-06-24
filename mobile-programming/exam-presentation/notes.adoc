@@ -54,3 +54,6 @@ Now APNG (Animated PNG) exists and has less space occupation. Extension over PNG
 PNG supports:
 - 1 bit to 2 bytes per channel for true color and greyscale
 - Index colors
+
+== Compression
+Uses DEFLATE, combination of LZ77 (or LZ1) and Huffman, also implemented in zlib (Unix `zip` command)
