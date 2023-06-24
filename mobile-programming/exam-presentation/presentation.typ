@@ -61,19 +61,20 @@
 ]
 
 #slide(title: "Features")[
-  - True color support (1-16 bits per channel)
-  - Indexed colors
-  - Optional alpha channel (RGB/RBGA color model)
-  - Lossless #text(size: 18pt)[(non-patented!)] compression algorithm
-  - Interlacing for low-resolution image earlier in the transfer
-  - Gamma correction
-  - Extensible (e.g. add other channels)
+  #line-by-line(mode: "transparent")[
+    - True color, grayscale and indexed colors support
+    - Optional alpha channel
+    - Lossless #text(size: 18pt)[(non-patented!)] compression algorithm
+    - Interlacing for low-resolution image earlier in the transfer
+    - Gamma correction
+    - Extensible (e.g. add other channels)
+  ]
 ]
 
 #section("Features")
-#slide(title: "True color support")[
+#slide(title: "Color depth")[
   #only(1)[
-    Color depth can be 8/16 bits per channel
+    True color has 8/16 bits per channel
 
     #set text(size: 16pt)
     #figure(
@@ -87,7 +88,7 @@
   ]
 
   #only(2)[
-    As well as indexed colors (1-8 bits - max 256 colors, just as GIF)
+    Also supports indexed colors (1-8 bits - max 256 colors)
 
     #set text(size: 16pt)
     #figure(
@@ -102,6 +103,12 @@
 
   #only(3)[
     Grayscale also supported (1-16 bits per pixel)
+
+    #set text(size: 16pt)
+    #figure(
+      image("images/test-images/pelmo-grayscale.png", width: 40%),
+      caption: [Grayscale PNG]
+    )
   ]
 ]
 
