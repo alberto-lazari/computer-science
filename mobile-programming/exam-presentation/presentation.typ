@@ -208,6 +208,20 @@
 
 #new-section("WebP")
 #slide(title: "Future of PNG?")[
+  #grid(
+    columns: (4fr, 1fr),
+    [
+      WebP aims to replace PNG, JPEG and GIF:
+      #line-by-line(start: 2, mode: "transparent")[
+        - Both lossy and lossless compression
+        - Animation and transparency support
+        - Great compression performances
+        - Actively promoted by Google
+        - Still not widespread
+      ]
+    ],
+    figure([ #v(15%); #image("images/webp.png") ])
+  )
 ]
 
 #wake-up[
