@@ -158,3 +158,9 @@
 #slide(title: "Future of PNG?")[
 
 ]
+
+#slide(theme-variant: "wake up")[
+  #set align(center)
+  #set text(weight: "bold")
+  Thanks for your attention!
+]
