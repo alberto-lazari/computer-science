@@ -4,6 +4,8 @@
 // Path is based on the theme path
 #let img-dir = "../../images/"
 
+#let unipd-red = rgb(178, 14, 16)
+
 #show: slides.with(
   authors: "Alberto Lazari - 2089120",
   short-authors: "Alberto Lazari",
@@ -12,7 +14,7 @@
   short-title: "The PNG format",
   date: "June 26, 2023",
   theme: bristol-theme(
-    color: rgb(178, 14, 16),
+    color: unipd-red,
     logo: img-dir + "unipd-logo.png",
     watermark: img-dir + "blank.png",
     secondlogo: img-dir + "blank.png",
@@ -153,9 +155,20 @@
 ]
 
 #slide(title: "Interlacing")[
-  #figure(
-    image("images/adam7.png", height: 40%),
-    caption: "Adam7 algorithm visualization",
+  #grid(
+    columns: (3fr, 2fr),
+    [
+      - Optional 2-dimensions, 7-pass algorithm (Adam7)
+      - Allows low-resolution preview of the image
+      - For slower connections
+      #only(2)[
+        - #text(unipd-red)[Worse compression performances]
+      ]
+    ],
+    figure(
+      image("images/adam7.png", height: 40%),
+      caption: "Adam7 algorithm visualization",
+    ),
   )
 ]
 
@@ -173,12 +186,8 @@
 ]
 
 #new-section("PNG vs JPEG")
-#slide(title: "Compression")[
-
-]
-
 #slide(title: "Visual artifacts")[
-
+  
 ]
 
 #new-section("WebP")
