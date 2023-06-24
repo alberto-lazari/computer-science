@@ -1,7 +1,7 @@
 # Topics
 
-0. PNG format for encoding of digital images
-0. Play store and Apple store: differences and properties
+1. PNG format for encoding of digital images
+2. Play store and Apple store: differences and properties
 
 Selected topic: 1. PNG format
 
@@ -27,7 +27,7 @@ Number of bits used to encode every color:
 - True colors:
     * 24 bits (R + B + G) (+ 8 bits of Alpha) = 16.7 M colors
     * 48 bits for high definition colors (2 bytes per channel)
-    * > 48 bits: scientific applications (ultraviolet, infrared)
+    * \> 48 bits: scientific applications (ultraviolet, infrared)
 
 # GIF
 First standard to be used for image transmission over network
