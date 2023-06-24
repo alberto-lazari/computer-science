@@ -159,6 +159,19 @@
   )
 ]
 
+#slide(title: "Interlacing - example")[
+  #let i = 1
+  #while i <= 7 {
+    only(i)[
+      #figure(
+        image("images/test-images/vesuvio-" + str(i) + ".png", width: 45%),
+        caption: "Pass " + str(i),
+      )
+    ]
+    i += 1
+  }
+]
+
 #new-section("PNG vs JPEG")
 #slide(title: "Compression")[
 
