@@ -1,5 +1,6 @@
 = Topics
-1. PNG format for encoding of digital images
-2. Play store and Apple store: differences and properties
+
+. PNG format for encoding of digital images
+. Play store and Apple store: differences and properties
 
 Selected topic: 1. PNG format
