@@ -16,6 +16,7 @@ Selected topic: 1. PNG format
 
 == Color Depth
 Number of bits used to encode every color:
+
 - Grayscale:
     * 1 bit = black/white (monochromatic)
     * 8 bits = grayscales
@@ -30,6 +31,7 @@ Number of bits used to encode every color:
 
 = GIF
 First standard to be used for image transmission over network
+
 - Uses indexed colors
 - Provides animations and transparency
 - LZW as compression algorithm (patent from Unisys, expired in 2004)
@@ -39,6 +41,7 @@ Was born to provide a patent/license-less alternative to GIF, in transmission ov
 
 First proposed name: PING = "PING Is Not GIF", an open alternative to GIF.
 Now it's actually Portable Network Graphics
+
 - Uses RGB/RGBA color models, not CMYK, because it's not aimed at professional photos encoding
 - Lossless compression
 - Optional _alpha channel_
@@ -52,6 +55,7 @@ Now APNG (Animated PNG) exists and has less space occupation. Extension over PNG
 
 == Color depth
 PNG supports:
+
 - 1 bit to 2 bytes per channel for true color and greyscale
 - Index colors
 
