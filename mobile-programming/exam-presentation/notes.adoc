@@ -1,12 +1,12 @@
-= Topics
+== Topics
 
 . PNG format for encoding of digital images
 . Play store and Apple store: differences and properties
 
 Selected topic: 1. PNG format
 
-= Colors encoding
-== Color models
+== Colors encoding
+=== Color models
 
 - RGB: additive
 - CYMK: subtractive
@@ -14,7 +14,7 @@ Selected topic: 1. PNG format
 - YUV/YIQ/YCbCr: Luminosity (rodes perception) + Color information (cones perception)
 - CIE: depends on properties of cones in the eye. Represents whole human vision
 
-== Color Depth
+=== Color Depth
 Number of bits used to encode every color:
 
 - Grayscale:
@@ -29,14 +29,14 @@ Number of bits used to encode every color:
     * 48 bits for high definition colors (2 bytes per channel)
     * > 48 bits: scientific applications (ultraviolet, infrared)
 
-= GIF
+== GIF
 First standard to be used for image transmission over network
 
 - Uses indexed colors
 - Provides animations and transparency
 - LZW as compression algorithm (patent from Unisys, expired in 2004)
 
-= PNG
+== PNG
 Was born to provide a patent/license-less alternative to GIF, in transmission over networks (www, now W3C recommendation)
 
 First proposed name: PING = "PING Is Not GIF", an open alternative to GIF.
@@ -53,21 +53,21 @@ Now it's actually Portable Network Graphics
 - MNG (Multiple-image Network Graphics) to copy GIF's animated pictures, but it's not used (too much space in comparison).
 Now APNG (Animated PNG) exists and has less space occupation. Extension over PNG
 
-== Color depth
+=== Color depth
 PNG supports:
 
 - 1 bit to 2 bytes per channel for true color and greyscale
 - Index colors
 
-== Compression
+=== Compression
 Uses DEFLATE, combination of LZ77 (or LZ1) and Huffman, also implemented in zlib (Unix `zip` command)
 
-= PNG vs JPEG
+== PNG vs JPEG
 
 - JPEG offers a way greater compression (lossy though) and is great for photographic images.
 - When compared on artificial photos (sharp transitions, high contrast) JPEG produces awful visual artifacts (salt and pepper).
 This is caused by the DCT (Discrete Cosine Transform) coefficient quantization
 
-= Webp
+== Webp
 In 2010 Google released webp, which aims to replace JPEG, PNG and GIF with lossy and lossless compression (and animation and transparency support).
 It is actively supported and promoted by Google, but support is still not comparable to the wider-known formats yet
