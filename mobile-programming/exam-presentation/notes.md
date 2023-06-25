@@ -12,6 +12,8 @@ Selected topic: 1. PNG format
 - YUV/YIQ/YCbCr: Luminosity (rodes perception) + Color information (cones perception)
 - CIE: depends on properties of cones in the eye. Represents whole human vision
 
+Color space: relation between real colors and representation in color model (red in sRGB slightly different than in Adobe RGB)
+
 ## Color Depth
 Number of bits used to encode every color:
 - Grayscale:
@@ -31,12 +33,15 @@ First standard to be used for image transmission over network
 - Uses indexed colors
 - Provides animations and transparency
 - LZW as compression algorithm (patent from Unisys, expired in 2004)
+- Supports 1-dimensional 4-pass interlacing (passes on entire lines instead of pixels)
 
 # PNG
 Was born to provide a patent/license-less alternative to GIF, in transmission over networks (www, now W3C recommendation)
 
 First proposed name: PING = "PING Is Not GIF", an open alternative to GIF.
 Now it's actually Portable Network Graphics
+
+Full specification approved by W3C
 
 ## Features
 - Uses RGB/RGBA color models, not CMYK, because it's not aimed at professional photos encoding
