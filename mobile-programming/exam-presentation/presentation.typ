@@ -94,7 +94,7 @@
   #line-by-line(mode: "transparent")[
     - True color, grayscale and indexed colors support
     - Optional alpha channel
-    - Lossless #text(size: 18pt)[(non-patented!)] compression algorithm
+    - Lossless #text(size: 19pt)[_(non-patented!)_] compression algorithm
     - Interlacing for low-resolution image earlier in the transfer
     - Gamma correction
     - Extensible (e.g. add other channels)
