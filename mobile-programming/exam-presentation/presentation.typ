@@ -97,7 +97,7 @@
     - Lossless #text(size: 19pt)[_(non-patented!)_] compression algorithm
     - Interlacing for low-resolution image earlier in the transfer
     - Gamma correction
-    - Extensible (e.g. add other channels)
+    - Extensible (e.g. add different chunks)
   ]
 ]
 
