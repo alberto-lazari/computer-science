@@ -19,7 +19,10 @@ When compared with other, already existing models, LLM proved to reach similar r
 This is a great starting point for modern, next-generation models, that could incorporate such a model, or the philosophy behind it, allowing all new models to be easily understandable.
 
 == Human Agency and Oversight
-Being transparent and easily explainable, the LLM model...
+Being transparent and easily explainable, the LLM model is easier than more obscure alternatives to be managed and supervised by a human.
+When talking about oversight especially, being able to explain clearly the reasoning behind specific choices of the AI is important and a great advantage to have.
+
+It is not that easy to intervene and change the AI system manually, though probably possible by tuning the linear maps weights to avoid particular answers (maybe toward bias) or make some classes more precisely identifiable.
 
 == Other requirements
 Regarding the other requirements it's difficult to say whether it improves or not.

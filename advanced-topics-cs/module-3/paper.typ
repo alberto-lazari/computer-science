@@ -79,5 +79,5 @@ Results for this test also highlight the fact that the LLM model, in every confi
 The actual, experimental tests prove the fact that a good trade-off between interpretability, privacy and accuracy is indeed possible, using the LLM model.
 
 The authors, though, leave some open questions and topics for the future:
-- What happens when LLM is trained on more complex data sets? Complexity limits of this model are still to be analyzed and there is much to study about how it behaves when the number of local maps grows significantly
+- What happens when LLM is trained on more complex data sets? Complexity limits of this model are still to be analyzed and there is much to study about how it behaves when the number of linear maps grows significantly
 - Is it possible to make the model interact with more large and complex models (such as neural networks) in a privacy-preserving way?
