@@ -39,5 +39,17 @@ The wights themselves are a great indicator of the explanation of predictions ab
 In fact, judging by the weight of a linear map it's possible to understand what class that specific linear map is sensible to.
 
 === Privacy vs accuracy
+As stated before, there are various existing methods to get a good trade-off between privacy and accuracy.
+As seen in the previous section using LLM it is possible to have a good level of interpretability (both local and global).
+Finding a good trade-off between privacy and accuracy means that LLM provides a good trade-off between all the three variables.
+
+/ Differential Privacy: It is important to note that the paper considers privacy in the context of _Differential Privacy_ (DP), which defines the quantity of privacy loss between two datasets that differ in the presence of one element. \ The privacy loss is higher the higher is the probability of revealing the presence of that one element in the dataset, through the system's output.
+
+The _composability_ property of DP states that the composition of DP values degrades the total privacy.
+For this reason LLM has to reduce the number of parameters and perturb them to increase privacy, which is done combining two methods:
+- *Random projections*: used to reduce the dimension of the input. It allows to have a lower number of linear maps
+- *Perturbation*: noise is added to each linear map, at each step of the training
+
+Only adding noise to the output would lead to a great loss in accuracy, this is the reason to also use random projections.
 
 === Expressiveness
