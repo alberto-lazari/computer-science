@@ -1,3 +1,4 @@
+#set page(numbering: "1")
 #set heading(numbering: "1.1.")
 #set list(marker: ([•], [--]))
 
@@ -18,8 +19,12 @@
 )
 #pagebreak()
 
+= Introduction
+The aim of this report is to give a simple summary of the 2020 paper "Interpretable and Differentially Private Predictions", from F. Harder, M. Bauer and M. Park, and later make some considerations on the broader trustworthy AI context of the ideas proposed in the paper.
+Finally, some personal critical thoughts on the topic are left.
+
 = Paper
-Summary...
+#include "paper.typ"
 
 = About broader trustworthy AI context
 
