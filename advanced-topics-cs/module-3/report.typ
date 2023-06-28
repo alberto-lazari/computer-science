@@ -9,6 +9,9 @@
   align(center, text(size: 18pt, date))
 }
 
+#let unipd-red = rgb(160, 0, 0)
+#show heading: set text(unipd-red)
+
 #v(10em)
 #figure(image("images/unipd-logo.png", width: 50%))
 #v(3em)
