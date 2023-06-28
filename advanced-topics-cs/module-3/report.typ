@@ -1,5 +1,5 @@
 #set page(numbering: "1")
-#set heading(numbering: "1.1.")
+#set heading(numbering: "1.1.A.")
 #set list(marker: ([•], [--]))
 
 #let make_title(title: none, author: none, date: none) = {
