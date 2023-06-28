@@ -1,11 +1,11 @@
 #set page(numbering: "1")
 #set heading(numbering: "1.1.A.")
 #set list(marker: ([•], [--]))
-#set text(size: 10pt)
 
-#let make_title(title: none, author: none, date: none) = {
+#let make_title(title: none, author: none, course: none, date: none) = {
   align(center, text(size: 25pt, title))
   align(center, text(size: 18pt, author))
+  align(center, text(size: 18pt, course))
   align(center, text(size: 18pt, date))
 }
 
@@ -16,6 +16,7 @@
 #make_title(
   title: "Advanced Topics in Computer Science\nTrustworthy AI report",
   author: "Alberto Lazari - 2089120",
+  course: "Computer Science – Other training activities",
   date: "June 2023",
 )
 #pagebreak()
@@ -28,5 +29,7 @@ Finally, some personal critical thoughts on the topic are left.
 #include "paper.typ"
 
 = About broader trustworthy AI context
+#include "trustworthy-ai.typ"
 
 = Personal evaluation
+#include "personal.typ"
