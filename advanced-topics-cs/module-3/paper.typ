@@ -61,7 +61,7 @@ MEs are very similar to LLMs and both models can be directly translated into one
 Linear maps, though, can be even more flexible when multiple linear maps are associated with a class.
 This allows for multiple combinations to better fit the possible inputs.
 
-== Results
+== Test results
 === MNIST
 When compared with different, accurate models, the LLM model gives very similar results.
 In a test on the MNIST database the LLM model has a mean accuracy which is less than 1% inferior than other privatized models (with the same privacy loss of $epsilon = 2$ and $epsilon = 0.5$). \
@@ -72,3 +72,12 @@ Another test done on the Fashion-MNIST database gives less impressive results, h
 
 === Medical dataset
 In the paper yet another test is reported, consisting in a disease classification over medical data. When compared to a non-privatized model, here LLM manages to keep an accuracy of about 2% less for the non-private and private ($epsilon = 1.5$) models and 4% for strongly private training ($epsilon =  0.2$).
+
+Results for this test also highlight the fact that the LLM model, in every configuration (non-private, private with high and low privacy loss) has very consistent linear maps: they are very similar in each case, though incrementing the privacy makes them slightly more homogeneous (because of the added noise).
+
+== Conclusions
+The actual, experimental tests prove the fact that a good trade-off between interpretability, privacy and accuracy is indeed possible, using the LLM model.
+
+The authors, though, leave some open questions and topics for the future:
+- What happens when LLM is trained on more complex data sets? Complexity limits of this model are still to be analyzed and there is much to study about how it behaves when the number of local maps grows significantly
+- Is it possible to make the model interact with more large and complex models (such as neural networks) in a privacy-preserving way?
