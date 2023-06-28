@@ -1,6 +1,7 @@
 #set page(numbering: "1")
 #set heading(numbering: "1.1.A.")
 #set list(marker: ([•], [--]))
+#set text(size: 10pt)
 
 #let make_title(title: none, author: none, date: none) = {
   align(center, text(size: 25pt, title))

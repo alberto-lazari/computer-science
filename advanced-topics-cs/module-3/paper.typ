@@ -53,3 +53,22 @@ For this reason LLM has to reduce the number of parameters and perturb them to i
 Only adding noise to the output would lead to a great loss in accuracy, this is the reason to also use random projections.
 
 === Expressiveness
+The LLM method is comparable to other works, that reflect flexibility and expressiveness.
+An example, reported in the paper, is the _Mixture of Experts_ (ME) model.
+
+MEs are very similar to LLMs and both models can be directly translated into one another: local expert models represent a specialized model over a specific part of the input, just like linear maps are specific of one class of the input.
+
+Linear maps, though, can be even more flexible when multiple linear maps are associated with a class.
+This allows for multiple combinations to better fit the possible inputs.
+
+== Results
+=== MNIST
+When compared with different, accurate models, the LLM model gives very similar results.
+In a test on the MNIST database the LLM model has a mean accuracy which is less than 1% inferior than other privatized models (with the same privacy loss of $epsilon = 2$ and $epsilon = 0.5$). \
+This result is impressive, considering that the other existing privatized models are far less explainable.
+
+=== Fashion-MNIST
+Another test done on the Fashion-MNIST database gives less impressive results, however with a still decent accuracy (about 10% less, around 80-83% of accuracy).
+
+=== Medical dataset
+In the paper yet another test is reported, consisting in a disease classification over medical data. When compared to a non-privatized model, here LLM manages to keep an accuracy of about 2% less for the non-private and private ($epsilon = 1.5$) models and 4% for strongly private training ($epsilon =  0.2$).
