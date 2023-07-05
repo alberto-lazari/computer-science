@@ -1,5 +1,7 @@
 #import "typst-prooftree/prooftree.typ": *
 
+#let prooftree = prooftree.with(label: (padding: 0.5em))
+
 #let type = $italic("type")$
 #let cont = $italic("cont")$
 #let N1 = $upright(text(font: "Fira Math", N)_1)$
