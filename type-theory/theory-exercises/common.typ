@@ -6,6 +6,13 @@
 #let El = $text(font: "Fira Math", "El")_N1$
 #let N1prog = $upright(text(font: "Fira Math", N)_(1italic("prog")))$
 
-#let ctx(..context) = {
+#let ctx(..elements) = {
   h(0.3em)
-  $[#context.pos().join[,]]$ }
+  let context = h(0.3em)
+
+  if elements.pos().len() > 0 {
+    context = elements.pos().join[,]
+  }
+
+  $[#context]$
+}
