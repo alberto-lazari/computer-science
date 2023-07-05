@@ -1,12 +1,12 @@
-#import "typst-prooftree/prooftree.typ": *
-
 #set page(numbering: "1")
 #set list(marker: ([•], [--]))
 #let unipd-red = rgb(180, 27, 33)
 
-#show heading: it => {
-  set text(fill: unipd-red)
-  underline(it)
+#show heading.where(level: 1): it => {
+  let count = counter("Heading 1")
+  count.step()
+  set text(size: 18pt, fill: unipd-red)
+  [Exercise #count.display("1") (#it.body)]
   v(5pt)
 }
 
@@ -33,9 +33,6 @@
   date:     [II Semester A.Y. 2022-2023],
 )
 #pagebreak()
-
-#let N1 = $upright(text(font: "Fira Math", N)_1)$
-#let El = $text(font: "Fira Math", "El")_N1$
 
 #for i in range(1) {
   include "exercises/ex-" + str(i + 1) + ".typ"
