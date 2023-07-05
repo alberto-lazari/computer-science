@@ -1,3 +1,5 @@
+#import "typst-prooftree/prooftree.typ": *
+
 #set page(numbering: "1")
 #set list(marker: ([•], [--]))
 #let unipd-red = rgb(180, 27, 33)
@@ -35,5 +37,6 @@
 #let N1 = $upright(text(font: "Fira Math", N)_1)$
 #let El = $text(font: "Fira Math", "El")_N1$
 
-= Section 3.1 -- Ex 3
-"Show that the rule E-S) is derivable in the type theory $T_1$ replacing the rule ES) elimination with the E-$upright(text(font: "Fira Math", N)_(1italic("prog"))) )$ rule and adding the substitution and weakening rules and the sanitary checks rules set out in the previous sections."
+#for i in range(1) {
+  include "exercises/ex-" + str(i + 1) + ".typ"
+}
