@@ -34,6 +34,5 @@
 )
 #pagebreak()
 
-#for i in range(2) {
-  include "exercises/ex-" + str(i + 1) + ".typ"
-}
+#include "exercises/singleton.typ"
+#include "exercises/natural-numbers.typ"
