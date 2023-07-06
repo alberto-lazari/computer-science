@@ -34,6 +34,6 @@
 )
 #pagebreak()
 
-#for i in range(1) {
+#for i in range(2) {
   include "exercises/ex-" + str(i + 1) + ".typ"
 }
