@@ -37,3 +37,7 @@
 
   $[#context]$
 }
+
+// Use single letter variables with an explicit #
+#let p = $bold(upright(p))$
+#let n = $bold(upright(n))$

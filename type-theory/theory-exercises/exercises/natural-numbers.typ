@@ -43,7 +43,7 @@ $
 $
 
 == Correctness
-It is correct, in fact:
+The definition is correct, in fact:
 
 === Base case
 $y = 0 => x + y = x + 0 = x$
@@ -79,10 +79,10 @@ $x + y in nat ctx(x in nat, y in nat)$ is derivable:
       rule(label: $"F-"nat)$, $nat type ctx(Gamma)$),
         axiom($Gamma cont$),
       rule(label: "var)", $y in nat ctx(Gamma)$),
-                axiom($Gamma cont$),
-              rule(label: "F-c)", $Gamma, w in nat cont$),
-            rule(label: $"F-"nat)$, $nat type ctx(Gamma, w in nat)$),
-          rule(label: "F-c)", $Gamma, w in nat, z in nat cont$),
+        axiom($Gamma cont$),
+        rule(label: "F-c)", $Gamma, w in nat cont$),
+        rule(label: $"F-"nat)$, $nat type ctx(Gamma, w in nat)$),
+        rule(label: "F-c)", $Gamma, w in nat, z in nat cont$),
         rule(label: "var)", $z in nat ctx(Gamma, w in nat, z in nat)$),
       rule(label: $upright(I_2)"-"nat)$, $succ(z) in nat ctx(Gamma, w in nat, z in nat)$),
     rule(n: 4, label: $"E-"nat)$, $elnat(x, y, (w, z). succ(z)) in nat ctx(Gamma)$)
@@ -90,10 +90,15 @@ $x + y in nat ctx(x in nat, y in nat)$ is derivable:
 ])
 
 Where $Gamma cont = x in nat, y in nat cont$ derivable:
+
+#let nat-type = (
+    axiom($ctx() cont$),
+  rule(label: $"F-"nat)$, $nat type ctx()$),
+)
+
 $
 #prooftree(
-  axiom($ctx() cont$),
-  rule(label: $"F-"nat)$, $nat type ctx()$),
+  ..nat-type,
   rule(label: "F-c)", $x in nat cont$),
   rule(label: $"F-"nat)$, $nat type ctx(x in nat)$),
   rule(label: "F-c)", $x in nat, y in nat cont$)
@@ -101,7 +106,7 @@ $
 $
 
 == Correctness
-It is correct, in fact:
+The definition is correct, in fact:
 
 === Base case
 $x = 0 => x + y = 0 + y = y$
@@ -114,3 +119,87 @@ $x = succ(v) ctx(v in nat) => x + y = succ(v) + y = succ(v + y)$
 
 By the $upright(C_2)"-"nat$) rule:
 $ elnat(succ(v), y, (w, z). succ(z)) = succ(elnat(v, y, (w, z). succ(z))) in nat ctx(v in nat, y in nat) $
+
+
+= 3.2 Natural numbers type -- Ex 6
+Define the predecessor operator
+$ #p (x) in nat ctx(x in nat) $
+such that
+$
+&#p (0) = 0 \
+&#p (succ(#n)) = #n
+$
+
+== Solution
+The predecessor $#p (x)$ can be defined as:
+$ elnat(x, 0, (w, z). w) $
+
+$#p (x) in nat ctx(x in nat)$ is derivable:
+
+#let var-cont(var) = (
+  ..nat-type,
+  rule(label: "F-c)", $#var in nat cont$),
+)
+
+#align(center, box[
+  #set text(size: 8pt)
+  #prooftree(
+        ..var-cont("x"),
+      rule(label: "var)", $x in nat ctx(x in nat)$),
+        ..var-cont("x"),
+      rule(label: $"F-"nat)$, $nat type ctx(x in nat)$),
+        ..var-cont("x"),
+      rule(label: "var)", $0 in nat ctx(x in nat)$),
+        ..var-cont("x"),
+        rule(label: $"F-"nat)$, $nat type ctx(x in nat)$),
+        rule(label: "F-c)", $x in nat, w in nat cont$),
+        rule(label: $"F-"nat)$, $nat type ctx(x in nat, w in nat)$),
+        rule(label: "F-c)", $x in nat, w in nat, z in nat cont$),
+      rule(label: "var)", $w in nat ctx(x in nat, w in nat, z in nat)$),
+    rule(n: 4, label: $"E-"nat)$, $elnat(x, 0, (w, z). w) in nat ctx(x in nat)$)
+  )
+])
+
+== Correctness
+The definition is correct, in fact:
+
+=== Base case
+$x = 0 => #p (x) = #p (0) = 0$
+
+#let zero-in-nat = (
+    axiom($ctx() cont$),
+  rule(label: $upright(I_2)"-"nat)$, $0 in nat ctx()$),
+)
+
+$
+#prooftree(
+    ..nat-type,
+    ..zero-in-nat,
+      ..var-cont("w"),
+      rule(label: $"F-"nat)$, $nat type ctx(w in nat)$),
+      rule(label: "F-c)", $w in nat, z in nat cont$),
+    rule(label: "var)", $w in nat ctx(w in nat, z in nat)$),
+  rule(n: 3, label: $upright(C_1)"-"nat)$, $elnat(0, 0, (w, z). w) = 0 in nat ctx()$)
+)
+$
+
+=== Inductive case
+$x = succ(y) ctx(y in nat) => #p (x) = #p (succ(y)) = y$
+
+#align(center, box[
+  #set text(size: 8pt)
+  #prooftree(
+        ..var-cont("y"),
+      rule(label: "var)", $y in nat ctx(y in nat)$),
+        ..var-cont("y"),
+      rule(label: $"F-"nat)$, $nat type ctx(y in nat)$),
+      ..zero-in-nat,
+        ..var-cont("y"),
+        rule(label: $"F-"nat)$, $nat type ctx(y in nat)$),
+        rule(label: "F-c)", $y in nat, w in nat cont$),
+        rule(label: $"F-"nat)$, $nat type ctx(y in nat, w in nat)$),
+        rule(label: "F-c)", $y in nat, w in nat, z in nat cont$),
+      rule(label: "var)", $w in nat ctx(y in nat, w in nat, z in nat)$),
+    rule(n: 4, label: $upright(C_2)"-"nat)$, $elnat(succ(y), 0, (w, z). w) = y in nat ctx(y in nat)$)
+  )
+])
