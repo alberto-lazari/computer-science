@@ -1,8 +1,16 @@
 #import "typst-prooftree/prooftree.typ": *
 
 #let prooftree = prooftree.with(label: (padding: 0.5em))
-
 #let sans(txt) = $text(font: "Fira Math", txt)$
+#let pi-enum(list) = {
+  set enum(numbering: (..nums) => {
+    let num = nums.pos()
+                  .map(str)
+                  .join()
+    $pi_#num)$
+  })
+  list
+}
 
 // General
 #let type = $italic("type")$

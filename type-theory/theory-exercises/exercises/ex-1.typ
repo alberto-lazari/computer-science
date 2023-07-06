@@ -23,17 +23,19 @@ $
 
 == Solution
 Assuming:
-+ $t in n1 ctx(Gamma)$
-+ $M(z) type ctx(Gamma, z in n1)$
-+ $c in M(star) ctx(Gamma)$
+#pi-enum[
+  + $t in n1 ctx(Gamma)$
+  + $M(z) type ctx(Gamma, z in n1)$
+  + $c in M(star) ctx(Gamma)$
+]
 
 The rule E-S) is derivable:
 $
 #prooftree(
-      axiom(label: "2.", $M(z) type ctx(Gamma, z in n1)$),
-      axiom(label: "3.", $c in M(star) ctx(Gamma)$),
+      axiom(label: $pi_2$, $M(z) type ctx(Gamma, z in n1)$),
+      axiom(label: $pi_3$, $c in M(star) ctx(Gamma)$),
     rule(n: 2, label: $"E-"n1prog)$, $eln1(z, c) in M(z) ctx(Gamma, z in n1)$),
-    axiom(label: "1.", $t in n1 ctx(Gamma)$),
+    axiom(label: $pi_1$, $t in n1 ctx(Gamma)$),
   rule(n: 2, label: "sub-ter)", $eln1(t, c) in M(t) ctx(Gamma)$),
 )
 $
