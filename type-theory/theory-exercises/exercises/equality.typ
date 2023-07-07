@@ -7,11 +7,13 @@
   $ pf in Id(N1, star, w) ctx(w in N1) $
   is derivable.]
 )
+There exists a proof-term $pf = ElId(ElN1(w, id(star)), (x). id(x))$, such that
+$ pf in Id(N1, star, w) ctx(w in N1) $
+is derivable, in fact:
 
-Let $Gamma = w in N1$; \
-Let $Delta = z1 in N1, z2 in N1, z3 in Id(N1, z1, z2)$; \
-$ElId(id(star), (y). id(y)) in Id(N1, x, w) ctx(Gamma)$ derivable:
-
+let $Gamma = w in N1$; \
+let $Delta = z1 in N1, z2 in N1, z3 in Id(N1, z1, z2)$; \
+$ElId(ElN1(w, id(star)), (x). id(x)) in Id(N1, x, w) ctx(Gamma)$ is derivable:
 #align(center, box[
   #set text(7pt)
   #prooftree(
@@ -99,3 +101,23 @@ Where
       rule(n: 3, label: ES, $ElN1(w, id(star)) in Id(N1, star, w) ctx(Gamma)$)
     )
   ])
+
+
+#exercise(
+  section: (num: "3.6", title: "Martin-Löf's Intensional Propositional Equality"),
+  ex: 8,
+  [Prove that there exists a proof-term $pf$ such that.
+  $ pf in Id(N1, x, w) ctx(x in N1, w in N1) $
+  is derivable.]
+)
+There exists a proof-term $pf = ElId(ElN1(x, ElN1(w, id(star))), (y). id(y))$, such that
+$ pf in Id(N1, x, w) ctx(x in N1, w in N1) $
+is derivable, in fact:
+
+let $Gamma = x in N1, w in N1$; \
+let $Delta = z1 in N1, z2 in N1, z3 in Id(N1, z1, z2)$; \
+$ElId(ElN1(x, ElN1(w, id(star))), (y). id(y)) in Id(N1, x, w) ctx(Gamma)$ is derivable:
+#prooftree(
+    axiom($dots.v$),
+  rule(label: EId, $ElId(ElN1(x, ElN1(w, id(star))), (y). id(y)) in Id(N1, x, w) ctx(Gamma)$)
+)
