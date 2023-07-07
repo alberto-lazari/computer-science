@@ -4,50 +4,50 @@
   section: (num: "3.2", title: "Natural Numbers Type"),
   ex: 3,
   [Define the addition operation using the rules of the natural number type
-  $ x + y in nat ctx(x in nat, y in nat) $
-  such that $x + 0 = x in nat ctx(x in nat)$.]
+  $ x + y in Nat ctx(x in Nat, y in Nat) $
+  such that $x + 0 = x in Nat ctx(x in Nat)$.]
 )
 The addition $x + y$ can be defined as:
-$ elnat(y, x, (w, z). succ(z)) $
+$ ElNat(y, x, (w, z). succ(z)) $
 
-Let $Gamma = x in nat, y in nat$; \
-$x + y in nat ctx(x in nat, y in nat)$ is derivable:
+Let $Gamma = x in Nat, y in Nat$; \
+$x + y in Nat ctx(x in Nat, y in Nat)$ is derivable:
 
 #align(center, box[
   #set text(size: 8pt)
   #prooftree(
         axiom($Gamma cont$),
-      rule(label: var, $y in nat ctx(Gamma)$),
+      rule(label: var, $y in Nat ctx(Gamma)$),
         axiom($Gamma cont$),
-      rule(label: fnat, $nat type ctx(Gamma)$),
+      rule(label: FNat, $Nat type ctx(Gamma)$),
         axiom($Gamma cont$),
-      rule(label: var, $x in nat ctx(Gamma)$),
+      rule(label: var, $x in Nat ctx(Gamma)$),
         axiom($Gamma cont$),
-        rule(label: fc, $Gamma, w in nat cont$),
-        rule(label: fnat, $nat type ctx(Gamma, w in nat)$),
-        rule(label: fc, $Gamma, w in nat, z in nat cont$),
-        rule(label: var, $z in nat ctx(Gamma, w in nat, z in nat)$),
-      rule(label: i2nat, $succ(z) in nat ctx(Gamma, w in nat, z in nat)$),
-    rule(n: 4, label: enat, $elnat(y, x, (w, z). succ(z)) in nat ctx(Gamma)$)
+        rule(label: Fc, $Gamma, w in Nat cont$),
+        rule(label: FNat, $Nat type ctx(Gamma, w in Nat)$),
+        rule(label: Fc, $Gamma, w in Nat, z in Nat cont$),
+        rule(label: var, $z in Nat ctx(Gamma, w in Nat, z in Nat)$),
+      rule(label: I2Nat, $succ(z) in Nat ctx(Gamma, w in Nat, z in Nat)$),
+    rule(n: 4, label: ENat, $ElNat(y, x, (w, z). succ(z)) in Nat ctx(Gamma)$)
   )
 ])
 
-Where $Gamma cont$ derivable, because $Gamma = x in nat, y in nat$ and $x in nat, y in nat cont$ derivable:
+Where $Gamma cont$ derivable, because $Gamma = x in Nat, y in Nat$ and $x in Nat, y in Nat cont$ derivable:
 
-#let nat-type = (
+#let Nat-type = (
     axiom($ctx() cont$),
-  rule(label: fnat, $nat type ctx()$),
+  rule(label: FNat, $Nat type ctx()$),
 )
 #let var-cont(var) = (
-  ..nat-type,
-  rule(label: fc, $#var in nat cont$),
+  ..Nat-type,
+  rule(label: Fc, $#var in Nat cont$),
 )
 
 $
   #prooftree(
     ..var-cont("x"),
-    rule(label: fnat, $nat type ctx(x in nat)$),
-    rule(label: fc, $x in nat, y in nat cont$)
+    rule(label: FNat, $Nat type ctx(x in Nat)$),
+    rule(label: Fc, $x in Nat, y in Nat cont$)
   )
 $
 
@@ -58,59 +58,59 @@ The definition is correct, in fact:
 $y = 0 => x + y = x + 0 = x$
 
 This is true, because:
-- $x + 0 = elnat(0, x, (w, z). succ(z))$
-- $elnat(0, x, (w, z). succ(z)) = x in nat ctx(x in nat)$ derivable:
+- $x + 0 = ElNat(0, x, (w, z). succ(z))$
+- $ElNat(0, x, (w, z). succ(z)) = x in Nat ctx(x in Nat)$ derivable:
 #align(center, box[
   #set text(size: 8pt)
   #prooftree(
         ..var-cont("x"),
-      rule(label: fnat, $nat type ctx(x in nat)$),
+      rule(label: FNat, $Nat type ctx(x in Nat)$),
         ..var-cont("x"),
-      rule(label: var, $x in nat ctx(x in nat)$),
+      rule(label: var, $x in Nat ctx(x in Nat)$),
           ..var-cont("x"),
-        rule(label: fnat, $nat type ctx(x in nat)$),
-        rule(label: fc, $x in nat, w in nat cont$),
-        rule(label: fnat, $nat type ctx(x in nat, w in nat)$),
-        rule(label: fc, $x in nat, w in nat, z in nat cont$),
-        rule(label: var, $z in nat ctx(x in nat, w in nat, z in nat)$),
-      rule(label: i2nat, $succ(z) in nat ctx(x in nat, w in nat, z in nat)$),
-    rule(n: 3, label: c1nat, $elnat(0, x, (w, z). succ(z)) = x in nat ctx(x in nat)$)
+        rule(label: FNat, $Nat type ctx(x in Nat)$),
+        rule(label: Fc, $x in Nat, w in Nat cont$),
+        rule(label: FNat, $Nat type ctx(x in Nat, w in Nat)$),
+        rule(label: Fc, $x in Nat, w in Nat, z in Nat cont$),
+        rule(label: var, $z in Nat ctx(x in Nat, w in Nat, z in Nat)$),
+      rule(label: I2Nat, $succ(z) in Nat ctx(x in Nat, w in Nat, z in Nat)$),
+    rule(n: 3, label: C1Nat, $ElNat(0, x, (w, z). succ(z)) = x in Nat ctx(x in Nat)$)
   )
 ])
 
 === Inductive case
-$y = succ(v) ctx(v in nat) => x + y = x + succ(v) = succ(x + v)$
+$y = succ(v) ctx(v in Nat) => x + y = x + succ(v) = succ(x + v)$
 
 This is true, because:
-- $x + succ(v) = elnat(succ(v), x, (w, z). succ(z))$
-- $succ(x + v) = succ(elnat(v, x, (w, z). succ(z)))$
-- Let $Gamma = x in nat, v in nat$; \
-  $elnat(succ(v), x, (w, z). succ(z)) = succ(elnat(v, x, (w, z). succ(z))) in nat ctx(Gamma)$ derivable:
+- $x + succ(v) = ElNat(succ(v), x, (w, z). succ(z))$
+- $succ(x + v) = succ(ElNat(v, x, (w, z). succ(z)))$
+- Let $Gamma = x in Nat, v in Nat$; \
+  $ElNat(succ(v), x, (w, z). succ(z)) = succ(ElNat(v, x, (w, z). succ(z))) in Nat ctx(Gamma)$ derivable:
 #align(center, box[
   #set text(size: 8pt)
   #prooftree(
         axiom($Gamma cont$),
-      rule(label: var, $v in nat ctx(Gamma)$),
+      rule(label: var, $v in Nat ctx(Gamma)$),
         axiom($Gamma cont$),
-      rule(label: fnat, $nat type ctx(Gamma)$),
+      rule(label: FNat, $Nat type ctx(Gamma)$),
         axiom($Gamma cont$),
-      rule(label: var, $x in nat ctx(Gamma)$),
+      rule(label: var, $x in Nat ctx(Gamma)$),
         axiom($Gamma cont$),
-        rule(label: fc, $Gamma, w in nat cont$),
-        rule(label: fnat, $nat type ctx(Gamma, w in nat)$),
-        rule(label: fc, $Gamma, w in nat, z in nat cont$),
-        rule(label: var, $z in nat ctx(Gamma, w in nat, z in nat)$),
-      rule(label: i2nat, $succ(z) in nat ctx(Gamma, w in nat, z in nat)$),
-    rule(n: 4, label: c2nat, $elnat(succ(v), x, (w, z). succ(z)) = succ(elnat(v, x, (w, z). succ(z))) in nat ctx(Gamma)$)
+        rule(label: Fc, $Gamma, w in Nat cont$),
+        rule(label: FNat, $Nat type ctx(Gamma, w in Nat)$),
+        rule(label: Fc, $Gamma, w in Nat, z in Nat cont$),
+        rule(label: var, $z in Nat ctx(Gamma, w in Nat, z in Nat)$),
+      rule(label: I2Nat, $succ(z) in Nat ctx(Gamma, w in Nat, z in Nat)$),
+    rule(n: 4, label: C2Nat, $ElNat(succ(v), x, (w, z). succ(z)) = succ(ElNat(v, x, (w, z). succ(z))) in Nat ctx(Gamma)$)
   )
 ])
 
-Where $Gamma cont$ derivable, because $Gamma = x in nat, v in nat$ and $x in nat, v in nat cont$ derivable:
+Where $Gamma cont$ derivable, because $Gamma = x in Nat, v in Nat$ and $x in Nat, v in Nat cont$ derivable:
 $
   #prooftree(
     ..var-cont("x"),
-    rule(label: fnat, $nat type ctx(x in nat)$),
-    rule(label: fc, $x in nat, v in nat cont$)
+    rule(label: FNat, $Nat type ctx(x in Nat)$),
+    rule(label: Fc, $x in Nat, v in Nat cont$)
   )
 $
 
@@ -118,40 +118,40 @@ $
   section: (num: "3.2", title: "Natural Numbers Type"),
   ex: 4,
   [Define the addition operation using the rules of the natural number type
-  $ x + y in nat ctx(x in nat, y in nat) $
-  such that $0 + x = x in nat ctx(x in nat)$.]
+  $ x + y in Nat ctx(x in Nat, y in Nat) $
+  such that $0 + x = x in Nat ctx(x in Nat)$.]
 )
 The addition $x + y$ can be defined as:
-$ elnat(x, y, (w, z). succ(z)) $
+$ ElNat(x, y, (w, z). succ(z)) $
 
-Let $Gamma = x in nat, y in nat$; \
-$x + y in nat ctx(x in nat, y in nat)$ is derivable:
+Let $Gamma = x in Nat, y in Nat$; \
+$x + y in Nat ctx(x in Nat, y in Nat)$ is derivable:
 #align(center, box[
   #set text(size: 8pt)
   #prooftree(
         axiom($Gamma cont$),
-      rule(label: var, $x in nat ctx(Gamma)$),
+      rule(label: var, $x in Nat ctx(Gamma)$),
         axiom($Gamma cont$),
-      rule(label: fnat, $nat type ctx(Gamma)$),
+      rule(label: FNat, $Nat type ctx(Gamma)$),
         axiom($Gamma cont$),
-      rule(label: var, $y in nat ctx(Gamma)$),
+      rule(label: var, $y in Nat ctx(Gamma)$),
         axiom($Gamma cont$),
-        rule(label: fc, $Gamma, w in nat cont$),
-        rule(label: fnat, $nat type ctx(Gamma, w in nat)$),
-        rule(label: fc, $Gamma, w in nat, z in nat cont$),
-        rule(label: var, $z in nat ctx(Gamma, w in nat, z in nat)$),
-      rule(label: i2nat, $succ(z) in nat ctx(Gamma, w in nat, z in nat)$),
-    rule(n: 4, label: enat, $elnat(x, y, (w, z). succ(z)) in nat ctx(Gamma)$)
+        rule(label: Fc, $Gamma, w in Nat cont$),
+        rule(label: FNat, $Nat type ctx(Gamma, w in Nat)$),
+        rule(label: Fc, $Gamma, w in Nat, z in Nat cont$),
+        rule(label: var, $z in Nat ctx(Gamma, w in Nat, z in Nat)$),
+      rule(label: I2Nat, $succ(z) in Nat ctx(Gamma, w in Nat, z in Nat)$),
+    rule(n: 4, label: ENat, $ElNat(x, y, (w, z). succ(z)) in Nat ctx(Gamma)$)
   )
 ])
 
-Where $Gamma cont$ derivable, because $Gamma = x in nat, y in nat$ and $x in nat, y in nat cont$ derivable:
+Where $Gamma cont$ derivable, because $Gamma = x in Nat, y in Nat$ and $x in Nat, y in Nat cont$ derivable:
 $
   #prooftree(
-    ..nat-type,
-    rule(label: fc, $x in nat cont$),
-    rule(label: fnat, $nat type ctx(x in nat)$),
-    rule(label: fc, $x in nat, y in nat cont$)
+    ..Nat-type,
+    rule(label: Fc, $x in Nat cont$),
+    rule(label: FNat, $Nat type ctx(x in Nat)$),
+    rule(label: Fc, $x in Nat, y in Nat cont$)
   )
 $
 
@@ -161,60 +161,60 @@ The definition is correct, in fact:
 === Base case
 $x = 0 => x + y = 0 + y = y$
 
-Note that the exercise requires that $0 + x = x in nat ctx(x in nat)$, but that is equivalent to proving that $0 + y = y in nat ctx(y in nat)$, by renaming $y$ to $x$ in the latter, and this is true, because:
-- $0 + y = elnat(0, y, (w, z). succ(z))$
-- $elnat(0, y, (w, z). succ(z)) = y in nat ctx(y in nat)$ derivable:
+Note that the exercise requires that $0 + x = x in Nat ctx(x in Nat)$, but that is equivalent to proving that $0 + y = y in Nat ctx(y in Nat)$, by renaming $y$ to $x$ in the latter, and this is true, because:
+- $0 + y = ElNat(0, y, (w, z). succ(z))$
+- $ElNat(0, y, (w, z). succ(z)) = y in Nat ctx(y in Nat)$ derivable:
 #align(center, box[
   #set text(size: 8pt)
   #prooftree(
         ..var-cont("y"),
-      rule(label: fnat, $nat type ctx(y in nat)$),
+      rule(label: FNat, $Nat type ctx(y in Nat)$),
         ..var-cont("y"),
-      rule(label: var, $y in nat ctx(y in nat)$),
+      rule(label: var, $y in Nat ctx(y in Nat)$),
           ..var-cont("y"),
-        rule(label: fnat, $nat type ctx(y in nat)$),
-        rule(label: fc, $y in nat, w in nat cont$),
-        rule(label: fnat, $nat type ctx(y in nat, w in nat)$),
-        rule(label: fc, $y in nat, w in nat, z in nat cont$),
-        rule(label: var, $z in nat ctx(y in nat, w in nat, z in nat)$),
-      rule(label: i2nat, $succ(z) in nat ctx(y in nat, w in nat, z in nat)$),
-    rule(n: 3, label: c1nat, $elnat(0, y, (w, z). succ(z)) = y in nat ctx(y in nat)$)
+        rule(label: FNat, $Nat type ctx(y in Nat)$),
+        rule(label: Fc, $y in Nat, w in Nat cont$),
+        rule(label: FNat, $Nat type ctx(y in Nat, w in Nat)$),
+        rule(label: Fc, $y in Nat, w in Nat, z in Nat cont$),
+        rule(label: var, $z in Nat ctx(y in Nat, w in Nat, z in Nat)$),
+      rule(label: I2Nat, $succ(z) in Nat ctx(y in Nat, w in Nat, z in Nat)$),
+    rule(n: 3, label: C1Nat, $ElNat(0, y, (w, z). succ(z)) = y in Nat ctx(y in Nat)$)
   )
 ])
 
 === Inductive case
-$x = succ(v) ctx(v in nat) => x + y = succ(v) + y = succ(v + y)$
+$x = succ(v) ctx(v in Nat) => x + y = succ(v) + y = succ(v + y)$
 
 This is true, because:
-- $succ(v) + y = elnat(succ(v), y, (w, z). succ(z))$
-- $succ(v + y) = succ(elnat(v, y, (w, z). succ(z)))$
-- Let $Gamma = v in nat, y in nat$; \
-  $elnat(succ(v), y, (w, z). succ(z)) = succ(elnat(v, y, (w, z). succ(z))) in nat ctx(Gamma)$ derivable:
+- $succ(v) + y = ElNat(succ(v), y, (w, z). succ(z))$
+- $succ(v + y) = succ(ElNat(v, y, (w, z). succ(z)))$
+- Let $Gamma = v in Nat, y in Nat$; \
+  $ElNat(succ(v), y, (w, z). succ(z)) = succ(ElNat(v, y, (w, z). succ(z))) in Nat ctx(Gamma)$ derivable:
 #align(center, box[
   #set text(size: 8pt)
   #prooftree(
         axiom($Gamma cont$),
-      rule(label: var, $v in nat ctx(Gamma)$),
+      rule(label: var, $v in Nat ctx(Gamma)$),
         axiom($Gamma cont$),
-      rule(label: fnat, $nat type ctx(Gamma)$),
+      rule(label: FNat, $Nat type ctx(Gamma)$),
         axiom($Gamma cont$),
-      rule(label: var, $y in nat ctx(Gamma)$),
+      rule(label: var, $y in Nat ctx(Gamma)$),
         axiom($Gamma cont$),
-        rule(label: fc, $Gamma, w in nat cont$),
-        rule(label: fnat, $nat type ctx(Gamma, w in nat)$),
-        rule(label: fc, $Gamma, w in nat, z in nat cont$),
-        rule(label: var, $z in nat ctx(Gamma, w in nat, z in nat)$),
-      rule(label: i2nat, $succ(z) in nat ctx(Gamma, w in nat, z in nat)$),
-    rule(n: 4, label: c2nat, $elnat(succ(v), y, (w, z). succ(z)) = succ(elnat(v, y, (w, z). succ(z))) in nat ctx(Gamma)$)
+        rule(label: Fc, $Gamma, w in Nat cont$),
+        rule(label: FNat, $Nat type ctx(Gamma, w in Nat)$),
+        rule(label: Fc, $Gamma, w in Nat, z in Nat cont$),
+        rule(label: var, $z in Nat ctx(Gamma, w in Nat, z in Nat)$),
+      rule(label: I2Nat, $succ(z) in Nat ctx(Gamma, w in Nat, z in Nat)$),
+    rule(n: 4, label: C2Nat, $ElNat(succ(v), y, (w, z). succ(z)) = succ(ElNat(v, y, (w, z). succ(z))) in Nat ctx(Gamma)$)
   )
 ])
 
-Where $Gamma cont$ derivable, because $Gamma = v in nat, y in nat$ and $v in nat, y in nat cont$ derivable:
+Where $Gamma cont$ derivable, because $Gamma = v in Nat, y in Nat$ and $v in Nat, y in Nat cont$ derivable:
 $
   #prooftree(
     ..var-cont("v"),
-    rule(label: fnat, $nat type ctx(v in nat)$),
-    rule(label: fc, $v in nat, y in nat cont$)
+    rule(label: FNat, $Nat type ctx(v in Nat)$),
+    rule(label: Fc, $v in Nat, y in Nat cont$)
   )
 $
 
@@ -223,7 +223,7 @@ $
   section: (num: "3.2", title: "Natural Numbers Type"),
   ex: 6,
   [Define the predecessor operator
-  $ #p (x) in nat ctx(x in nat) $
+  $ #p (x) in Nat ctx(x in Nat) $
   such that
   $
     &#p (0) = 0 \
@@ -231,26 +231,26 @@ $
   $]
 )
 The predecessor $#p (x)$ can be defined as:
-$ elnat(x, 0, (w, z). w) $
+$ ElNat(x, 0, (w, z). w) $
 
-$#p (x) in nat ctx(x in nat)$ is derivable:
+$#p (x) in Nat ctx(x in Nat)$ is derivable:
 
 #align(center, box[
   #set text(size: 7pt)
   #prooftree(
         ..var-cont("x"),
-      rule(label: var, $x in nat ctx(x in nat)$),
+      rule(label: var, $x in Nat ctx(x in Nat)$),
         ..var-cont("x"),
-      rule(label: fnat, $nat type ctx(x in nat)$),
+      rule(label: FNat, $Nat type ctx(x in Nat)$),
         ..var-cont("x"),
-      rule(label: i1nat, $0 in nat ctx(x in nat)$),
+      rule(label: I1Nat, $0 in Nat ctx(x in Nat)$),
         ..var-cont("x"),
-        rule(label: fnat, $nat type ctx(x in nat)$),
-        rule(label: fc, $x in nat, w in nat cont$),
-        rule(label: fnat, $nat type ctx(x in nat, w in nat)$),
-        rule(label: fc, $x in nat, w in nat, z in nat cont$),
-      rule(label: var, $w in nat ctx(x in nat, w in nat, z in nat)$),
-    rule(n: 4, label: enat, $elnat(x, 0, (w, z). w) in nat ctx(x in nat)$)
+        rule(label: FNat, $Nat type ctx(x in Nat)$),
+        rule(label: Fc, $x in Nat, w in Nat cont$),
+        rule(label: FNat, $Nat type ctx(x in Nat, w in Nat)$),
+        rule(label: Fc, $x in Nat, w in Nat, z in Nat cont$),
+      rule(label: var, $w in Nat ctx(x in Nat, w in Nat, z in Nat)$),
+    rule(n: 4, label: ENat, $ElNat(x, 0, (w, z). w) in Nat ctx(x in Nat)$)
   )
 ])
 
@@ -261,42 +261,42 @@ The definition is correct, in fact:
 $x = 0 => #p (x) = #p (0) = 0$
 
 This is true, because:
-- $#p (0) = elnat(0, 0, (w, z). w)$
-- $elnat(0, 0, (w, z). w) = 0 in nat ctx()$ derivable:
+- $#p (0) = ElNat(0, 0, (w, z). w)$
+- $ElNat(0, 0, (w, z). w) = 0 in Nat ctx()$ derivable:
 $
   #prooftree(
-      ..nat-type,
+      ..Nat-type,
         axiom($ctx() cont$),
-      rule(label: i1nat, $0 in nat ctx()$),
+      rule(label: I1Nat, $0 in Nat ctx()$),
         ..var-cont("w"),
-        rule(label: fnat, $nat type ctx(w in nat)$),
-        rule(label: fc, $w in nat, z in nat cont$),
-      rule(label: var, $w in nat ctx(w in nat, z in nat)$),
-    rule(n: 3, label: c1nat, $elnat(0, 0, (w, z). w) = 0 in nat ctx()$)
+        rule(label: FNat, $Nat type ctx(w in Nat)$),
+        rule(label: Fc, $w in Nat, z in Nat cont$),
+      rule(label: var, $w in Nat ctx(w in Nat, z in Nat)$),
+    rule(n: 3, label: C1Nat, $ElNat(0, 0, (w, z). w) = 0 in Nat ctx()$)
   )
 $
 
 === Inductive case
-$x = succ(y) ctx(y in nat) => #p (x) = #p (succ(y)) = y$
+$x = succ(y) ctx(y in Nat) => #p (x) = #p (succ(y)) = y$
 
 This is true, because:
-- $#p (succ(y)) = elnat(succ(y), 0, (w, z). w)$
-- $elnat(succ(y), 0, (w, z). w) = y in nat ctx(y in nat)$ derivable:
+- $#p (succ(y)) = ElNat(succ(y), 0, (w, z). w)$
+- $ElNat(succ(y), 0, (w, z). w) = y in Nat ctx(y in Nat)$ derivable:
 #align(center, box[
   #set text(size: 8pt)
   #prooftree(
         ..var-cont("y"),
-      rule(label: var, $y in nat ctx(y in nat)$),
+      rule(label: var, $y in Nat ctx(y in Nat)$),
         ..var-cont("y"),
-      rule(label: fnat, $nat type ctx(y in nat)$),
+      rule(label: FNat, $Nat type ctx(y in Nat)$),
         axiom($ctx() cont$),
-      rule(label: i1nat, $0 in nat ctx()$),
+      rule(label: I1Nat, $0 in Nat ctx()$),
         ..var-cont("y"),
-        rule(label: fnat, $nat type ctx(y in nat)$),
-        rule(label: fc, $y in nat, w in nat cont$),
-        rule(label: fnat, $nat type ctx(y in nat, w in nat)$),
-        rule(label: fc, $y in nat, w in nat, z in nat cont$),
-      rule(label: var, $w in nat ctx(y in nat, w in nat, z in nat)$),
-    rule(n: 4, label: c2nat, $elnat(succ(y), 0, (w, z). w) = y in nat ctx(y in nat)$)
+        rule(label: FNat, $Nat type ctx(y in Nat)$),
+        rule(label: Fc, $y in Nat, w in Nat cont$),
+        rule(label: FNat, $Nat type ctx(y in Nat, w in Nat)$),
+        rule(label: Fc, $y in Nat, w in Nat, z in Nat cont$),
+      rule(label: var, $w in Nat ctx(y in Nat, w in Nat, z in Nat)$),
+    rule(n: 4, label: C2Nat, $ElNat(succ(y), 0, (w, z). w) = y in Nat ctx(y in Nat)$)
   )
 ])

@@ -37,7 +37,7 @@
 // General
 #let type = $italic("type")$
 #let cont = $italic("cont")$
-#let el = $sans("El")$
+#let El = $sans("El")$
 #let pf = $bold("pf")$
 
 #let ctx(..elements) = {
@@ -52,26 +52,27 @@
 }
 
 #let var = $"var)"$
-#let fc = $"F-c)"$
+#let Fc = $"F-c)"$
 
 // Singleton
-#let n1 = $sans(N)_1$
-#let eln1 = $el_n1$
-#let n1prog = $sans(N)_(1italic("prog"))$
+#let N1 = $sans(N)_1$
+#let ElN1 = $El_N1$
+#let N1prog = $sans(N)_(1italic("prog"))$
 
 // Naturals
-#let nat = $sans("Nat")$
+#let Nat = $sans("Nat")$
 #let succ = $sans("succ")$
-#let elnat = $el_nat$
-#let enat = $"E-"nat)$
-#let fnat = $"F-"nat)$
-#let c1nat = $upright(C_1)"-"nat)$
-#let c2nat = $upright(C_2)"-"nat)$
-#let i1nat = $upright(I_1)"-"nat)$
-#let i2nat = $upright(I_2)"-"nat)$
+#let ElNat = $El_Nat$
+#let ENat = $"E-"Nat)$
+#let FNat = $"F-"Nat)$
+#let C1Nat = $upright(C_1)"-"Nat)$
+#let C2Nat = $upright(C_2)"-"Nat)$
+#let I1Nat = $upright(I_1)"-"Nat)$
+#let I2Nat = $upright(I_2)"-"Nat)$
 // Use single letter variables with an explicit #
 #let p = $bold(upright(p))$
 #let n = $bold(upright(n))$
 
 // Equality
-#let id = $sans("Id")$
+#let Id = $sans("Id")$
+#let id = $sans("id")$
