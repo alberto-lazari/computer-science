@@ -59,6 +59,9 @@
 #let ElN1 = $El_N1$
 #let N1prog = $sans(N)_(1italic("prog"))$
 
+#let FS = $"F-S)"$
+#let IS = $"I-S)"$
+
 // Naturals
 #let Nat = $sans("Nat")$
 #let succ = $sans("succ")$
