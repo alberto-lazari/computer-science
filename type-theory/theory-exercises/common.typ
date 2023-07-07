@@ -11,20 +11,28 @@
   })
   list
 }
-#let exercise(section: (num: none, title: none), ex: 1, txt) = [
-  #let count = counter("Exercise")
-  #count.step()
+#let exercise(
+  section: (num: none, title: none),
+  ex: 1,
+  solution: true,
+  txt
+) = {
+  let count = counter("Exercise")
+  count.step()
 
   // Don't separate heading 1 from the box
-  #box[
+  box[
     = Exercise #count.display("1")
     #box(stroke: 0.5pt, width: 100%, inset: 0.5em, [
       == #section.num #h(0.5em) #section.title
       #enum(start: ex, box(width: 100%, txt))
     ])
   ]
-  == Solution
-]
+
+  if solution [
+    == Solution
+  ]
+}
 
 // General
 #let type = $italic("type")$
