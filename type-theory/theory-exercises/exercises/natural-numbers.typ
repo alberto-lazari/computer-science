@@ -83,15 +83,36 @@ $y = succ(v) ctx(v in nat) => x + y = x + succ(v) = succ(x + v)$
 This is true because:
 - $x + succ(v) = elnat(succ(v), x, (w, z). succ(z))$
 - $succ(x + v) = succ(elnat(v, x, (w, z). succ(z)))$
-- $elnat(succ(v), x, (w, z). succ(z)) = succ(elnat(v, x, (w, z). succ(z))) in nat ctx(x in nat, v in nat)$ derivable:
+- Let $Gamma = x in nat, v in nat$; \
+  $elnat(succ(v), x, (w, z). succ(z)) = succ(elnat(v, x, (w, z). succ(z))) in nat ctx(Gamma)$ derivable:
 
 #align(center, box[
-  #set text(size: 7pt)
+  #set text(size: 8pt)
   #prooftree(
-      axiom($$),
-    rule(label: c2nat, $elnat(succ(v), x, (w, z). succ(z)) = succ(elnat(v, x, (w, z). succ(z))) in nat ctx(x in nat, v in nat)$)
+        axiom($Gamma cont$),
+      rule(label: var, $v in nat ctx(Gamma)$),
+        axiom($Gamma cont$),
+      rule(label: fnat, $nat type ctx(Gamma)$),
+        axiom($Gamma cont$),
+      rule(label: var, $x in nat ctx(Gamma)$),
+        axiom($Gamma cont$),
+        rule(label: fc, $Gamma, w in nat cont$),
+        rule(label: fnat, $nat type ctx(Gamma, w in nat)$),
+        rule(label: fc, $Gamma, w in nat, z in nat cont$),
+        rule(label: var, $z in nat ctx(Gamma, w in nat, z in nat)$),
+      rule(label: i2nat, $succ(z) in nat ctx(Gamma, w in nat, z in nat)$),
+    rule(n: 4, label: c2nat, $elnat(succ(v), x, (w, z). succ(z)) = succ(elnat(v, x, (w, z). succ(z))) in nat ctx(Gamma)$)
   )
 ])
+
+Where $Gamma cont$ derivable, because $Gamma = x in nat, v in nat$ and $x in nat, v in nat cont$ derivable:
+$
+  #prooftree(
+    ..var-cont("x"),
+    rule(label: fnat, $nat type ctx(x in nat)$),
+    rule(label: fc, $x in nat, v in nat cont$)
+  )
+$
 
 = 3.2 Natural numbers type -- Ex 4
 Define the addition operation using the rules of the natural number type
