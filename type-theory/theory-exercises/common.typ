@@ -86,6 +86,9 @@
 #let z1 = $z_1$
 #let z2 = $z_2$
 #let z3 = $z_3$
+#let v1 = $v_1$
+#let v2 = $v_2$
+#let v3 = $v_3$
 
 #let FId = $"F-"Id)$
 #let IId = $"I-"Id)$
