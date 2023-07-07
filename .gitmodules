@@ -17,3 +17,6 @@
 [submodule "mobile-programming/exam-presentation/typst-slides"]
 	path = mobile-programming/exam-presentation/typst-slides
 	url = https://github.com/andreasKroepelin/typst-slides
+[submodule "type-theory/theory-exercises/typst-prooftree"]
+	path = type-theory/theory-exercises/typst-prooftree
+	url = https://github.com/SkiFire13/typst-prooftree/
