@@ -24,7 +24,7 @@
   box[
     = Exercise #count.display("1")
     #box(stroke: 0.5pt, width: 100%, inset: 0.5em, [
-      == #section.num #h(0.5em) #section.title
+      == #section.num #h(0.6em) #section.title
       #enum(start: ex, box(width: 100%, txt))
     ])
   ]
