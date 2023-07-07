@@ -29,7 +29,7 @@
 #make_title(
   title:    [Type Theory],
   subtitle: [Theory exercises],
-  author:   [Alberto Lazari -- 2089120],
+  author:   [Alberto Lazari],
   date:     [II Semester A.Y. 2022-2023],
 )
 #pagebreak()

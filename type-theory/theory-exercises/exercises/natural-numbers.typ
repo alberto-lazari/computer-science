@@ -56,7 +56,7 @@ The definition is correct, in fact:
 === Base case
 $y = 0 => x + y = x + 0 = x$
 
-This is true because:
+This is true, because:
 - $x + 0 = elnat(0, x, (w, z). succ(z))$
 - $elnat(0, x, (w, z). succ(z)) = x in nat ctx(x in nat)$ derivable:
 #align(center, box[
@@ -80,7 +80,7 @@ This is true because:
 === Inductive case
 $y = succ(v) ctx(v in nat) => x + y = x + succ(v) = succ(x + v)$
 
-This is true because:
+This is true, because:
 - $x + succ(v) = elnat(succ(v), x, (w, z). succ(z))$
 - $succ(x + v) = succ(elnat(v, x, (w, z). succ(z)))$
 - Let $Gamma = x in nat, v in nat$; \
@@ -160,8 +160,27 @@ The definition is correct, in fact:
 === Base case
 $x = 0 => x + y = 0 + y = y$
 
-By the $upright(C_1)"-"nat$) rule:
-$ elnat(0, y, (w, z). succ(z)) = y in nat ctx(y in nat) $
+Note that the exercise requires that $0 + x = x in nat ctx(x in nat)$, but that is equivalent to proving that $0 + y = y in nat ctx(y in nat)$, by renaming $y$ to $x$ in the latter, and this is true, because:
+- $0 + y = elnat(0, y, (w, z). succ(z))$
+- $elnat(0, y, (w, z). succ(z)) = y in nat ctx(y in nat)$ derivable:
+
+#align(center, box[
+  #set text(size: 8pt)
+  #prooftree(
+        ..var-cont("y"),
+      rule(label: fnat, $nat type ctx(y in nat)$),
+        ..var-cont("y"),
+      rule(label: var, $y in nat ctx(y in nat)$),
+          ..var-cont("y"),
+        rule(label: fnat, $nat type ctx(y in nat)$),
+        rule(label: fc, $y in nat, w in nat cont$),
+        rule(label: fnat, $nat type ctx(y in nat, w in nat)$),
+        rule(label: fc, $y in nat, w in nat, z in nat cont$),
+        rule(label: var, $z in nat ctx(y in nat, w in nat, z in nat)$),
+      rule(label: i2nat, $succ(z) in nat ctx(y in nat, w in nat, z in nat)$),
+    rule(n: 3, label: c1nat, $elnat(0, y, (w, z). succ(z)) = y in nat ctx(y in nat)$)
+  )
+])
 
 === Inductive case
 $x = succ(v) ctx(v in nat) => x + y = succ(v) + y = succ(v + y)$
@@ -210,7 +229,7 @@ The definition is correct, in fact:
 === Base case
 $x = 0 => #p (x) = #p (0) = 0$
 
-This is true because:
+This is true, because:
 - $#p (0) = elnat(0, 0, (w, z). w)$
 - $elnat(0, 0, (w, z). w) = 0 in nat ctx()$ derivable:
 $
@@ -229,7 +248,7 @@ $
 === Inductive case
 $x = succ(y) ctx(y in nat) => #p (x) = #p (succ(y)) = y$
 
-This is true because:
+This is true, because:
 - $#p (succ(y)) = elnat(succ(y), 0, (w, z). w)$
 - $elnat(succ(y), 0, (w, z). w) = y in nat ctx(y in nat)$ derivable:
 #align(center, box[
