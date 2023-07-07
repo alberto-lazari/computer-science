@@ -14,7 +14,7 @@ Let $Gamma = x in Nat, y in Nat$; \
 $x + y in Nat ctx(x in Nat, y in Nat)$ is derivable:
 
 #align(center, box[
-  #set text(size: 8pt)
+  #set text(8pt)
   #prooftree(
         axiom($Gamma cont$),
       rule(label: var, $y in Nat ctx(Gamma)$),
@@ -61,7 +61,7 @@ This is true, because:
 - $x + 0 = ElNat(0, x, (w, z). succ(z))$
 - $ElNat(0, x, (w, z). succ(z)) = x in Nat ctx(x in Nat)$ derivable:
 #align(center, box[
-  #set text(size: 8pt)
+  #set text(8pt)
   #prooftree(
         ..var-cont("x"),
       rule(label: FNat, $Nat type ctx(x in Nat)$),
@@ -87,7 +87,7 @@ This is true, because:
 - Let $Gamma = x in Nat, v in Nat$; \
   $ElNat(succ(v), x, (w, z). succ(z)) = succ(ElNat(v, x, (w, z). succ(z))) in Nat ctx(Gamma)$ derivable:
 #align(center, box[
-  #set text(size: 8pt)
+  #set text(8pt)
   #prooftree(
         axiom($Gamma cont$),
       rule(label: var, $v in Nat ctx(Gamma)$),
@@ -127,7 +127,7 @@ $ ElNat(x, y, (w, z). succ(z)) $
 Let $Gamma = x in Nat, y in Nat$; \
 $x + y in Nat ctx(x in Nat, y in Nat)$ is derivable:
 #align(center, box[
-  #set text(size: 8pt)
+  #set text(8pt)
   #prooftree(
         axiom($Gamma cont$),
       rule(label: var, $x in Nat ctx(Gamma)$),
@@ -165,7 +165,7 @@ Note that the exercise requires that $0 + x = x in Nat ctx(x in Nat)$, but that 
 - $0 + y = ElNat(0, y, (w, z). succ(z))$
 - $ElNat(0, y, (w, z). succ(z)) = y in Nat ctx(y in Nat)$ derivable:
 #align(center, box[
-  #set text(size: 8pt)
+  #set text(8pt)
   #prooftree(
         ..var-cont("y"),
       rule(label: FNat, $Nat type ctx(y in Nat)$),
@@ -191,7 +191,7 @@ This is true, because:
 - Let $Gamma = v in Nat, y in Nat$; \
   $ElNat(succ(v), y, (w, z). succ(z)) = succ(ElNat(v, y, (w, z). succ(z))) in Nat ctx(Gamma)$ derivable:
 #align(center, box[
-  #set text(size: 8pt)
+  #set text(8pt)
   #prooftree(
         axiom($Gamma cont$),
       rule(label: var, $v in Nat ctx(Gamma)$),
@@ -236,7 +236,7 @@ $ ElNat(x, 0, (w, z). w) $
 $#p (x) in Nat ctx(x in Nat)$ is derivable:
 
 #align(center, box[
-  #set text(size: 7pt)
+  #set text(7pt)
   #prooftree(
         ..var-cont("x"),
       rule(label: var, $x in Nat ctx(x in Nat)$),
@@ -283,7 +283,7 @@ This is true, because:
 - $#p (succ(y)) = ElNat(succ(y), 0, (w, z). w)$
 - $ElNat(succ(y), 0, (w, z). w) = y in Nat ctx(y in Nat)$ derivable:
 #align(center, box[
-  #set text(size: 8pt)
+  #set text(8pt)
   #prooftree(
         ..var-cont("y"),
       rule(label: var, $y in Nat ctx(y in Nat)$),

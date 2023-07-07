@@ -63,6 +63,7 @@
 #let Nat = $sans("Nat")$
 #let succ = $sans("succ")$
 #let ElNat = $El_Nat$
+
 #let ENat = $"E-"Nat)$
 #let FNat = $"F-"Nat)$
 #let C1Nat = $upright(C_1)"-"Nat)$
@@ -76,3 +77,12 @@
 // Equality
 #let Id = $sans("Id")$
 #let id = $sans("id")$
+#let ElId = $El_Id$
+
+#let z1 = $z_1$
+#let z2 = $z_2$
+#let z3 = $z_3$
+
+#let FId = $"F-"Id)$
+#let IId = $"I-"Id)$
+#let EId = $"E-"Id)$
