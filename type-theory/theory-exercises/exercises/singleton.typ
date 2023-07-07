@@ -1,10 +1,10 @@
 #import "/common.typ": *
 
-= 3.1 Singleton type -- Ex 3
-#exercise[
-  Show that the rule E-S) is derivable in the type theory $T_1$ replacing the rule ES) elimination with the E-$n1prog)$ rule and adding the substitution and weakening rules and the sanitary checks rules set out in the previous sections.
-]
-
+#exercise(
+  section: (num: "3.1", title: "Singleton type and exercises"),
+  ex: 3,
+  [Show that the rule E-S) is derivable in the type theory $T_1$ replacing the rule ES) elimination with the E-$n1prog)$ rule and adding the substitution and weakening rules and the sanitary checks rules set out in the previous sections.]
+)
 - Rule E-S)
 $
   #prooftree(
@@ -23,7 +23,6 @@ $
   )
 $
 
-== Solution
 Assuming:
 #pi-enum[
   + $t in n1 ctx(Gamma)$

@@ -1,13 +1,12 @@
 #import "/common.typ": *
 
-= 3.2 Natural numbers type -- Ex 3
-#exercise[
-  Define the addition operation using the rules of the natural number type
+#exercise(
+  section: (num: "3.2", title: "Natural Numbers Type"),
+  ex: 3,
+  [Define the addition operation using the rules of the natural number type
   $ x + y in nat ctx(x in nat, y in nat) $
-  such that $x + 0 = x in nat ctx(x in nat)$.
-]
-
-== Solution
+  such that $x + 0 = x in nat ctx(x in nat)$.]
+)
 The addition $x + y$ can be defined as:
 $ elnat(y, x, (w, z). succ(z)) $
 
@@ -115,14 +114,13 @@ $
   )
 $
 
-= 3.2 Natural numbers type -- Ex 4
-#exercise[
-  Define the addition operation using the rules of the natural number type
+#exercise(
+  section: (num: "3.2", title: "Natural Numbers Type"),
+  ex: 4,
+  [Define the addition operation using the rules of the natural number type
   $ x + y in nat ctx(x in nat, y in nat) $
-  such that $0 + x = x in nat ctx(x in nat)$.
-]
-
-== Solution
+  such that $0 + x = x in nat ctx(x in nat)$.]
+)
 The addition $x + y$ can be defined as:
 $ elnat(x, y, (w, z). succ(z)) $
 
@@ -221,18 +219,17 @@ $
 $
 
 
-= 3.2 Natural numbers type -- Ex 6
-#exercise[
-  Define the predecessor operator
+#exercise(
+  section: (num: "3.2", title: "Natural Numbers Type"),
+  ex: 6,
+  [Define the predecessor operator
   $ #p (x) in nat ctx(x in nat) $
   such that
   $
     &#p (0) = 0 \
     &#p (succ(#n)) = #n
-  $
-]
-
-== Solution
+  $]
+)
 The predecessor $#p (x)$ can be defined as:
 $ elnat(x, 0, (w, z). w) $
 

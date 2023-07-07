@@ -3,10 +3,8 @@
 #let unipd-red = rgb(180, 27, 33)
 
 #show heading.where(level: 1): it => {
-  let count = counter("Heading 1")
-  count.step()
   set text(size: 18pt, fill: unipd-red)
-  [Exercise #count.display("1") (#it.body)]
+  [#it.body]
   v(5pt)
 }
 
@@ -36,3 +34,4 @@
 
 #include "exercises/singleton.typ"
 #include "exercises/natural-numbers.typ"
+#include "exercises/equality.typ"
