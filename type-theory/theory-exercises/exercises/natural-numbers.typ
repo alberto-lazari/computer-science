@@ -1,9 +1,11 @@
 #import "/common.typ": *
 
 = 3.2 Natural numbers type -- Ex 3
-Define the addition operation using the rules of the natural number type
-$ x + y in nat ctx(x in nat, y in nat) $
-such that $x + 0 = x in nat ctx(x in nat)$.
+#exercise[
+  Define the addition operation using the rules of the natural number type
+  $ x + y in nat ctx(x in nat, y in nat) $
+  such that $x + 0 = x in nat ctx(x in nat)$.
+]
 
 == Solution
 The addition $x + y$ can be defined as:
@@ -85,7 +87,6 @@ This is true, because:
 - $succ(x + v) = succ(elnat(v, x, (w, z). succ(z)))$
 - Let $Gamma = x in nat, v in nat$; \
   $elnat(succ(v), x, (w, z). succ(z)) = succ(elnat(v, x, (w, z). succ(z))) in nat ctx(Gamma)$ derivable:
-
 #align(center, box[
   #set text(size: 8pt)
   #prooftree(
@@ -115,9 +116,11 @@ $
 $
 
 = 3.2 Natural numbers type -- Ex 4
-Define the addition operation using the rules of the natural number type
-$ x + y in nat ctx(x in nat, y in nat) $
-such that $0 + x = x in nat ctx(x in nat)$.
+#exercise[
+  Define the addition operation using the rules of the natural number type
+  $ x + y in nat ctx(x in nat, y in nat) $
+  such that $0 + x = x in nat ctx(x in nat)$.
+]
 
 == Solution
 The addition $x + y$ can be defined as:
@@ -163,7 +166,6 @@ $x = 0 => x + y = 0 + y = y$
 Note that the exercise requires that $0 + x = x in nat ctx(x in nat)$, but that is equivalent to proving that $0 + y = y in nat ctx(y in nat)$, by renaming $y$ to $x$ in the latter, and this is true, because:
 - $0 + y = elnat(0, y, (w, z). succ(z))$
 - $elnat(0, y, (w, z). succ(z)) = y in nat ctx(y in nat)$ derivable:
-
 #align(center, box[
   #set text(size: 8pt)
   #prooftree(
@@ -185,18 +187,50 @@ Note that the exercise requires that $0 + x = x in nat ctx(x in nat)$, but that 
 === Inductive case
 $x = succ(v) ctx(v in nat) => x + y = succ(v) + y = succ(v + y)$
 
-By the $upright(C_2)"-"nat$) rule:
-$ elnat(succ(v), y, (w, z). succ(z)) = succ(elnat(v, y, (w, z). succ(z))) in nat ctx(v in nat, y in nat) $
+This is true, because:
+- $succ(v) + y = elnat(succ(v), y, (w, z). succ(z))$
+- $succ(v + y) = succ(elnat(v, y, (w, z). succ(z)))$
+- Let $Gamma = v in nat, y in nat$; \
+  $elnat(succ(v), y, (w, z). succ(z)) = succ(elnat(v, y, (w, z). succ(z))) in nat ctx(Gamma)$ derivable:
+#align(center, box[
+  #set text(size: 8pt)
+  #prooftree(
+        axiom($Gamma cont$),
+      rule(label: var, $v in nat ctx(Gamma)$),
+        axiom($Gamma cont$),
+      rule(label: fnat, $nat type ctx(Gamma)$),
+        axiom($Gamma cont$),
+      rule(label: var, $y in nat ctx(Gamma)$),
+        axiom($Gamma cont$),
+        rule(label: fc, $Gamma, w in nat cont$),
+        rule(label: fnat, $nat type ctx(Gamma, w in nat)$),
+        rule(label: fc, $Gamma, w in nat, z in nat cont$),
+        rule(label: var, $z in nat ctx(Gamma, w in nat, z in nat)$),
+      rule(label: i2nat, $succ(z) in nat ctx(Gamma, w in nat, z in nat)$),
+    rule(n: 4, label: c2nat, $elnat(succ(v), y, (w, z). succ(z)) = succ(elnat(v, y, (w, z). succ(z))) in nat ctx(Gamma)$)
+  )
+])
+
+Where $Gamma cont$ derivable, because $Gamma = v in nat, y in nat$ and $v in nat, y in nat cont$ derivable:
+$
+  #prooftree(
+    ..var-cont("v"),
+    rule(label: fnat, $nat type ctx(v in nat)$),
+    rule(label: fc, $v in nat, y in nat cont$)
+  )
+$
 
 
 = 3.2 Natural numbers type -- Ex 6
-Define the predecessor operator
-$ #p (x) in nat ctx(x in nat) $
-such that
-$
-  &#p (0) = 0 \
-  &#p (succ(#n)) = #n
-$
+#exercise[
+  Define the predecessor operator
+  $ #p (x) in nat ctx(x in nat) $
+  such that
+  $
+    &#p (0) = 0 \
+    &#p (succ(#n)) = #n
+  $
+]
 
 == Solution
 The predecessor $#p (x)$ can be defined as:

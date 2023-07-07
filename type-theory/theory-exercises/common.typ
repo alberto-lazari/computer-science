@@ -11,6 +11,12 @@
   })
   list
 }
+#let exercise(txt) = {
+  align(center, box(stroke: 0.5pt, inset: 0.5em, [
+    #set align(left)
+    #txt
+  ]))
+}
 
 // General
 #let type = $italic("type")$
