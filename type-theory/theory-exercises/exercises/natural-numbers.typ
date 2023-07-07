@@ -210,15 +210,14 @@ The definition is correct, in fact:
 === Base case
 $x = 0 => #p (x) = #p (0) = 0$
 
-#let zero-in-nat = (
-    axiom($ctx() cont$),
-  rule(label: i1nat, $0 in nat ctx()$),
-)
-
+This is true because:
+- $#p (0) = elnat(0, 0, (w, z). w)$
+- $elnat(0, 0, (w, z). w) = 0 in nat ctx()$ derivable:
 $
   #prooftree(
       ..nat-type,
-      ..zero-in-nat,
+        axiom($ctx() cont$),
+      rule(label: i1nat, $0 in nat ctx()$),
         ..var-cont("w"),
         rule(label: fnat, $nat type ctx(w in nat)$),
         rule(label: fc, $w in nat, z in nat cont$),
@@ -230,6 +229,9 @@ $
 === Inductive case
 $x = succ(y) ctx(y in nat) => #p (x) = #p (succ(y)) = y$
 
+This is true because:
+- $#p (succ(y)) = elnat(succ(y), 0, (w, z). w)$
+- $elnat(succ(y), 0, (w, z). w) = y in nat ctx(y in nat)$ derivable:
 #align(center, box[
   #set text(size: 8pt)
   #prooftree(
@@ -237,7 +239,8 @@ $x = succ(y) ctx(y in nat) => #p (x) = #p (succ(y)) = y$
       rule(label: var, $y in nat ctx(y in nat)$),
         ..var-cont("y"),
       rule(label: fnat, $nat type ctx(y in nat)$),
-      ..zero-in-nat,
+        axiom($ctx() cont$),
+      rule(label: i1nat, $0 in nat ctx()$),
         ..var-cont("y"),
         rule(label: fnat, $nat type ctx(y in nat)$),
         rule(label: fc, $y in nat, w in nat cont$),
