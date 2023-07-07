@@ -1,5 +1,5 @@
 #set page(numbering: "1")
-#set list(marker: ([•], [◦]))
+#set list(marker: ([•], [◦], [--]))
 #let unipd-red = rgb(180, 27, 33)
 
 #show heading.where(level: 1): it => {

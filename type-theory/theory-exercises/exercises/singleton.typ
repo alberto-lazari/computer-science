@@ -4,7 +4,7 @@
   section: (num: "3.1", title: "Singleton type and exercises"),
   ex: 3,
   solution: false,
-  [Show that the rule E-S) is derivable in the type theory $T_1$ replacing the rule ES) elimination with the E-$N1prog)$ rule and adding the substitution and weakening rules and the sanitary checks rules set out in the previous sections.]
+  [Show that the rule #ES is derivable in the type theory $T_1$ replacing the rule #ES elimination with the E-$N1prog)$ rule and adding the substitution and weakening rules and the sanitary checks rules set out in the previous sections.]
 )
 
 - Rule E-S)
@@ -13,7 +13,7 @@ $
     axiom($t in N1 ctx(Gamma)$),
     axiom($M(z) type ctx(Gamma, z in N1)$),
     axiom($c in M(star) ctx(Gamma)$),
-    rule(n: 3, label: "E-S)", $ElN1(t, c) in M(t) ctx(Gamma)$),
+    rule(n: 3, label: ES, $ElN1(t, c) in M(t) ctx(Gamma)$),
   )
 $
 - Rule E-$N1prog)$

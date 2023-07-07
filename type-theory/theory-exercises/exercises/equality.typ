@@ -31,19 +31,62 @@ $ElId(id(star), (y). id(y)) in Id(N1, x, w) ctx(Gamma)$ derivable:
 ])
 
 Where
-- $Gamma cont$ derivable, because:
++ $Gamma cont$ derivable, because:
   - $Gamma = w in N1$
   - $w in N1 cont$ derivable:
-$
-  #prooftree(
-    axiom($ctx() cont$),
-    rule(label: $FS$, $N1 type ctx()$),
-    rule(label: $Fc$, $w in N1 cont$)
-  )
-$
+  $
+    #prooftree(
+      axiom($ctx() cont$),
+      rule(label: $FS$, $N1 type ctx()$),
+      rule(label: $Fc$, $w in N1 cont$)
+    )
+  $
 
-- $Id(N1, z1, z2) type ctx(Gamma, Delta)$ derivable, because:
++ $Id(N1, z1, z2) type ctx(Gamma, Delta)$ derivable:
+  $
+    #prooftree(
+          axiom($Gamma, Delta cont$),
+        rule(label: FS, $N1 type ctx(Gamma, Delta)$),
+          axiom($Gamma, Delta cont$),
+        rule(label: var, $z1 in N1 ctx(Gamma, Delta)$),
+          axiom($Gamma, Delta cont$),
+        rule(label: var, $z2 in N1 ctx(Gamma, Delta)$),
+      rule(n: 3, label: FId, $Id(N1, z1, z2) type ctx(Gamma, Delta)$)
+    )
+  $ \
+  Where $Gamma, Delta cont$ derivable, because:
   - $Delta = z1 in N1, z2 in N1, z3 in Id(N1, z1, z2)$
-  - $Id(N1, z1, z2) type ctx(Gamma, z1 in N1, z2 in N1, z3 in Id(N1, z1, z2))$ derivable:
+  - $Gamma, z1 in N1, z2 in N1, z3 in Id(N1, z1, z2) cont$ derivable:
 
-- $ElN1(w, id(star)) in Id(N1, star, w) ctx(Gamma)$ derivable:
+  #let gamma-z1-z2-cont = (
+    axiom($Gamma cont$),
+    rule(label: FS, $N1 type ctx(Gamma)$),
+    rule(label: Fc, $Gamma, z1 in N1 cont$),
+    rule(label: FS, $N1 type ctx(Gamma, z1 in N1)$),
+    rule(label: Fc, $Gamma, z1 in N1, z2 in N1 cont$)
+  )
+
+  #align(center, box[
+    #set text(8pt)
+    #prooftree(
+          ..gamma-z1-z2-cont,
+        rule(label: FS, $N1 type ctx(Gamma, z1 in N1, z2 in N1)$),
+          ..gamma-z1-z2-cont,
+        rule(label: var, $z1 in N1 ctx(Gamma, z1 in N1, z2 in N1)$),
+          ..gamma-z1-z2-cont,
+        rule(label: var, $z2 in N1 ctx(Gamma, z1 in N1, z2 in N1)$),
+      rule(n: 3, label: FId, $Id(N1, z1, z2) type ctx(Gamma, z1 in N1, z2 in N1)$),
+      rule(label: Fc, $Gamma, z1 in N1, z2 in N1, z3 in Id(N1, z1, z2) cont$)
+    )
+  ])
+
++ $ElN1(w, id(star)) in Id(N1, star, w) ctx(Gamma)$ derivable, because:
+  - $Gamma = w in N1$
+  - $ElN1(w, id(star)) in Id(N1, star, w) ctx(w in N1)$ derivable:
+  #align(center, box[
+    #set text(8pt)
+    #prooftree(
+        axiom($dots.v$),
+      rule(label: ES, $ElN1(w, id(star)) in Id(N1, star, w) ctx(w in N1)$)
+    )
+  ])

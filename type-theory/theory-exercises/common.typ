@@ -61,6 +61,7 @@
 
 #let FS = $"F-S)"$
 #let IS = $"I-S)"$
+#let ES = $"E-S)"$
 
 // Naturals
 #let Nat = $sans("Nat")$
