@@ -38,7 +38,7 @@ Where
     #prooftree(
       axiom($ctx() cont$),
       rule(label: $FS$, $N1 type ctx()$),
-      rule(label: $Fc$, $w in N1 cont$)
+      rule(label: $Fc$, $w in N1 cont$),
     )
   $
 
@@ -80,13 +80,22 @@ Where
     )
   ])
 
-+ $ElN1(w, id(star)) in Id(N1, star, w) ctx(Gamma)$ derivable, because:
-  - $Gamma = w in N1$
-  - $ElN1(w, id(star)) in Id(N1, star, w) ctx(w in N1)$ derivable:
++ $ElN1(w, id(star)) in Id(N1, star, w) ctx(Gamma)$ derivable:
   #align(center, box[
     #set text(8pt)
     #prooftree(
-        axiom($dots.v$),
-      rule(label: ES, $ElN1(w, id(star)) in Id(N1, star, w) ctx(w in N1)$)
+          axiom($Gamma cont$),
+        rule(label: var, $w in N1 ctx(Gamma)$),
+            axiom($Gamma cont$),
+          rule(label: FS, $N1 type ctx(Gamma)$),
+            axiom($Gamma cont$),
+          rule(label: IS, $star in N1 ctx(Gamma)$),
+            axiom($Gamma cont$),
+          rule(label: var, $w in N1 ctx(Gamma)$),
+        rule(n: 3, label: FId, $Id(N1, star, w) type ctx(Gamma)$),
+          axiom($Gamma cont$),
+          rule(label: IS, $star in N1 ctx(Gamma)$),
+        rule(label: IId, $id(star) in Id(N1, star, star) ctx(Gamma)$),
+      rule(n: 3, label: ES, $ElN1(w, id(star)) in Id(N1, star, w) ctx(Gamma)$)
     )
   ])
