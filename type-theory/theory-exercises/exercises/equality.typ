@@ -15,15 +15,15 @@ let $Gamma = w in N1$; \
 let $Delta = z1 in N1, z2 in N1, z3 in Id(N1, z1, z2)$; \
 $ElId(ElN1(w, id(star)), (x). id(x)) in Id(N1, x, w) ctx(Gamma)$ is derivable:
 #align(center, box[
-  #set text(6pt)
+  #set text(6.5pt)
   #prooftree(
-      axiom($Id(N1, z1, z2) type ctx(Gamma, Delta)$),
-        axiom($Gamma cont$),
+      axiom(label: $pi_2$, $Id(N1, z1, z2) type ctx(Gamma, Delta)$),
+        axiom(label: $pi_1$, $Gamma cont$),
       rule(label: IS, $star in N1 ctx(Gamma)$),
-        axiom($Gamma cont$),
+        axiom(label: $pi_1$, $Gamma cont$),
       rule(label: var, $w in N1 ctx(Gamma)$),
-      axiom($ElN1(w, id(star)) in Id(N1, star, w) ctx(Gamma)$),
-        axiom($Gamma cont$),
+      axiom(label: $pi_3$, $ElN1(w, id(star)) in Id(N1, star, w) ctx(Gamma)$),
+        axiom(label: $pi_1$, $Gamma cont$),
         rule(label: FS, $N1 type ctx(Gamma)$),
         rule(label: Fc, $Gamma, x in N1 cont$),
         rule(label: var, $x in N1 ctx(Gamma, x in N1)$),
@@ -33,6 +33,7 @@ $ElId(ElN1(w, id(star)), (x). id(x)) in Id(N1, x, w) ctx(Gamma)$ is derivable:
 ])
 
 Where
+#pi-enum[
 + $Gamma cont$ derivable, because:
   - $Gamma = w in N1$
   - $w in N1 cont$ derivable:
@@ -62,7 +63,7 @@ Where
   - $Gamma, z1 in N1, z2 in N1, z3 in Id(N1, z1, z2) cont$ derivable:
 
   #let gamma-z1-z2-cont = (
-    axiom($Gamma cont$),
+    axiom(label: $pi_1$, $Gamma cont$),
     rule(label: FS, $N1 type ctx(Gamma)$),
     rule(label: Fc, $Gamma, z1 in N1 cont$),
     rule(label: FS, $N1 type ctx(Gamma, z1 in N1)$),
@@ -87,21 +88,22 @@ Where
   #align(center, box[
     #set text(8pt)
     #prooftree(
-          axiom($Gamma cont$),
+          axiom(label: $pi_1$, $Gamma cont$),
         rule(label: var, $w in N1 ctx(Gamma)$),
-            axiom($Gamma cont$),
+            axiom(label: $pi_1$, $Gamma cont$),
           rule(label: FS, $N1 type ctx(Gamma)$),
-            axiom($Gamma cont$),
+            axiom(label: $pi_1$, $Gamma cont$),
           rule(label: IS, $star in N1 ctx(Gamma)$),
-            axiom($Gamma cont$),
+            axiom(label: $pi_1$, $Gamma cont$),
           rule(label: var, $w in N1 ctx(Gamma)$),
         rule(n: 3, label: FId, $Id(N1, star, w) type ctx(Gamma)$),
-          axiom($Gamma cont$),
+          axiom(label: $pi_1$, $Gamma cont$),
           rule(label: IS, $star in N1 ctx(Gamma)$),
         rule(label: IId, $id(star) in Id(N1, star, star) ctx(Gamma)$),
       rule(n: 3, label: ES, $ElN1(w, id(star)) in Id(N1, star, w) ctx(Gamma)$)
     )
   ])
+]
 
 
 #exercise(
@@ -121,13 +123,13 @@ $ElId(ElN1(x, ElN1(w, id(star))), (y). id(y)) in Id(N1, x, w) ctx(Gamma)$ is der
 #align(center, box[
   #set text(6pt)
   #prooftree(
-      axiom($Id(N1, z1, z2) type ctx(Gamma, Delta)$),
-        axiom($Gamma cont$),
+      axiom(label: $pi_2$, $Id(N1, z1, z2) type ctx(Gamma, Delta)$),
+        axiom(label: $pi_1$, $Gamma cont$),
       rule(label: var, $x in N1 ctx(Gamma)$),
-        axiom($Gamma cont$),
+        axiom(label: $pi_1$, $Gamma cont$),
       rule(label: var, $w in N1 ctx(Gamma)$),
-      axiom($ElN1(x, ElN1(w, id(star))) in Id(N1, x, w) ctx(Gamma)$),
-        axiom($Gamma cont$),
+      axiom(label: $pi_3$, $ElN1(x, ElN1(w, id(star))) in Id(N1, x, w) ctx(Gamma)$),
+        axiom(label: $pi_1$, $Gamma cont$),
         rule(label: FS, $N1 type ctx(Gamma)$),
         rule(label: Fc, $Gamma, y in N1 cont$),
         rule(label: var, $y in N1 ctx(Gamma, y in N1)$),
@@ -137,6 +139,7 @@ $ElId(ElN1(x, ElN1(w, id(star))), (y). id(y)) in Id(N1, x, w) ctx(Gamma)$ is der
 ])
 
 Where
+#pi-enum[
 + $Gamma cont$ derivable, because:
   - $Gamma = x in N1, w in N1$
   - $x in N1, w in N1 cont$ derivable:
@@ -168,7 +171,7 @@ Where
   - $Gamma, z1 in N1, z2 in N1, z3 in Id(N1, z1, z2) cont$ derivable:
 
   #let gamma-z1-z2-cont = (
-    axiom($Gamma cont$),
+    axiom(label: $pi_1$, $Gamma cont$),
     rule(label: FS, $N1 type ctx(Gamma)$),
     rule(label: Fc, $Gamma, z1 in N1 cont$),
     rule(label: FS, $N1 type ctx(Gamma, z1 in N1)$),
@@ -193,34 +196,35 @@ Where
   #align(center, box[
     #set text(8pt)
     #prooftree(
-          axiom($Gamma cont$),
+          axiom(label: $pi_1$, $Gamma cont$),
         rule(label: var, $x in N1 ctx(Gamma)$),
-            axiom($Gamma cont$),
+            axiom(label: $pi_1$, $Gamma cont$),
           rule(label: FS, $N1 type ctx(Gamma)$),
-            axiom($Gamma cont$),
+            axiom(label: $pi_1$, $Gamma cont$),
           rule(label: var, $x in N1 ctx(Gamma)$),
-            axiom($Gamma cont$),
+            axiom(label: $pi_1$, $Gamma cont$),
           rule(label: var, $w in N1 ctx(Gamma)$),
         rule(n: 3, label: FId, $Id(N1, x, w) type ctx(Gamma)$),
         axiom($ElN1(w, id(star)) in Id(N1, star, w) ctx(Gamma)$),
       rule(n: 3, label: ES, $ElN1(x, ElN1(w, id(star))) in Id(N1, x, w) ctx(Gamma)$)
     )
   ])
+]
 
   Where $ElN1(w, id(star)) in Id(N1, star, w) ctx(Gamma)$ derivable:
   #align(center, box[
     #set text(8pt)
     #prooftree(
-          axiom($Gamma cont$),
+          axiom(label: $pi_1$, $Gamma cont$),
         rule(label: var, $w in N1 ctx(Gamma)$),
-            axiom($Gamma cont$),
+            axiom(label: $pi_1$, $Gamma cont$),
           rule(label: FS, $N1 type ctx(Gamma)$),
-            axiom($Gamma cont$),
+            axiom(label: $pi_1$, $Gamma cont$),
           rule(label: IS, $star in N1 ctx(Gamma)$),
-            axiom($Gamma cont$),
+            axiom(label: $pi_1$, $Gamma cont$),
           rule(label: var, $w in N1 ctx(Gamma)$),
         rule(n: 3, label: FId, $Id(N1, star, w) type ctx(Gamma)$),
-          axiom($Gamma cont$),
+          axiom(label: $pi_1$, $Gamma cont$),
           rule(label: IS, $star in N1 ctx(Gamma)$),
         rule(label: IId, $id(star) in Id(N1, star, star) ctx(Gamma)$),
       rule(n: 3, label: ES, $ElN1(w, id(star)) in Id(N1, star, w) ctx(Gamma)$)
