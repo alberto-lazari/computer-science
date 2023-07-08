@@ -115,3 +115,5 @@
 #let x2 = $x_2$
 #let y1 = $y_1$
 #let y2 = $y_2$
+
+#let q = $bold(upright(q))$

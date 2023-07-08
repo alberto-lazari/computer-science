@@ -11,3 +11,13 @@
   is derivable in type theory with the types described so far, assuming that $A type ctx(Gamma)$ and $B type ctx(Gamma)$ and $R(x, y) type ctx(Gamma)$ are derivable in type theory \
   ?? ??]
 )
+
+
+#pagebreak()
+#exercise(
+  section: (num: "5", title: "How to translate predicative logic with equality into type theory"),
+  ex: 15,
+  solution: false,
+  [Show that by using the *Propositional Equality with Path Induction*, for any type $A$ and $a in A$, there exists a proof-term #q
+  $ #q in Sigma_(z in Sigma_(x in A) ...) "and other scary things..." $],
+)
