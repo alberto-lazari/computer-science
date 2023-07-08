@@ -1,6 +1,6 @@
 #import "typst-prooftree/prooftree.typ": *
 
-#let prooftree = prooftree.with(label: (padding: 0.5em))
+#let prooftree = prooftree.with(label: (padding: 0.3em))
 #let pi-enum(list) = {
   set enum(numbering: (..nums) => {
     let num = nums.pos()
@@ -40,8 +40,8 @@
 #let pf = $bold("pf")$
 
 #let ctx(..elements) = {
-  h(0.3em)
-  let context = h(0.3em)
+  $space$
+  let context = $space$
 
   if elements.pos().len() > 0 {
     context = elements.pos().join[,]
@@ -98,18 +98,19 @@
   elements
     .pos()
     .map(e => [$forall_(#e)$])
-    .join[#h(0.3em)]
+    .join[$space$]
 
-  h(0.3em)
+  $space$
 }
 #let ex(..elements) = {
   elements
     .pos()
     .map(e => [$exists_(#e)$])
-    .join[#h(0.3em)]
+    .join[$space$]
 
-  h(0.3em)
+  $space$
 }
+#let amp = $space "&" space$
 #let tr = $italic("true")$
 #let x1 = $x_1$
 #let x2 = $x_2$
