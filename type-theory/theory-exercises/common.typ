@@ -92,3 +92,26 @@
 #let FId = $"F-"Id)$
 #let IId = $"I-"Id)$
 #let EId = $"E-"Id)$
+
+// Extra
+#let fa(..elements) = {
+  elements
+    .pos()
+    .map(e => [$forall_(#e)$])
+    .join[#h(0.3em)]
+
+  h(0.3em)
+}
+#let ex(..elements) = {
+  elements
+    .pos()
+    .map(e => [$exists_(#e)$])
+    .join[#h(0.3em)]
+
+  h(0.3em)
+}
+#let tr = $italic("true")$
+#let x1 = $x_1$
+#let x2 = $x_2$
+#let y1 = $y_1$
+#let y2 = $y_2$
