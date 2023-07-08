@@ -110,6 +110,7 @@
 
   $space$
 }
+#let to = $space -> space$
 #let amp = $space "&" space$
 #let tr = $italic("true")$
 #let x1 = $x_1$
