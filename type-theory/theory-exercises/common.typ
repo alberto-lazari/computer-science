@@ -40,7 +40,7 @@
 #let pf = $bold("pf")$
 
 #let ctx(..elements) = {
-  $space$
+  h(0.3em)
   let context = $space$
 
   if elements.pos().len() > 0 {
