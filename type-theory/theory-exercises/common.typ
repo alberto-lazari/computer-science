@@ -1,7 +1,6 @@
 #import "typst-prooftree/prooftree.typ": *
 
 #let prooftree = prooftree.with(label: (padding: 0.5em))
-#let sans(txt) = $text(font: "Fira Math", txt)$
 #let pi-enum(list) = {
   set enum(numbering: (..nums) => {
     let num = nums.pos()
@@ -55,9 +54,9 @@
 #let Fc = $"F-c)"$
 
 // Singleton
-#let N1 = $sans(N)_1$
+#let N1 = $sans(upright(N))_1$
 #let ElN1 = $El_N1$
-#let N1prog = $sans(N)_(1italic("prog"))$
+#let N1prog = $sans(upright(N))_(1italic("prog"))$
 
 #let FS = $"F-S)"$
 #let IS = $"I-S)"$
