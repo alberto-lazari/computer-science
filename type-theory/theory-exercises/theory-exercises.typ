@@ -35,3 +35,4 @@
 #include "exercises/singleton.typ"
 #include "exercises/natural-numbers.typ"
 #include "exercises/equality.typ"
+#include "exercises/extra.typ"

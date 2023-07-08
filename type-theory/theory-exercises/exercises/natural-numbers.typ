@@ -32,7 +32,9 @@ $x + y in Nat ctx(x in Nat, y in Nat)$ is derivable:
   )
 ])
 
-Where $Gamma cont$ derivable, because $Gamma = x in Nat, y in Nat$ and $x in Nat, y in Nat cont$ derivable:
+Where $Gamma cont$ derivable, because:
+- $Gamma = x in Nat, y in Nat$
+- $x in Nat, y in Nat cont$ derivable:
 
 #let Nat-type = (
     axiom($ctx() cont$),
@@ -105,7 +107,9 @@ This is true, because:
   )
 ])
 
-Where $Gamma cont$ derivable, because $Gamma = x in Nat, v in Nat$ and $x in Nat, v in Nat cont$ derivable:
+Where $Gamma cont$ derivable, because:
+- $Gamma = x in Nat, v in Nat$
+- $x in Nat, v in Nat cont$ derivable:
 $
   #prooftree(
     ..var-cont("x"),
@@ -145,7 +149,9 @@ $x + y in Nat ctx(x in Nat, y in Nat)$ is derivable:
   )
 ])
 
-Where $Gamma cont$ derivable, because $Gamma = x in Nat, y in Nat$ and $x in Nat, y in Nat cont$ derivable:
+Where $Gamma cont$ derivable, because:
+- $Gamma = x in Nat, y in Nat$
+- $x in Nat, y in Nat cont$ derivable:
 $
   #prooftree(
     ..Nat-type,
@@ -209,7 +215,9 @@ This is true, because:
   )
 ])
 
-Where $Gamma cont$ derivable, because $Gamma = v in Nat, y in Nat$ and $v in Nat, y in Nat cont$ derivable:
+Where $Gamma cont$ derivable, because:
+- $Gamma = v in Nat, y in Nat$
+- $v in Nat, y in Nat cont$ derivable:
 $
   #prooftree(
     ..var-cont("v"),
