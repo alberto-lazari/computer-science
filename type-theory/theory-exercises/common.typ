@@ -10,6 +10,15 @@
   })
   list
 }
+#let a-enum(list) = {
+  set enum(numbering: (..nums) => {
+    let num = nums.pos()
+                  .map(str)
+                  .join()
+    $a_#num)$
+  })
+  list
+}
 #let exercise(
   section: (num: none, title: none),
   ex: 1,
@@ -113,6 +122,9 @@
 #let to = $space -> space$
 #let amp = $space "&" space$
 #let tr = $italic("true")$
+#let prod(arg) = $Pi_(#arg) space$
+#let sum(arg) = $Sigma_(#arg) space$
+
 #let x1 = $x_1$
 #let x2 = $x_2$
 #let y1 = $y_1$
