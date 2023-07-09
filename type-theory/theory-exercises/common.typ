@@ -125,6 +125,8 @@
 #let prod(arg) = $Pi_(#arg) space$
 #let sum(arg) = $Sigma_(#arg) space$
 #let Idp = $Id_upright(sans(p))$
+#let ElIdp = $ElId_sans(upright(p))$
+#let EIdp = $"E-"Idp)$
 
 #let x1 = $x_1$
 #let x2 = $x_2$

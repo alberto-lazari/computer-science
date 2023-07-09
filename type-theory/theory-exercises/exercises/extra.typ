@@ -209,8 +209,7 @@ Where:
     #set text(7pt)
     #prooftree(
           axiom(label: $a_2$, $q1 in A ctx()$),
-            axiom($...$),
-          rule(label: $$, $q2 in Idp(A, a, x) ctx()$),
+          axiom($q2 in Idp(A, a, x) ctx()$),
               axiom(label: $a_1$, $A type ctx()$),
               ..var-cont($x$),
             rule(n: 2, label: "ind-ty)", $A type ctx(x in A)$),
@@ -223,12 +222,31 @@ Where:
     )
   ])
 
-#{ judgment = $q3 in Idp(sum(x in A) Idp(A, a, x), z, w) ctx(w in phi)$ }
+  // TODO: temp, delete
+  #{ q2 = $ElIdp(x, id(a))$ }
+  #{ judgment = $q2 in Idp(A, a, x) ctx()$ }
+  Where #judgment derivable:
+  #align(center, box[
+    #set text(8pt)
+    #prooftree(
+        axiom($...$),
+        axiom($...$),
+        axiom($...$),
+        axiom($...$),
+        axiom($...$),
+      rule(n: 5, label: EIdp, judgment)
+    )
+  ])
+
+// TODO: temp, delete
+#{ q3 = $ElIdp(angle.l a, q2 angle.r)$ }
+#{ judgment = $q3 in Idp(phi, z, w) ctx(w in phi)$ }
 + $q3 in psi ctx(w in phi)$ derivable, because:
+  - Let $phi = sum(x in A) Idp(A, a, x)$
   - $psi = Idp(sum(x in A) Idp(A, a, x), z, w)$
   - #judgment derivable:
   #align(center, box[
-    #set text(7pt)
+    // #set text(9pt)
     #prooftree(
         axiom($...$),
       rule(judgment)
@@ -260,25 +278,32 @@ Where:
   + $phi type ctx()$ derivable, because:
     - $phi = sum(x in A) Idp(A, a, x)$
     - #judgment derivable:
-    #align(center, box[
-      #set text(9pt)
-      #prooftree(
-          axiom($...$),
-        rule(label: Fsum, judgment)
-      )
-    ])
+  #align(center, box[
+    #set text(9pt)
+    #prooftree(
+          axiom(label: $a_1$, $A type ctx()$),
+          ..var-cont($x$),
+        rule(n: 2, label: "ind-ty)", $A type ctx(x in A)$),
+          ..var-cont($x$),
+        rule(label: var, $a in A ctx(x in A)$),
+          ..var-cont($x$),
+        rule(label: var, $x in A ctx(x in A)$),
+      rule(n: 3, label: FId, $Idp(A, a, x) type ctx(x in A)$),
+      rule(label: Fsum, judgment)
+    )
+  ])
 
   #{ judgment = $z in phi, w in phi cont$ }
   + #judgment derivable:
-    #align(center, box[
-      #set text(9pt)
-      #prooftree(
+  #align(center, box[
+    #set text(9pt)
+    #prooftree(
+        axiom(label: $pi_(3.1)$, $phi type ctx()$),
           axiom(label: $pi_(3.1)$, $phi type ctx()$),
-            axiom(label: $pi_(3.1)$, $phi type ctx()$),
-          rule(label: Fc, $z in phi cont$),
-        rule(n: 2, label: "ind-ty)", $phi type ctx(z in phi)$),
-        rule(label: Fc, judgment)
-      )
-    ])
+        rule(label: Fc, $z in phi cont$),
+      rule(n: 2, label: "ind-ty)", $phi type ctx(z in phi)$),
+      rule(label: Fc, judgment)
+    )
+  ])
   ]
 ]
