@@ -185,16 +185,100 @@ Assuming:
 #let judgment = $qtot in sum(z in sum(x in A) Idp(A, a, x)) prod(w in phi) psi ctx()$
 #judgment derivable:
 #align(center, box[
-  #set text(7pt)
+  #set text(8pt)
   #prooftree(
-        axiom(label: $a_2$, $q1 in A ctx()$),
-        axiom(label: $pi_1$, $q2 in Idp(A, a, x) ctx()$),
-        axiom(label: $pi_2$, $Idp(A, a, x) type ctx(x in A)$),
-      rule(n: 3, label: Isum, $angle.l q1, q2 angle.r in sum(x in A) Idp(A, a, x) ctx()$),
-        axiom(label: $pi_3$, $#q _3 in psi ctx(w in phi)$),
+      axiom(label: $pi_1$, $angle.l q1, q2 angle.r in sum(x in A) Idp(A, a, x) ctx()$),
+        axiom(label: $pi_2$, $q3 in psi ctx(w in phi)$),
       rule(label: Iprod, $lambda w. q3 in prod(w in phi) psi ctx()$),
-        axiom(label: $pi_4$, $psi type ctx(z in sum(x in A) Idp(A, a, x), w in phi)$),
+        axiom(label: $pi_3$, $psi type ctx(z in sum(x in A) Idp(A, a, x), w in phi)$),
       rule(label: Fprod, $prod(w in phi) psi type ctx(z in sum(x in A) Idp(A, a, x))$),
     rule(n: 3, label: Isum, judgment)
   )
 ])
+
+Where:
+#pi-enum[
+#{ judgment = $angle.l q1, q2 angle.r in sum(x in A) Idp(A, a, x) ctx()$ }
++ #judgment derivable:
+
+  #let var-cont(var) = (
+      axiom(label: $a_1$, $A type ctx()$),
+    rule(label: Fc, $var in A cont ctx()$),
+  )
+  #align(center, box[
+    #set text(7pt)
+    #prooftree(
+          axiom(label: $a_2$, $q1 in A ctx()$),
+            axiom($...$),
+          rule(label: $$, $q2 in Idp(A, a, x) ctx()$),
+              axiom(label: $a_1$, $A type ctx()$),
+              ..var-cont($x$),
+            rule(n: 2, label: "ind-ty)", $A type ctx(x in A)$),
+              ..var-cont($x$),
+            rule(label: var, $a in A ctx(x in A)$),
+              ..var-cont($x$),
+            rule(label: var, $x in A ctx(x in A)$),
+          rule(n: 3, label: FId, $Idp(A, a, x) type ctx(x in A)$),
+        rule(n: 3, label: Isum, judgment)
+    )
+  ])
+
+#{ judgment = $q3 in Idp(sum(x in A) Idp(A, a, x), z, w) ctx(w in phi)$ }
++ $q3 in psi ctx(w in phi)$ derivable, because:
+  - $psi = Idp(sum(x in A) Idp(A, a, x), z, w)$
+  - #judgment derivable:
+  #align(center, box[
+    #set text(7pt)
+    #prooftree(
+        axiom($...$),
+      rule(judgment)
+    )
+  ])
+
+#{ judgment = $Idp(phi, z, w) type ctx(z in phi, w in phi)$ }
++ $psi type ctx(z in sum(x in A) Idp(A, a, x), w in phi)$ derivable, because:
+  - Let $phi = sum(x in A) Idp(A, a, x)$
+  - $psi = Idp(phi, z, w)$
+  - #judgment derivable:
+  #align(center, box[
+    #set text(9pt)
+    #prooftree(
+          axiom(label: $pi_(3.1)$, $phi type ctx()$),
+          axiom(label: $pi_(3.2)$, $z in phi, w in phi cont$),
+        rule(n: 2, label: "ind-ty)", $phi type ctx(z in phi, w in phi)$),
+          axiom(label: $pi_(3.2)$, $z in phi, w in phi cont$),
+        rule(label: var, $z in phi ctx(z in phi, w in phi)$),
+          axiom(label: $pi_(3.2)$, $z in phi, w in phi cont$),
+        rule(label: var, $w in phi ctx(z in phi, w in phi)$),
+      rule(n: 3, label: FId, judgment)
+    )
+  ])
+
+  Where:
+  #pi-enum[
+  #{ judgment = $sum(x in A) Idp(A, a, x) type ctx()$ }
+  + $phi type ctx()$ derivable, because:
+    - $phi = sum(x in A) Idp(A, a, x)$
+    - #judgment derivable:
+    #align(center, box[
+      #set text(9pt)
+      #prooftree(
+          axiom($...$),
+        rule(label: Fsum, judgment)
+      )
+    ])
+
+  #{ judgment = $z in phi, w in phi cont$ }
+  + #judgment derivable:
+    #align(center, box[
+      #set text(9pt)
+      #prooftree(
+          axiom(label: $pi_(3.1)$, $phi type ctx()$),
+            axiom(label: $pi_(3.1)$, $phi type ctx()$),
+          rule(label: Fc, $z in phi cont$),
+        rule(n: 2, label: "ind-ty)", $phi type ctx(z in phi)$),
+        rule(label: Fc, judgment)
+      )
+    ])
+  ]
+]
