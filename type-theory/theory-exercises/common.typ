@@ -2,10 +2,10 @@
 
 #let prooftree = prooftree.with(label: (padding: 0.3em))
 #let pi-enum(list) = {
-  set enum(numbering: (..nums) => {
+  set enum(full: true, numbering: (..nums) => {
     let num = nums.pos()
                   .map(str)
-                  .join()
+                  .join[.]
     $pi_#num)$
   })
   list
@@ -130,8 +130,10 @@
 #let y1 = $y_1$
 #let y2 = $y_2$
 
+#let Fprod = $"F-"Pi)$
 #let Iprod = $"I-"Pi)$
 #let Eprod = $"E-"Pi)$
+#let Fsum = $"F-"Sigma)$
 #let Isum = $"I-"Sigma)$
 #let Esum = $"E-"Sigma)$
 
