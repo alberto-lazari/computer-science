@@ -39,7 +39,7 @@ Assuming:
 #a-enum[
   + $A type ctx(Gamma)$
   + $B type ctx(Gamma)$
-  + $R(x, y) type ctx(Gamma)$
+  + $R(x, y) type ctx(Gamma, x in A, y in B)$
 ]
 
 #let psi1(var) = $psi^I_1(var)$
@@ -89,11 +89,11 @@ $lambda z1. lambda x1. lambda x2. angle.l pf1, pf2 angle.r in prod(z1 in phi^I) 
     #align(center, box[
       #set text(7pt)
       #prooftree(
-            axiom(label: $a_3$, $R(x1, y1) type ctx(Gamma_3, y2 in B)$),
-            axiom(label: $a_3$, $R(x2, y2) type ctx(Gamma_3, y2 in B)$),
-          rule(n: 2, label: $"F-"times)$, $R(x1, y1) times R(x2, y2) type ctx(Gamma_3, y2 in B)$),
             axiom(label: $pi_3.1$, $Id(B, y1, y2) type ctx(Gamma_3, y2 in B, z2 in Id(A, x1, x2))$),
           rule(label: Fprod, $prod(z2 in Id(A, x1, x2)) Id(B, y1, y2) type ctx(Gamma_3, y2 in B)$),
+            axiom(label: $pi_3.4$, $R(x1, y1) type ctx(Gamma_3, y2 in B)$),
+            axiom(label: $pi_3.5$, $R(x2, y2) type ctx(Gamma_3, y2 in B)$),
+          rule(n: 2, label: $"F-"times)$, $R(x1, y1) times R(x2, y2) type ctx(Gamma_3, y2 in B)$),
         rule(n: 2, label: $"F-"times)$, $(R(x1, y1) times R(x2, y2)) times (prod(z2 in Id(A, x1, x2)) Id(B, y1, y2)) type ctx(Gamma_3, y2 in B)$),
         rule(label: Fsum, $sum(y2 in B) (R(x1, y1) times R(x2, y2)) times (prod(z2 in Id(A, x1, x2)) Id(B, y1, y2)) type ctx(Gamma_3)$)
       )
@@ -142,12 +142,14 @@ $lambda z1. lambda x1. lambda x2. angle.l pf1, pf2 angle.r in prod(z1 in phi^I) 
         #prooftree(
             axiom(label: $a_2$, $B type ctx(Gamma)$),
                 axiom(label: $a_2$, $B type ctx(Gamma)$),
-                axiom(label: "TODO", $Gamma, z1 in phi^I, x1 in A, x2 in A cont$),
+                axiom(label: $...$, $Gamma, z1 in phi^I, x1 in A, x2 in A cont$),
               rule(n: 2, label: "ind-ty)", $B type ctx(Gamma, z1 in phi^I, x1 in A, x2 in A)$),
             rule(label: Fc, $Gamma, z1 in phi^I, x1 in A, x2 in A, y1 in B cont$),
           rule(n: 2, label: "ind-ty)", $B type ctx(Gamma, z1 in phi^I, x1 in A, x2 in A, y1 in B)$),
           rule(label: Fc, $Gamma, z1 in phi^I, x1 in A, x2 in A, y1 in B, y2 in B cont$)
         )
       ])
+    + $R(x1, y1) type ctx(Gamma_3, y2 in B)$ derivable, because:
+      - Let $Delta_(3.4) = ...$
     ]
 ]
