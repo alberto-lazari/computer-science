@@ -193,7 +193,7 @@ Assuming:
       rule(n: 3, label: Isum, $angle.l q1, q2 angle.r in sum(x in A) Idp(A, a, x) ctx()$),
         axiom(label: $pi_3$, $#q _3 in psi ctx(w in phi)$),
       rule(label: Iprod, $lambda w. q3 in prod(w in phi) psi ctx()$),
-        axiom(label: $pi_4$, $psi type ctx(w in phi)$),
+        axiom(label: $pi_4$, $psi type ctx(z in sum(x in A) Idp(A, a, x), w in phi)$),
       rule(label: Fprod, $prod(w in phi) psi type ctx(z in sum(x in A) Idp(A, a, x))$),
     rule(n: 3, label: Isum, judgment)
   )
