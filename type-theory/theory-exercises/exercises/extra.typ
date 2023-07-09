@@ -180,18 +180,18 @@ Assuming:
 
 - Let $#q = qtot$
 - Let $phi = sum(x in A) Idp(A, a, x)$
-- Let $psi(x) = Idp(sum(x in A) Idp(A, a, x), z, w)$
+- Let $psi(z) = Idp(sum(x in A) Idp(A, a, x), z, w)$
 
-#let judgment = $qtot in sum(z in phi) prod(w in phi) psi(x) ctx()$
+#let judgment = $qtot in sum(z in phi) prod(w in phi) psi(z) ctx()$
 #judgment derivable:
 #align(center, box[
-  // #set text(9pt)
+  #set text(9pt)
   #prooftree(
       axiom(label: $pi_1$, $angle.l q1, q2 angle.r in phi ctx()$),
-        axiom(label: $pi_2$, $q3 in psi(a) ctx(w in phi)$),
-      rule(label: Iprod, $lambda w. q3 in prod(w in phi) psi(q1) ctx()$),
-        axiom(label: $pi_3$, $psi(x) type ctx(z in phi, w in phi)$),
-      rule(label: Fprod, $prod(w in phi) psi(x) type ctx(z in phi)$),
+        axiom(label: $pi_2$, $q3 in psi(angle.l a, id(a) angle.r) ctx(w in phi)$),
+      rule(label: Iprod, $lambda w. q3 in prod(w in phi) psi(angle.l a, id(a) angle.r) ctx()$),
+        axiom(label: $pi_3$, $psi(z) type ctx(z in phi, w in phi)$),
+      rule(label: Fprod, $prod(w in phi) psi(z) type ctx(z in phi)$),
     rule(n: 3, label: Isum, judgment)
   )
 ])
@@ -224,10 +224,10 @@ Where:
     )
   ])
 
-#{ judgment = $q3 in Idp(phi, z, w) ctx(w in phi)$ }
-+ $q3 in psi(a) ctx(w in phi)$ derivable, because:
+#{ judgment = $q3 in Idp(phi, angle.l a, id(a) angle.r, w) ctx(w in phi)$ }
++ $q3 in psi(angle.l a, id(a) angle.r) ctx(w in phi)$ derivable, because:
   - Let $phi = sum(x in A) Idp(A, a, x)$
-  - $psi(a) = Idp(sum(a in A) Idp(A, a, a), z, w)$
+  - $psi(angle.l a, id(a) angle.r) = Idp(sum(x in A) Idp(A, a, x), angle.l a, id(a) angle.r, w)$
   - #judgment derivable:
   #align(center, box[
     // #set text(9pt)
@@ -238,9 +238,9 @@ Where:
   ])
 
 #{ judgment = $Idp(phi, z, w) type ctx(z in phi, w in phi)$ }
-+ $psi(x) type ctx(z in sum(x in A) Idp(A, a, x), w in phi)$ derivable, because:
++ $psi(z) type ctx(z in sum(x in A) Idp(A, a, x), w in phi)$ derivable, because:
   - Let $phi = sum(x in A) Idp(A, a, x)$
-  - $psi(x) = Idp(phi, z, w)$
+  - $psi(z) = Idp(phi, z, w)$
   - #judgment derivable:
   #align(center, box[
     #set text(9pt)
