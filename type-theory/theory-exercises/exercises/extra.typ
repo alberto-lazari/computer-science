@@ -162,3 +162,39 @@ $lambda z1. lambda x1. lambda x2. angle.l pf1, pf2 angle.r in prod(z1 in phi^I) 
   [Show that by using the *Propositional Equality with Path Induction*, for any type $A$ and $a in A$, there exists a proof-term #q
   $ #q in sum(z in sum(x in A) Idp(A, a, x)) fa(w in sum(x in A) Idp(A, a, x)) Idp(sum(x in A) Idp(A, a, x), z, w) $],
 )
+
+#let q1 = $a$
+#let q2 = $#q _2$
+#let q3 = $#q _3$
+#let qtot = $angle.l angle.l q1, q2 angle.r, lambda w. q3 angle.r$
+
+First, I transform the universal quantifier into a dependent product, in order to be able to derive it in type theory. The original judgment so becomes
+$ sum(z in sum(x in A) Idp(A, a, x)) prod(w in sum(x in A) Idp(A, a, x)) Idp(sum(x in A) Idp(A, a, x), z, w) $
+
+== Solution
+Assuming:
+#a-enum[
+  + $A type ctx()$
+  + $a in A ctx()$
+]
+
+- Let $#q = qtot$
+- Let $phi = sum(x in A) Idp(A, a, x)$
+- Let $psi = Idp(sum(x in A) Idp(A, a, x), z, w)$
+
+#let judgment = $qtot in sum(z in sum(x in A) Idp(A, a, x)) prod(w in phi) psi ctx()$
+#judgment derivable:
+#align(center, box[
+  #set text(7pt)
+  #prooftree(
+        axiom(label: $a_2$, $q1 in A ctx()$),
+        axiom(label: $pi_1$, $q2 in Idp(A, a, x) ctx()$),
+        axiom(label: $pi_2$, $Idp(A, a, x) type ctx(x in A)$),
+      rule(n: 3, label: Isum, $angle.l q1, q2 angle.r in sum(x in A) Idp(A, a, x) ctx()$),
+        axiom(label: $pi_3$, $#q _3 in psi ctx(w in phi)$),
+      rule(label: Iprod, $lambda w. q3 in prod(w in phi) psi ctx()$),
+        axiom(label: $pi_4$, $psi type ctx(w in phi)$),
+      rule(label: Fprod, $prod(w in phi) psi type ctx(z in sum(x in A) Idp(A, a, x))$),
+    rule(n: 3, label: Isum, judgment)
+  )
+])
