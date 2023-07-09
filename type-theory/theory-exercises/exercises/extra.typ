@@ -153,3 +153,12 @@ $lambda z1. lambda x1. lambda x2. angle.l pf1, pf2 angle.r in prod(z1 in phi^I) 
       - Let $Delta_(3.4) = ...$
     ]
 ]
+
+
+#exercise(
+  section: (num: "5", title: "How to translate predicative logic with equality into type theory"),
+  ex: 15,
+  solution: false,
+  [Show that by using the *Propositional Equality with Path Induction*, for any type $A$ and $a in A$, there exists a proof-term #q
+  $ #q in sum(z in sum(x in A) Idp(A, a, x)) fa(w in sum(x in A) Idp(A, a, x)) Idp(sum(x in A) Idp(A, a, x), z, w) $],
+)
