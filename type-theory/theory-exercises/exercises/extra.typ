@@ -42,4 +42,43 @@ Assuming:
   + $R(x, y) type ctx(Gamma)$
 ]
 
-Let $pf = ??$
+#let psi1(var) = $psi^I_1(var)$
+#let psi2(var1, var2) = $psi^I_2(var1, var2)$
+#let pf1 = $pf_1$
+#let pf2 = $pf_2$
+- Let $pf = lambda z1. lambda x1. lambda x2. angle.l pf1, pf2 angle.r$
+
+  Where:
+  - $pf1 = ...$
+  - $pf2 = ...$
+
+- Let $psi1(y1) = sum(y2 in B) psi2(y1, y2)$
+
+  Where: \
+  $psi2(y1, y2) = (R(x1, y1) times R(x2, y2)) times (prod(z2 in Id(A, x1, x2)) Id(B, y1, y2))$
+
+$lambda z1. lambda x1. lambda x2. angle.l pf1, pf2 angle.r in prod(z1 in phi^I) prod(x1 in A) prod(x2 in A) sum(y1 in B) psi1(y1) ctx(Gamma)$ derivable:
+#align(center, box[
+  #set text(7pt)
+  #prooftree(
+      axiom(label: "(A)", $pf1 in B ctx(Gamma, z1 in phi^I, x1 in A, x2 in A)$),
+      axiom(label: "(B)", $pf2 in psi1(pf1) ctx(Gamma, z1 in phi^I, x1 in A, x2 in A)$),
+      axiom(label: "(C)", $psi1(y1) type ctx(Gamma, z1 in phi^I, x1 in A, x2 in A, y1 in B)$),
+    rule(n: 3, label: Isum, $angle.l pf1, pf2 angle.r in sum(y1 in B) psi1(y1) ctx(Gamma, z1 in phi^I, x1 in A, x2 in A)$),
+    rule(label: Iprod, $lambda x2. angle.l pf1, pf2 angle.r in prod(x2 in A) sum(y1 in B) psi1(y1) ctx(Gamma, z1 in phi^I, x1 in A)$),
+    rule(label: Iprod, $lambda x1. lambda x2. angle.l pf1, pf2 angle.r in prod(x1 in A) prod(x2 in A) sum(y1 in B) psi1(y1) ctx(Gamma, z1 in phi^I)$),
+    rule(label: Iprod, $lambda z1. lambda x1. lambda x2. angle.l pf1, pf2 angle.r in prod(z1 in phi^I) prod(x1 in A) prod(x2 in A) sum(y1 in B) psi1(y1) ctx(Gamma)$)
+  )
+])
+
+#{list => {
+  set enum(numbering: "(A)")
+  list
+}}[
++ ...
++ ...
++ $psi1(y1) type ctx(Gamma, z1 in phi^I, x1 in A, x2 in A, y1 in B)$ derivable, because:
+  - $psi1(y1) = sum(y2 in B) psi2(y1, y2)$
+  - let $Gamma_3 = Gamma, z1 in phi^I, x1 in A, x2 in A, y1 in B$; \
+    $sum(y2 in B) psi2(y1, y2) type ctx(Gamma_3)$ derivable:
+]

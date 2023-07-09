@@ -130,4 +130,9 @@
 #let y1 = $y_1$
 #let y2 = $y_2$
 
+#let Iprod = $"I-"Pi)$
+#let Eprod = $"E-"Pi)$
+#let Isum = $"I-"Sigma)$
+#let Esum = $"E-"Sigma)$
+
 #let q = $bold(upright(q))$
