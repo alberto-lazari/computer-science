@@ -89,11 +89,11 @@ $lambda z1. lambda x1. lambda x2. angle.l pf1, pf2 angle.r in prod(z1 in phi^I) 
     #align(center, box[
       #set text(7pt)
       #prooftree(
-            axiom(label: $pi_3.1$, $R(x1, y1) type ctx(Gamma_3, y2 in B)$),
-            axiom(label: $pi_3.2$, $R(x2, y2) type ctx(Gamma_3, y2 in B)$),
+            axiom(label: $a_3$, $R(x1, y1) type ctx(Gamma_3, y2 in B)$),
+            axiom(label: $a_3$, $R(x2, y2) type ctx(Gamma_3, y2 in B)$),
           rule(n: 2, label: $"F-"times)$, $R(x1, y1) times R(x2, y2) type ctx(Gamma_3, y2 in B)$),
-            axiom(label: $pi_3.3$, $dots.v$),
-          rule($prod(z2 in Id(A, x1, x2)) Id(B, y1, y2) type ctx(Gamma_3, y2 in B)$),
+            axiom(label: $pi_3.1$, $Id(B, y1, y2) type ctx(Gamma_3, y2 in B, z2 in Id(A, x1, x2))$),
+          rule(label: Fprod, $prod(z2 in Id(A, x1, x2)) Id(B, y1, y2) type ctx(Gamma_3, y2 in B)$),
         rule(n: 2, label: $"F-"times)$, $(R(x1, y1) times R(x2, y2)) times (prod(z2 in Id(A, x1, x2)) Id(B, y1, y2)) type ctx(Gamma_3, y2 in B)$),
         rule(label: Fsum, $sum(y2 in B) (R(x1, y1) times R(x2, y2)) times (prod(z2 in Id(A, x1, x2)) Id(B, y1, y2)) type ctx(Gamma_3)$)
       )
@@ -101,12 +101,53 @@ $lambda z1. lambda x1. lambda x2. angle.l pf1, pf2 angle.r in prod(z1 in phi^I) 
 
     Where:
     #pi-enum[
-    + $R(x1, y1) type ctx(Gamma_3, y2 in B)$ derivable, because:
-      - ... 
-
-    + $R(x2, y2) type ctx(Gamma_3, y2 in B)$ derivable, because:
-      - ...
-
-    + ...
+    + $Id(B, y1, y2) type ctx(Gamma_3, y2 in B, z2 in Id(A, x1, x2))$ derivable, because:
+      - let $Delta_(3.1) = z1 in phi^I, x1 in A, x2 in A, y1 in B, y2 in B, z2 in Id(A, x1, x2)$
+      - $Id(B, y1, y2) type ctx(Gamma, Delta_(3.1))$ derivable
+      #align(center, box[
+        #set text(9pt)
+        #prooftree(
+              axiom(label: $a_2$, $B type ctx(Gamma)$),
+              axiom(label: $pi_3.2$, $Gamma, Delta_(3.1) cont$),
+            rule(n: 2, label: "ind-ty)", $B type ctx(Gamma, Delta_(3.1))$),
+              axiom(label: $pi_3.2$, $Gamma, Delta_(3.1) cont$),
+            rule(label: var, $y1 in B ctx(Gamma, Delta_(3.1))$),
+              axiom(label: $pi_3.2$, $Gamma, Delta_(3.1) cont$),
+            rule(label: var, $y2 in B ctx(Gamma, Delta_(3.1))$),
+          rule(n: 3, label: FId, $Id(B, y1, y2) type ctx(Gamma, Delta_(3.1))$)
+        )
+      ])
+    + $Gamma, Delta_(3.1) cont$ derivable, because:
+      - let $Delta_(3.2) = z1 in phi^I, x1 in A, x2 in A, y1 in B, y2 in B$
+      - $Gamma, Delta_(3.2), z2 in Id(A, x1, x2) cont$ derivable:
+      #align(center, box[
+        #set text(9pt)
+        #prooftree(
+              axiom(label: $a_1$, $A type ctx(Gamma)$),
+              axiom(label: $pi_3.3$, $Gamma, Delta_(3.2) cont$),
+            rule(n: 2, label: "ind-ty)", $A type ctx(Gamma, Delta_(3.2))$),
+              axiom(label: $pi_3.3$, $Gamma, Delta_(3.2) cont$),
+            rule(label: var, $y1 in B ctx(Gamma, Delta_(3.2))$),
+              axiom(label: $pi_3.3$, $Gamma, Delta_(3.2) cont$),
+            rule(label: var, $y2 in B ctx(Gamma, Delta_(3.2))$),
+          rule(n: 3, label: FId, $Id(A, x1, x2) type ctx(Gamma, Delta_(3.2))$),
+          rule(label: Fc, $Gamma, Delta_(3.2), z2 in Id(A, x1, x2) cont$)
+        )
+      ])
+    + $Gamma, Delta_(3.2) cont$ derivable, because:
+      - $Delta_(3.2) = z1 in phi^I, x1 in A, x2 in A, y1 in B, y2 in B$
+      - $Gamma, z1 in phi^I, x1 in A, x2 in A, y1 in B, y2 in B cont$ derivable:
+      #align(center, box[
+        #set text(9pt)
+        #prooftree(
+            axiom(label: $a_2$, $B type ctx(Gamma)$),
+                axiom(label: $a_2$, $B type ctx(Gamma)$),
+                axiom(label: "TODO", $Gamma, z1 in phi^I, x1 in A, x2 in A cont$),
+              rule(n: 2, label: "ind-ty)", $B type ctx(Gamma, z1 in phi^I, x1 in A, x2 in A)$),
+            rule(label: Fc, $Gamma, z1 in phi^I, x1 in A, x2 in A, y1 in B cont$),
+          rule(n: 2, label: "ind-ty)", $B type ctx(Gamma, z1 in phi^I, x1 in A, x2 in A, y1 in B)$),
+          rule(label: Fc, $Gamma, z1 in phi^I, x1 in A, x2 in A, y1 in B, y2 in B cont$)
+        )
+      ])
     ]
 ]
