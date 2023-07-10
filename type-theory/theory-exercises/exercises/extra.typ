@@ -98,7 +98,7 @@ Where:
     - Let $Gamma = w in phi, x1 in A, x2 in Idp(A, a, x1)$
     - #judgment derivable:
     #align(center, box[
-      #set text(7pt)
+      #set text(7.5pt)
       #prooftree(
           axiom($pi_(2.2)$),
             axiom(label: $pi_(2.3)$, $Gamma cont$),
@@ -115,7 +115,67 @@ Where:
       )
     ])
 
-  + $Idp(phi, alpha, angle.l y, z angle.r) type ctx(Gamma, y in A, z in Idp(A, a, y))$ derivable: ...
+  #{ judgment = $Idp(phi, alpha, angle.l y, z angle.r) type ctx(Sigma)$ }
+  + $Idp(phi, alpha, angle.l y, z angle.r) type ctx(Gamma, y in A, z in Idp(A, a, y))$ derivable, because:
+    - Let $Sigma = Gamma, y in A, z in Idp(A, a, y)$
+    - #judgment derivable:
+    #align(center, box[
+      #set text(8pt)
+      #prooftree(
+            axiom(label: $pi_(3.1)$, $phi type ctx()$),
+            axiom(label: $pi_(2.2.1)$, $Sigma cont$),
+          rule(n: 2, label: "ind-ty)", $phi type ctx(Sigma)$),
+            axiom(label: $pi_1$, $alpha in phi ctx()$),
+            axiom(label: $pi_(2.2.1)$, $Sigma cont$),
+          rule(n: 2, label: "ind-ter)", $alpha in phi ctx(Sigma)$),
+          axiom(label: $pi_(2.2.2)$, $angle.l y, z angle.r in phi ctx(Sigma)$),
+        rule(n: 3, label: FId, judgment)
+      )
+    ])
+
+    Where:
+    #pi-enum[
+    #{ judgment = $Gamma, y in A, z in Idp(A, a, y) cont$ }
+    + $Sigma cont$ derivable, because:
+      - $Sigma = Gamma, y in A, z in Idp(A, a, y)$
+      - #judgment derivable:
+
+      #let gamma-ya-cont = (
+          axiom(label: $a_1$, $A type ctx()$),
+          axiom(label: $pi_(2.3)$, $Gamma cont$),
+        rule(n: 2, label: $a_1$, $A type ctx(Gamma)$),
+        rule(label: Fc, $Gamma, y in A cont$),
+      )
+      #align(center, box[
+        #set text(6pt)
+        #prooftree(
+              axiom(label: $a_1$, $A type ctx()$),
+              ..gamma-ya-cont,
+            rule(n: 2, label: "ind-ty)", $A type ctx(Gamma, y in A)$),
+              axiom(label: $a_2$, $a in A ctx()$),
+              ..gamma-ya-cont,
+            rule(n: 2, label: "ind-ter)", $a in A ctx(Gamma, y in A)$),
+              ..gamma-ya-cont,
+            rule(label: var, $y in A ctx(Gamma, y in A)$),
+          rule(n: 3, label: FId, $Idp(A, a, y) type ctx(Gamma, y in A)$),
+          rule(label: Fc, judgment)
+        )
+      ])
+
+    #{ judgment = $angle.l y, z angle.r in sum(x in A) Idp(A, a, x) ctx(Sigma)$ }
+    + $angle.l y, z angle.r in phi ctx(Sigma)$ derivable, because:
+      - $phi = sum(x in A) Idp(A, a, x)$
+      - #judgment derivable:
+      #align(center, box[
+        #set text(8pt)
+        #prooftree(
+            axiom($...$),
+            axiom($...$),
+            axiom($...$),
+          rule(n: 3, label: Isum, judgment)
+        )
+      ])
+    ]
 
   #{ judgment = $Delta, x2 in Idp(A, a, x1) cont$ }
   + $Gamma cont$ derivable, because:
@@ -123,13 +183,16 @@ Where:
     - Let $Delta = w in phi, x1 in A$
     - #judgment derivable:
     #align(center, box[
-      #set text(7pt)
+      #set text(10pt)
       #prooftree(
             axiom(label: $a_1$, $A type ctx()$),
             axiom(label: $pi_(2.4)$, $Delta cont$),
           rule(n: 2, label: "ind-ty)", $A type ctx(Delta)$),
-          axiom($a in A ctx(Delta)$),
-          axiom($x1 in A ctx(Delta)$),
+            axiom(label: $a_2$, $a in A ctx()$),
+            axiom(label: $pi_(2.4)$, $Delta cont$),
+          rule(n: 2, label: "ind-ter)", $a in A ctx(Delta)$),
+            axiom(label: $pi_(2.4)$, $Delta cont$),
+          rule(label: var, $x1 in A ctx(Delta)$),
         rule(n: 3, label: FId, $Idp(A, a, x1) type ctx(Delta)$),
         rule(label: Fc, judgment)
       )
@@ -140,7 +203,6 @@ Where:
     - $Delta = w in phi, x1 in A cont$
     - #judgment derivable:
     #align(center, box[
-      #set text(7pt)
       #prooftree(
           axiom(label: $a_1$, $A type ctx()$),
             axiom(label: $pi_(3.1)$, $phi type ctx()$),
@@ -194,7 +256,6 @@ Where:
   #{ judgment = $z in phi, w in phi cont$ }
   + #judgment derivable:
   #align(center, box[
-    #set text(9pt)
     #prooftree(
         axiom(label: $pi_(3.1)$, $phi type ctx()$),
           axiom(label: $pi_(3.1)$, $phi type ctx()$),
