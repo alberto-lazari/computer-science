@@ -117,7 +117,38 @@ Where:
 
   + $Idp(phi, alpha, angle.l y, z angle.r) type ctx(Gamma, y in A, z in Idp(A, a, y))$ derivable: ...
 
-  + $Gamma cont$ derivable: ...
+  #{ judgment = $Delta, x2 in Idp(A, a, x1) cont$ }
+  + $Gamma cont$ derivable, because:
+    - $Gamma = w in phi, x1 in A, x2 in Idp(A, a, x1)$
+    - Let $Delta = w in phi, x1 in A$
+    - #judgment derivable:
+    #align(center, box[
+      #set text(7pt)
+      #prooftree(
+            axiom(label: $a_1$, $A type ctx()$),
+            axiom(label: $pi_(2.4)$, $Delta cont$),
+          rule(n: 2, label: "ind-ty)", $A type ctx(Delta)$),
+          axiom($a in A ctx(Delta)$),
+          axiom($x1 in A ctx(Delta)$),
+        rule(n: 3, label: FId, $Idp(A, a, x1) type ctx(Delta)$),
+        rule(label: Fc, judgment)
+      )
+    ])
+
+  #{ judgment = $w in phi, x1 in A cont$ }
+  + $Delta cont$ derivable, because:
+    - $Delta = w in phi, x1 in A cont$
+    - #judgment derivable:
+    #align(center, box[
+      #set text(7pt)
+      #prooftree(
+          axiom(label: $a_1$, $A type ctx()$),
+            axiom(label: $pi_(3.1)$, $phi type ctx()$),
+          rule(label: Fc, $w in phi cont$),
+        rule(n: 2, label: "ind-ty)", $A type ctx(w in phi)$),
+        rule(label: Fc, judgment)
+      )
+    ])
   ]
 
 #{ judgment = $Idp(phi, z, w) type ctx(z in phi, w in phi)$ }
