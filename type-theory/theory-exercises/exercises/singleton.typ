@@ -27,7 +27,7 @@ $
 
 == Solution
 Assuming:
-#pi-enum[
+#a-enum[
   + $t in N1 ctx(Gamma)$
   + $M(z) type ctx(Gamma, z in N1)$
   + $c in M(star) ctx(Gamma)$
@@ -36,10 +36,10 @@ Assuming:
 The rule E-S) is derivable:
 $
   #prooftree(
-        axiom(label: $pi_2$, $M(z) type ctx(Gamma, z in N1)$),
-        axiom(label: $pi_3$, $c in M(star) ctx(Gamma)$),
+        axiom(label: $a_2$, $M(z) type ctx(Gamma, z in N1)$),
+        axiom(label: $a_3$, $c in M(star) ctx(Gamma)$),
       rule(n: 2, label: $"E-"N1prog)$, $ElN1(z, c) in M(z) ctx(Gamma, z in N1)$),
-      axiom(label: $pi_1$, $t in N1 ctx(Gamma)$),
+      axiom(label: $a_1$, $t in N1 ctx(Gamma)$),
     rule(n: 2, label: "sub-ter)", $ElN1(t, c) in M(t) ctx(Gamma)$),
   )
 $

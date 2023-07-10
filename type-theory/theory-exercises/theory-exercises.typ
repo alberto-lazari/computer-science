@@ -3,9 +3,10 @@
 #let unipd-red = rgb(180, 27, 33)
 
 #show heading.where(level: 1): it => {
+  v(0.5em)
   set text(size: 18pt, fill: unipd-red)
   [#it.body]
-  v(5pt)
+  v(0.5pt)
 }
 
 #let make_title(title: none, subtitle: none, author: none, date: none) = align(center, [
@@ -35,3 +36,4 @@
 #include "exercises/singleton.typ"
 #include "exercises/natural-numbers.typ"
 #include "exercises/equality.typ"
+#include "exercises/extra.typ"

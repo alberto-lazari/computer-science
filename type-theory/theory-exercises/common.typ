@@ -1,12 +1,21 @@
 #import "typst-prooftree/prooftree.typ": *
 
-#let prooftree = prooftree.with(label: (padding: 0.5em))
+#let prooftree = prooftree.with(label: (padding: 0.3em))
 #let pi-enum(list) = {
+  set enum(full: true, numbering: (..nums) => {
+    let num = nums.pos()
+                  .map(str)
+                  .join[.]
+    $pi_#num)$
+  })
+  list
+}
+#let a-enum(list) = {
   set enum(numbering: (..nums) => {
     let num = nums.pos()
                   .map(str)
                   .join()
-    $pi_#num)$
+    $a_#num)$
   })
   list
 }
@@ -41,7 +50,7 @@
 
 #let ctx(..elements) = {
   h(0.3em)
-  let context = h(0.3em)
+  let context = $space$
 
   if elements.pos().len() > 0 {
     context = elements.pos().join[,]
@@ -92,3 +101,44 @@
 #let FId = $"F-"Id)$
 #let IId = $"I-"Id)$
 #let EId = $"E-"Id)$
+
+// Extra
+#let fa(..elements) = {
+  elements
+    .pos()
+    .map(e => [$forall_(#e)$])
+    .join[$space$]
+
+  $space$
+}
+#let ex(..elements) = {
+  elements
+    .pos()
+    .map(e => [$exists_(#e)$])
+    .join[$space$]
+
+  $space$
+}
+#let to = $space -> space$
+#let amp = $space "&" space$
+#let tr = $italic("true")$
+#let prod(arg) = $Pi_(#arg) space$
+#let sum(arg) = $Sigma_(#arg) space$
+#let Idp = $Id_upright(sans(p))$
+#let ElIdp = $ElId_sans(upright(p))$
+#let EIdp = $"E-"Idp)$
+
+#let x1 = $x_1$
+#let x2 = $x_2$
+#let y1 = $y_1$
+#let y2 = $y_2$
+
+#let Fprod = $"F-"Pi)$
+#let Iprod = $"I-"Pi)$
+#let Eprod = $"E-"Pi)$
+#let Fsum = $"F-"Sigma)$
+#let Isum = $"I-"Sigma)$
+#let Esum = $"E-"Sigma)$
+#let Elsum = $El_Sigma$
+
+#let q = $bold(upright(q))$
