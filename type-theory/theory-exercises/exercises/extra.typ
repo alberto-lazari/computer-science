@@ -165,8 +165,9 @@ $lambda z1. lambda x1. lambda x2. angle.l pf1, pf2 angle.r in prod(z1 in phi^I) 
 
 #let q1 = $a$
 #let q2 = $id(a)$
-#let q3 = $#q _3$
-#let qtot = $angle.l angle.l q1, q2 angle.r, lambda w. q3 angle.r$
+#let el = $#q _3$
+#let q3 = $Elsum(w, (x, y). el)$
+#let qtot = $angle.l alpha, lambda w. q3 angle.r$
 
 First, I transform the universal quantifier into a dependent product, in order to be able to derive it in type theory. The original judgment so becomes
 $ sum(z in sum(x in A) Idp(A, a, x)) prod(w in sum(x in A) Idp(A, a, x)) Idp(sum(x in A) Idp(A, a, x), z, w) $
@@ -178,6 +179,7 @@ Assuming:
   + $a in A ctx()$
 ]
 
+- Let $alpha = angle.l a, id(a) angle.r$
 - Let $#q = qtot$
 - Let $phi = sum(x in A) Idp(A, a, x)$
 - Let $psi(z) = Idp(sum(x in A) Idp(A, a, x), z, w)$
@@ -187,9 +189,9 @@ Assuming:
 #align(center, box[
   #set text(9pt)
   #prooftree(
-      axiom(label: $pi_1$, $angle.l q1, q2 angle.r in phi ctx()$),
-        axiom(label: $pi_2$, $q3 in psi(angle.l a, id(a) angle.r) ctx(w in phi)$),
-      rule(label: Iprod, $lambda w. q3 in prod(w in phi) psi(angle.l a, id(a) angle.r) ctx()$),
+      axiom(label: $pi_1$, $alpha in phi ctx()$),
+        axiom(label: $pi_2$, $q3 in psi(alpha) ctx(w in phi)$),
+      rule(label: Iprod, $lambda w. q3 in prod(w in phi) psi(alpha) ctx()$),
         axiom(label: $pi_3$, $psi(z) type ctx(z in phi, w in phi)$),
       rule(label: Fprod, $prod(w in phi) psi(z) type ctx(z in phi)$),
     rule(n: 3, label: Isum, judgment)
@@ -199,7 +201,8 @@ Assuming:
 Where:
 #pi-enum[
 #{ judgment = $angle.l q1, q2 angle.r in sum(x in A) Idp(A, a, x) ctx()$ }
-+ $angle.l q1, q2 angle.r in phi ctx()$ derivable, because:
++ $alpha in phi ctx()$ derivable, because:
+  - $alpha = angle.l a, id(a) angle.r$
   - $phi = sum(x in A) Idp(A, a, x)$
   - #judgment derivable:
   #let var-cont(var) = (
@@ -224,16 +227,21 @@ Where:
     )
   ])
 
-#{ judgment = $q3 in Idp(phi, angle.l a, id(a) angle.r, w) ctx(w in phi)$ }
-+ $q3 in psi(angle.l a, id(a) angle.r) ctx(w in phi)$ derivable, because:
+#{ judgment = $q3 in Idp(phi, alpha, w) ctx(w in phi)$ }
++ $q3 in psi(alpha) ctx(w in phi)$ derivable, because:
   - Let $phi = sum(x in A) Idp(A, a, x)$
-  - $psi(angle.l a, id(a) angle.r) = Idp(sum(x in A) Idp(A, a, x), angle.l a, id(a) angle.r, w)$
+  - $psi(alpha) = Idp(sum(x in A) Idp(A, a, x), alpha, w)$
   - #judgment derivable:
   #align(center, box[
-    // #set text(9pt)
+    #set text(8pt)
     #prooftree(
-        axiom($...$),
-      rule(judgment)
+        axiom(label: $pi_3$, $Idp(phi, z, w) type ctx(w in phi, z in phi)$),
+            axiom(label: $pi_(3.1)$, $phi type ctx()$),
+          rule(label: Fc, $w in phi cont ctx()$),
+        rule(label: var, $w in phi ctx(w in phi)$),
+          axiom($...$),
+        rule($el in Idp(phi, alpha, angle.l x, y angle.r) ctx(w in phi, x in A, y in Idp(A, a, x))$),
+      rule(n: 3, label: Esum, judgment)
     )
   ])
 
@@ -262,20 +270,20 @@ Where:
   + $phi type ctx()$ derivable, because:
     - $phi = sum(x in A) Idp(A, a, x)$
     - #judgment derivable:
-  #align(center, box[
-    #set text(9pt)
-    #prooftree(
-          axiom(label: $a_1$, $A type ctx()$),
-          ..var-cont($x$),
-        rule(n: 2, label: "ind-ty)", $A type ctx(x in A)$),
-          ..var-cont($x$),
-        rule(label: var, $a in A ctx(x in A)$),
-          ..var-cont($x$),
-        rule(label: var, $x in A ctx(x in A)$),
-      rule(n: 3, label: FId, $Idp(A, a, x) type ctx(x in A)$),
-      rule(label: Fsum, judgment)
-    )
-  ])
+    #align(center, box[
+      #set text(9pt)
+      #prooftree(
+            axiom(label: $a_1$, $A type ctx()$),
+            ..var-cont($x$),
+          rule(n: 2, label: "ind-ty)", $A type ctx(x in A)$),
+            ..var-cont($x$),
+          rule(label: var, $a in A ctx(x in A)$),
+            ..var-cont($x$),
+          rule(label: var, $x in A ctx(x in A)$),
+        rule(n: 3, label: FId, $Idp(A, a, x) type ctx(x in A)$),
+        rule(label: Fsum, judgment)
+      )
+    ])
 
   #{ judgment = $z in phi, w in phi cont$ }
   + #judgment derivable:

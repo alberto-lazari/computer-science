@@ -139,5 +139,6 @@
 #let Fsum = $"F-"Sigma)$
 #let Isum = $"I-"Sigma)$
 #let Esum = $"E-"Sigma)$
+#let Elsum = $El_Sigma$
 
 #let q = $bold(upright(q))$
