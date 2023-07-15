@@ -310,6 +310,18 @@ Where:
         rule(n: 3, label: FIdp, judgment)
       )
     ])
+
+    #{ judgment = $w in phi, z in phi cont$ }
+    Where #judgment derivable:
+      #align(center, box[
+        #prooftree(
+            axiom(label: $pi_(3.1)$, $phi type ctx()$),
+              axiom(label: $pi_(3.1)$, $phi type ctx()$),
+            rule(label: Fc, $w in phi cont$),
+          rule(n: 2, label: "ind-ty)", $phi type ctx(w in phi)$),
+          rule(label: Fc, judgment)
+        )
+      ])
   ]
 
 #{ judgment = $Idp(phi, z, w) type ctx(z in phi, w in phi)$ }
