@@ -145,15 +145,15 @@ Where:
             axiom(label: $pi_(3.1)$, $phi type ctx()$),
           rule(label: Fc, $w in phi cont$),
         rule(label: var, $w in phi ctx(w in phi)$),
-        axiom(label: $pi_(2.1)$, $elsum2 in Idp(phi, alpha, angle.l x1, x2 angle.r) ctx(w in phi, x1 in A, x2 in Idp(A, a, x1))$),
+        axiom(label: $pi_(2.1)$, $ElIdp(x2, idp(alpha)) in Idp(phi, alpha, angle.l x1, x2 angle.r) ctx(w in phi, x1 in A, x2 in Idp(A, a, x1))$),
       rule(n: 3, label: Esum, judgment)
     )
   ])
 
   Where:
   #pi-enum[
-  #{ judgment = $elsum2 in Idp(phi, alpha, angle.l x1, x2 angle.r) ctx(Gamma)$ }
-  + $elsum2 in Idp(phi, alpha, angle.l x1, x2 angle.r) ctx(w in phi, x1 in A, x2 in Idp(A, a, x1))$ derivable, because:
+  #{ judgment = $ElIdp(x2, idp(alpha)) in Idp(phi, alpha, angle.l x1, x2 angle.r) ctx(Gamma)$ }
+  + $ElIdp(x2, idp(alpha)) in Idp(phi, alpha, angle.l x1, x2 angle.r) ctx(w in phi, x1 in A, x2 in Idp(A, a, x1))$ derivable, because:
     - Let $Gamma = w in phi, x1 in A, x2 in Idp(A, a, x1)$
     - #judgment derivable:
     #align(center, box[
