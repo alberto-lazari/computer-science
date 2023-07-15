@@ -11,7 +11,7 @@
 #let q1 = $a$
 #let q2 = $idp(a)$
 #let elid2 = $idp(alpha)$
-#let elsum2 = $ElIdp(x2, elid2)$
+#let elsum2 = $(x1, x2). ElIdp(x2, elid2)$
 #let q3 = $Elsum(w, elsum2)$
 #let qtot = $angle.l alpha, lambda w. q3 angle.r$
 
@@ -141,7 +141,7 @@ Where:
   #align(center, box[
     #set text(7pt)
     #prooftree(
-        axiom(label: $pi_3$, $Idp(phi, z, w) type ctx(w in phi, z in phi)$),
+        axiom(label: $pi_(2.5)$, $Idp(phi, alpha, z) type ctx(w in phi, z in phi)$),
             axiom(label: $pi_(3.1)$, $phi type ctx()$),
           rule(label: Fc, $w in phi cont$),
         rule(label: var, $w in phi ctx(w in phi)$),
@@ -293,6 +293,23 @@ Where:
           rule(label: Fc, judgment)
         )
       ])
+
+  #{ judgment = $Idp(phi, alpha, z) type ctx(w in phi, z in phi)$ }
+  + #judgment derivable:
+    #align(center, box[
+      #set text(7pt)
+      #prooftree(
+            axiom(label: $pi_(3.1)$, $phi type ctx()$),
+            axiom(label: $pi_(3.2)$, $w in phi, z in phi cont$),
+          rule(n: 2, label: "ind-ty)", $phi type ctx(w in phi, z in phi)$),
+            axiom(label: $pi_1$, $alpha in phi ctx()$),
+            axiom(label: $pi_(3.2)$, $w in phi, z in phi cont$),
+          rule(n: 2, label: "ind-ter)", $alpha in phi ctx(w in phi, z in phi)$),
+            axiom(label: $pi_(3.2)$, $w in phi, z in phi cont$),
+          rule(label: var, $z in phi ctx(w in phi, z in phi)$),
+        rule(n: 3, label: FIdp, judgment)
+      )
+    ])
   ]
 
 #{ judgment = $Idp(phi, z, w) type ctx(z in phi, w in phi)$ }
