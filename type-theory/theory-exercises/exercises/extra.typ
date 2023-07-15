@@ -9,14 +9,72 @@
 )
 
 #let q1 = $a$
-#let q2 = $id(a)$
-#let elid2 = $id(alpha)$
+#let q2 = $idp(a)$
+#let elid2 = $idp(alpha)$
 #let elsum2 = $ElIdp(x2, elid2)$
 #let q3 = $Elsum(w, elsum2)$
 #let qtot = $angle.l alpha, lambda w. q3 angle.r$
 
 First, I transform the universal quantifier into a dependent product, in order to be able to derive it in type theory. The original judgment so becomes
 $ sum(z in sum(x in A) Idp(A, a, x)) prod(w in sum(x in A) Idp(A, a, x)) Idp(sum(x in A) Idp(A, a, x), z, w) $
+
+I will assume the following rules, that are essential to use the *Propositional Equality with Path Induction*:
+
+#box[
+  #set text(8pt)
+  $#prooftree(
+      axiom($A type ctx(Gamma)$),
+      axiom($a in A ctx(Gamma)$),
+      axiom($b in A ctx(Gamma)$),
+    rule(n: 3, label: FIdp, $Idp(A, a, b) type ctx(Gamma)$)
+  )
+  #h(2em)
+  #prooftree(
+      axiom($a in A ctx(Gamma)$),
+    rule(label: IIdp, $idp(a) in Idp(A, a, a) ctx(Gamma)$)
+  )$
+  #v(1em)
+  #prooftree(
+      axiom($C(y, z) type ctx(Gamma, y in A, z in Idp(A, a, y))$),
+      axiom($a in A ctx(Gamma)$),
+      axiom($b in A ctx(Gamma)$),
+      axiom($p in Idp(A, a, b) ctx(Gamma)$),
+      axiom($c in C(a, idp(a)) ctx(Gamma)$),
+    rule(n: 5, label: EIdp, $ElIdp(p, c) in C(b, p) ctx(Gamma)$)
+  )
+]
+
+These are different than the ones written in page 34 of the course notes, in fact a subscript $upright(sans(p))$ was added to $FId$ and $IId$, in order to distinguish the ones related to Propositional Equality with Path Induction from the ones defined for Martin-Löf's Propositional Equality.
+The subscript was also added to the term $id(x)$, for the same reason ($id(x) in Id(A, x, x)$, but $id(x) in.not Idp(A, x, x)$).
+Another small change in $EIdp$ was that $z in Idp(A, a, y)$, not $z in Id(A, a, y)$.
+
+#box(stroke: 0.5pt, width: 100%, inset: 0.5em, [
+  === Propositional Equality with Path Induction
+  #set text(8pt)
+  #v(0.5em)
+  $#prooftree(
+      axiom($A type ctx(Gamma)$),
+      axiom($a in A ctx(Gamma)$),
+      axiom($b in A ctx(Gamma)$),
+    rule(n: 3, label: FId, $Idp(A, a, b) type ctx(Gamma)$)
+  )
+  #h(2em)
+  #prooftree(
+      axiom($a in A ctx(Gamma)$),
+    rule(label: IId, $id(a) in Idp(A, a, a) ctx(Gamma)$)
+  )$
+  #v(1em)
+  #prooftree(
+      axiom($C(y, z) type ctx(Gamma, y in A, z in Id(A, a, y))$),
+      axiom($a in A ctx(Gamma)$),
+      axiom($b in A ctx(Gamma)$),
+      axiom($p in Idp(A, a, b) ctx(Gamma)$),
+      axiom($c in C(a, id(a)) ctx(Gamma)$),
+    rule(n: 5, label: EIdp, $ElIdp(p, c) in C(b, p) ctx(Gamma)$)
+  )
+
+  #align(center, [Page 34 of the course notes])
+])
 
 == Solution
 Assuming:
@@ -26,7 +84,7 @@ Assuming:
 ]
 
 #let phi = $phi.alt$
-- Let $alpha = angle.l a, id(a) angle.r$
+- Let $alpha = angle.l a, idp(a) angle.r$
 - Let $#q = qtot$
 - Let $phi = sum(x in A) Idp(A, a, x)$
 - Let $psi(z, w) = Idp(phi, z, w)$
@@ -54,7 +112,7 @@ Where:
 #pi-enum[
 #{ judgment = $angle.l q1, q2 angle.r in sum(x in A) Idp(A, a, x) ctx()$ }
 + $alpha in phi ctx()$ derivable, because:
-  - $alpha = angle.l a, id(a) angle.r$
+  - $alpha = angle.l a, idp(a) angle.r$
   - $phi = sum(x in A) Idp(A, a, x)$
   - #judgment derivable:
   #align(center, box[
@@ -62,7 +120,7 @@ Where:
     #prooftree(
           axiom(label: $a_2$, $q1 in A ctx()$),
             axiom(label: $a_2$, $a in A ctx()$),
-          rule(label: IId, $q2 in Idp(A, a, a) ctx()$),
+          rule(label: FIdp, $q2 in Idp(A, a, a) ctx()$),
               axiom(label: $a_1$, $A type ctx()$),
               ..var-cont($x$),
             rule(n: 2, label: "ind-ty)", $A type ctx(x in A)$),
@@ -71,7 +129,7 @@ Where:
             rule(n: 2, label: "ind-ter)", $a in A ctx(x in A)$),
               ..var-cont($x$),
             rule(label: var, $x in A ctx(x in A)$),
-          rule(n: 3, label: FId, $Idp(A, a, x) type ctx(x in A)$),
+          rule(n: 3, label: FIdp, $Idp(A, a, x) type ctx(x in A)$),
         rule(n: 3, label: Isum, judgment)
     )
   ])
@@ -111,7 +169,7 @@ Where:
               axiom(label: $pi_1$, $alpha in phi ctx()$),
               axiom(label: $pi_(2.3)$, $Gamma cont$),
             rule(n: 2, label: "ind-te)", $alpha in phi ctx(Gamma)$),
-          rule(label: IId, $elid2 in Idp(phi, alpha, alpha) ctx(Gamma)$),
+          rule(label: FIdp, $elid2 in Idp(phi, alpha, alpha) ctx(Gamma)$),
         rule(n: 5, label: EIdp, judgment)
       )
     ])
@@ -130,7 +188,7 @@ Where:
             axiom(label: $pi_(2.2.1)$, $Sigma cont$),
           rule(n: 2, label: "ind-ter)", $alpha in phi ctx(Sigma)$),
           axiom(label: $pi_(2.2.2)$, $angle.l y, z angle.r in phi ctx(Sigma)$),
-        rule(n: 3, label: FId, judgment)
+        rule(n: 3, label: FIdp, judgment)
       )
     ])
 
@@ -157,7 +215,7 @@ Where:
               rule(n: 2, label: "ind-ter)", $a in A ctx(Gamma, y in A)$),
                 ..gamma-ya-cont,
               rule(label: var, $y in A ctx(Gamma, y in A)$),
-            rule(n: 3, label: FId, $Idp(A, a, y) type ctx(Gamma, y in A)$),
+            rule(n: 3, label: FIdp, $Idp(A, a, y) type ctx(Gamma, y in A)$),
             rule(label: Fc, judgment)
           )
         ])
@@ -196,7 +254,7 @@ Where:
             rule(n: 2, label: "ind-ter)", $a in A ctx(Sigma, x in A)$),
               ..sigma-xa-cont,
             rule(label: var, $x in A ctx(Sigma, x in A)$),
-          rule(n: 3, label: FId, judgment)
+          rule(n: 3, label: FIdp, judgment)
         )
       ])
     ]
@@ -217,7 +275,7 @@ Where:
             rule(n: 2, label: "ind-ter)", $a in A ctx(Delta)$),
               axiom(label: $pi_(2.4)$, $Delta cont$),
             rule(label: var, $x1 in A ctx(Delta)$),
-          rule(n: 3, label: FId, $Idp(A, a, x1) type ctx(Delta)$),
+          rule(n: 3, label: FIdp, $Idp(A, a, x1) type ctx(Delta)$),
           rule(label: Fc, judgment)
         )
       ])
@@ -251,7 +309,7 @@ Where:
         rule(label: var, $z in phi ctx(z in phi, w in phi)$),
           axiom(label: $pi_(3.2)$, $z in phi, w in phi cont$),
         rule(label: var, $w in phi ctx(z in phi, w in phi)$),
-      rule(n: 3, label: FId, judgment)
+      rule(n: 3, label: FIdp, judgment)
     )
   ])
 
@@ -272,7 +330,7 @@ Where:
           rule(n: 2, label: "ind-ter)", $a in A ctx(x in A)$),
             ..var-cont($x$),
           rule(label: var, $x in A ctx(x in A)$),
-        rule(n: 3, label: FId, $Idp(A, a, x) type ctx(x in A)$),
+        rule(n: 3, label: FIdp, $Idp(A, a, x) type ctx(x in A)$),
         rule(label: Fsum, judgment)
       )
     ])
