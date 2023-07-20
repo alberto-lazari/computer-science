@@ -20,3 +20,6 @@
 [submodule "type-theory/theory-exercises/typst-prooftree"]
 	path = type-theory/theory-exercises/typst-prooftree
 	url = https://github.com/SkiFire13/typst-prooftree/
+[submodule "lcd/exam-exercises"]
+	path = lcd/exam-exercises
+	url = git@github.com:albertolazari/lcd-exercises.git
