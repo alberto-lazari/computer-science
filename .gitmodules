@@ -23,6 +23,3 @@
 [submodule "lcd/exam-exercises"]
 	path = lcd/exam-exercises
 	url = git@github.com:albertolazari/lcd-exercises.git
-[submodule "advanced-topics-pl/exercises"]
-	path = advanced-topics-pl/exercises
-	url = git@github.com:albertolazari/atpl-exercises.git
