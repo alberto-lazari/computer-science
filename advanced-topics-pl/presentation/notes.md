@@ -1,6 +1,9 @@
 # Typst
 As a programming language
 
+## Source
+Master thesis: https://www.user.tu-berlin.de/laurmaedje/programmable-markup-language-for-typesetting.pdf
+
 ## How does it improve the LaTeX experience?
 Technical analysis on how it is implemented. Try to be objective
 
