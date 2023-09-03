@@ -16,6 +16,16 @@ Three modes are available to interpret typst code:
 
 By default a typst file is interpreted in markup mode, hence the need to prepend a `#` for code
 
+## Markup
+Basically just syntactic sugar for functions..
+
+Examples:
+- `# Heading` -> `#heading("Heading", level: 1)`
+- `*bold text*` -> `#strong[bold text]` ??
+
+## Math
+<!-- TODO Is math also just a syntactic sugar? Or can it be expressed only with pure functions? -->
+
 # Functions
 <!-- https://typst.app/docs/reference/types/function/ -->
 They are pure and cannot change the state outside of them (except builtin types)
@@ -45,3 +55,6 @@ Either:
 - Named  `fun(len: 1em, width: 2px)`
 
 Argument sinks are available to allow any argument. An array or dictionary can be spread with `..array` to cast it to the `arguments` type
+
+# Compilation
+It seems that the evaluation is lazy: if a variable or function is never called it never gets evaluated and don't throw errors (unless it's syntax related?)
