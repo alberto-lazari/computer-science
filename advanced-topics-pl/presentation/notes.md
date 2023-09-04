@@ -61,3 +61,6 @@ Argument sinks are available to allow any argument. An array or dictionary can b
 
 # Compilation
 It seems that the evaluation is lazy: if a variable or function is never called it never gets evaluated and don't throw errors (unless it's syntax related?)
+
+# Clearly defined syntax
+Very interesting piece (p. 64 of the paper). LaTeX does not have a defined syntax for everything (ex. math mode: `$math\)`)
