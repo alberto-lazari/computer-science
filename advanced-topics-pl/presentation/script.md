@@ -16,9 +16,12 @@ Actually, everything's a function and modes are just a syntactic sugar for (pure
 - Blocks (default markup)
 
 # Code
-- Joining
+- Type system
+- Functions
+    - Layers of the language: computational (only see this), presentational, structural
+    - Value types (no reference types): reference counting in the implementation, to avoid unnecessary copies
 - Methods
-- Type conversions
+- Joining
 
 ## Set/show rules?
 
@@ -29,3 +32,7 @@ Actually, everything's a function and modes are just a syntactic sugar for (pure
 
 # New vs old
 Comparisons between the Typst way and LaTeX, highlighting the rigidity of macros and simplicity of a complete syntax
+
+- Syntax: consistency and syntactic sugars
+- Diagnostic
+- Automatability and computational foundations
