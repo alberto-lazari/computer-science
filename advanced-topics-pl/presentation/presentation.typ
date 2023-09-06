@@ -27,11 +27,11 @@
 ]
 
 // Custom wake up
-#let wake-up = content => [
-    #set align(center)
-    #set text(weight: "bold")
-    #slide(theme-variant: "wake up")[#content]
-]
+#let wake-up = content => {
+    set align(center)
+    set text(weight: "bold")
+    slide(theme-variant: "wake up")[#content]
+}
 
 #set text(font: "Arial")
 
