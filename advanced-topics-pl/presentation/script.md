@@ -1,6 +1,6 @@
 # Markup languages current state
 - TeX and LaTeX as main typesetting environment of the last 40+ years
-- Markdown as an easy an (too) simple alternative. Mainly intuitive and lightweight syntax (also not GBs of installation)
+- Markdown as an easy and (too) simple alternative. Mainly intuitive and lightweight syntax (also not GBs of installation)
 - Typst as a typesetting language at its core, but also a simple markup language on the surface
 
 ## Typst syntax modes
