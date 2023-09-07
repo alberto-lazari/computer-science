@@ -25,7 +25,7 @@
       ],
       caption: "Markup mode"
     ),
-    example(
+    uncover((2, 3))[#example(
       [
         ```typst
         If $n in NN$, then:
@@ -33,8 +33,8 @@
         ```
       ],
       caption: "Math mode"
-    ),
-    example(
+    )],
+    uncover(3)[#example(
       [
         ```typst
         #{
@@ -44,6 +44,6 @@
         ```
       ],
       caption: "Code mode"
-    )
+    )]
   )
 ]
