@@ -16,3 +16,8 @@
   set text(weight: "bold")
   slide(theme-variant: "wake up")[#content]
 }
+
+#let latex = text(
+  font: "New Computer Modern",
+  upper[l#h(-.35em)#super(baseline: -.25em, size: 0.74em, "a")#h(-.15em)t#h(-.13em)#sub(size: 1em, baseline: .23em, "e")#h(-.12em)x]
+)

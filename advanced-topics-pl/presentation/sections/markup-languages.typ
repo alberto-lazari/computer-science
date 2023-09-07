@@ -1,7 +1,7 @@
 #import "/common.typ": *
 
 #new-section("Markup languages")
-#slide(title: "LaTeX")[
+#slide(title: latex)[
   // Start with empty slide
   // on the second sub-slide start the list
   #show: pause(2)
