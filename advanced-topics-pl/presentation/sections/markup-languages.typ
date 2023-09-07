@@ -1,6 +1,7 @@
 #import "/common.typ": *
 
 #new-section("Markup languages")
+
 #slide(title: "Procedural markup")[
   #line-by-line(start: 2, mode: "transparent")[
     - Basic built-in commands for simple actions
@@ -83,6 +84,7 @@
         - Set of useful #tex macros
         - _Describe content_ vs. _describe output_
         - Document class for the style
+        - Tedious debugging
       ]
     ],
     [

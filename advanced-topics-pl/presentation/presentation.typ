@@ -3,9 +3,9 @@
 #show: slides.with(
   authors:        [Alberto Lazari -- 2089120],
   short-authors:  "Alberto Lazari",
-  title:          "Typst language",
+  title:          "The Typst language",
   subtitle:       "Advanced Topics in Programming languages presentation",
-  short-title:    [#v(.5em) Typst],
+  short-title:    [#v(.5em) The Typst language],
   date:           "September 14, 2023",
   theme: bristol-theme(
     color:      unipd-red,
@@ -39,3 +39,4 @@
 #slide(theme-variant: "title slide")
 
 #include("sections/markup-languages.typ")
+#include("sections/typst.typ")
