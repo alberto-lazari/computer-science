@@ -43,10 +43,14 @@
   upper[l#h(-.35em)#super(baseline: -.25em, size: 0.74em, "a")#h(-.15em)#tex]
 )
 
-#let example(content, caption: none) = figure[
+#let example(content, caption: none, size: 1em) = figure[
+  #set text(size: size)
   = #caption
   #grid(
-    block(width: 100%, inset: .5em, stroke: 1pt, fill: luma(220), radius: (top-left: 10pt, top-right: 10pt), { show block: it => it.body; content }),
+    block(width: 100%, inset: .5em, stroke: 1pt, fill: luma(220), radius: (top-left: 10pt, top-right: 10pt), {
+      show block: it => it.body
+      content
+    }),
     block(width: 100%, inset: .5em, stroke: 1pt, radius: (bottom-left: 10pt, bottom-right: 10pt), {
       set align(left)
       show block: it => it.body
