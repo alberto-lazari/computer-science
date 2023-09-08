@@ -7,7 +7,7 @@
   #show: pause(2)
   - Syntactic sugar for function calls
   #grid(
-    columns: (1fr, 1fr),
+    columns: (1fr, auto, 1fr),
     gutter: 3em,
     example([
         ```typst
@@ -19,6 +19,7 @@
       ],
       size: .85em
     ),
+    [#v(2.5em) $<==>$],
     example([
         ```typst
         #{

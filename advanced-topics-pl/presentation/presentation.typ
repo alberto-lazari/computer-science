@@ -41,3 +41,4 @@
 #include("sections/markup-languages.typ")
 #include("sections/typst.typ")
 #include("sections/markup-mode.typ")
+#include("sections/code-mode.typ")
