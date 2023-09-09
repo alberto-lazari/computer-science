@@ -85,6 +85,7 @@
 ]
 
 #slide(title: [Functions -- recursive let binding])[
+  #let example = example.with(size: .8em)
   #align(center, grid(
     columns: (1fr, 1fr),
     gutter: 1.5em,
@@ -123,14 +124,17 @@
         #example[
           ```typst
           #{
-            let map = rec => f => (..items) => {
-              let list = items.pos()
-              if list.len() == 0 { return list }
+            let map = {
+              let rec = Ω => f => (..items) => {
+                let list = items.pos()
+                if list.len() == 0 { return list }
 
-              let (x, ..rest) = list
-              ( f(x), ..rec(rec)(f)(..rest) )
+                let (x, ..rest) = list
+                ( f(x), ..Ω(Ω)(f)(..rest) )
+              }
+              rec(rec)
             }
-            map(map)(x => x + 1)(0, 1, 2)
+            map(x => x + 1)(0, 1, 2)
           }
           ```
         ]
