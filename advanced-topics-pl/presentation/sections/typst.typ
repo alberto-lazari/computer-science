@@ -15,35 +15,32 @@
   #grid(
     columns: (1fr, 1fr, 1fr),
     gutter: 1.5em,
-    example(
-      [
-        ```typst
-        = Example
+    example(caption: "Markup mode")[
+      ```typst
+      = Example
 
-        Some _text_ in *markup*
-        ```
-      ],
-      caption: "Markup mode"
-    ),
-    uncover((2, 3))[#example(
-      [
+      Some _text_ in *markup*
+      ```
+    ],
+    {
+      show: pause(2)
+      example(caption: "Math mode")[
         ```typst
         If $n in NN$, then:
         $ sum_(i = 0)^n k x_i $
         ```
-      ],
-      caption: "Math mode"
-    )],
-    uncover(3)[#example(
-      [
+      ]
+    },
+    {
+      show: pause(3)
+      example(caption: "Code mode")[
         ```typst
         #{
           let f = x => y => x + y
           f(1)(2)
         }
         ```
-      ],
-      caption: "Code mode"
-    )]
+      ]
+    },
   )
 ]

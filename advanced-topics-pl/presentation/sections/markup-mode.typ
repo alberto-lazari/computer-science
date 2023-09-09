@@ -9,28 +9,24 @@
   #grid(
     columns: (1fr, auto, 1fr),
     gutter: 3em,
-    example([
-        ```typst
-        = Title
+    example(size: .85em)[
+      ```typst
+      = Title
 
-        *List* with:
-        - _item_
-        ```
-      ],
-      size: .85em
-    ),
+      *List* with:
+      - _item_
+      ```
+    ],
     [#v(2.5em) $<==>$],
-    example([
-        ```typst
-        #{
-          heading("Title"); parbreak()
-          text(strong("List") + " with:")
-          list(emph("item"))
-        }
-        ```
-      ],
-      size: .85em
-    )
+    example(size: .85em)[
+      ```typst
+      #{
+        heading("Title"); parbreak()
+        text(strong("List") + " with:")
+        list(emph("item"))
+      }
+      ```
+    ],
   )
 ]
 

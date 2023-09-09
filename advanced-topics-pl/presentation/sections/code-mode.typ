@@ -18,3 +18,6 @@
     - styling (`length`, `angle`, `color`, ...)
   ]
 ]
+
+#slide(title: "Functions")[
+]
