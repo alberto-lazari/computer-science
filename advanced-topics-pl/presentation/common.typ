@@ -43,7 +43,7 @@
   upper[l#h(-.35em)#super(baseline: -.25em, size: 0.74em, "a")#h(-.15em)#tex]
 )
 
-#let example(content, caption: none, size: 1em) = figure[
+#let example(content, caption: none, size: 1em, error: none) = figure[
   #set text(size: size)
   = #caption
   #grid(
@@ -55,7 +55,11 @@
       set align(left)
       show block: it => it.body
       show raw: it => it.text
-      eval(mode: "markup", content.children.at(1).text)
+      if error != none {
+        raw("error: " + error)
+      } else {
+        eval(mode: "markup", content.children.at(1).text)
+      }
     }),
   )
 ]
