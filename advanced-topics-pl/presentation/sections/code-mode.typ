@@ -103,8 +103,8 @@
       ```
     ],
     {
-      only(1)[
-        #example(error: "unknown variable: rec")[
+      only(2)[
+        #example(error: "unknown variable: map")[
           ```typst
           #{
             let map = f => (..items) => {
@@ -112,14 +112,14 @@
               if list.len() == 0 { return list }
 
               let (x, ..rest) = list
-              ( f(x), ..rec(f)(..rest) )
+              ( f(x), ..map(f)(..rest) )
             }
             map(x => x + 1)(0, 1, 2)
           }
           ```
         ]
       ]
-      only(2)[
+      only(3)[
         #example[
           ```typst
           #{
