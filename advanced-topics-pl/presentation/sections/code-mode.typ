@@ -125,14 +125,14 @@
           ```typst
           #{
             let map = {
-              let rec = Ω => f => (..items) => {
+              let Ω = rec => f => (..items) => {
                 let list = items.pos()
                 if list.len() == 0 { return list }
 
                 let (x, ..rest) = list
-                ( f(x), ..Ω(Ω)(f)(..rest) )
+                ( f(x), ..rec(rec)(f)(..rest) )
               }
-              rec(rec)
+              Ω(Ω)
             }
             map(x => x + 1)(0, 1, 2)
           }
