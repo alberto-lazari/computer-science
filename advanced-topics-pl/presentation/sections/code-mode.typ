@@ -243,3 +243,18 @@
     ]
   )
 ]
+
+#slide(title: "Partial application")[
+  #let example = example.with(size: .8em)
+  #example[
+    ```typst
+    #{
+      let mysum(exp, index: $i$, limit: $n$) = $sum_(index = 0)^limit exp$
+      mysum = mysum.with(limit: $infinity$)
+      $ #mysum($x_i$) $
+      let mysum = mysum.with(limit: $4$, index: $x$)
+      $ #mysum($x$) = 0 + 1 + ... + 4 = 10 $
+    }
+    ```
+  ]
+]
