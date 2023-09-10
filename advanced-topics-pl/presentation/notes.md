@@ -11,7 +11,6 @@ Technical analysis on how it is implemented. Try to be objective
 Describe the runtime of the language or try to present implementation details, such as how dynamic typing is managed
 
 # Modes
-<!-- https://typst.app/docs/reference/foundations/eval/ -->
 Three modes are available to interpret typst code:
 - Code `{ code }`
 - Markup `[ content ]`
@@ -26,11 +25,7 @@ Examples:
 - `# Heading` -> `#heading("Heading", level: 1)`
 - `*bold text*` -> `#strong[bold text]` ??
 
-## Math
-<!-- TODO Is math also just a syntactic sugar? Or can it be expressed only with pure functions? -->
-
 # Functions
-<!-- https://typst.app/docs/reference/types/function/ -->
 They are pure and cannot change the state outside of them (except builtin types)
 
 Ex:
@@ -64,7 +59,6 @@ It seems that the evaluation is lazy: if a variable or function is never called 
 
 # Clearly defined syntax
 Very interesting piece (p. 64 of the paper). LaTeX does not have a defined syntax for everything (ex. math mode: `$math\)`)
-
 
 # Fun fact
 Typst can be used in a simil-interactive mode with

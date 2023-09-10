@@ -1,9 +1,14 @@
-# Markup languages current state
-- TeX and LaTeX as main typesetting environment of the last 40+ years
-- Markdown as an easy and (too) simple alternative. Mainly intuitive and lightweight syntax (also not GBs of installation)
-- Typst as a typesetting language at its core, but also a simple markup language on the surface
+# Markup
+## Procedural markup
+- Troff?
+- TeX
 
-## Typst syntax modes
+## Descriptive
+- LaTeX: TeX but structure
+- Markdown
+
+# Typst
+## Syntax modes
 - Markup
 - Math
 - Code
@@ -13,17 +18,21 @@ But wasn't the presentation about programming languages?
 Actually, everything's a function and modes are just a syntactic sugar for (pure) function calls
 
 - Content type
-- Blocks (default markup)
+- Joining
 
 # Code
 - Type system
-- Functions
-    - Layers of the language: computational (only see this), presentational, structural
-    - Value types (no reference types): reference counting in the implementation, to avoid unnecessary copies
-- Methods
-- Joining
+- Value types (no reference types): reference counting in the implementation, to avoid unnecessary copies
 
-## Set/show rules?
+## Functions
+- Closures
+- Pure
+- First class values
+- Recursion
+
+### Parameters
+- Named vs LaTeX
+- Partial application
 
 # Compiler
 - Dynamic typing
