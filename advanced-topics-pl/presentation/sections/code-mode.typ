@@ -153,9 +153,9 @@
 ]
 
 #slide(title: "Named parameters")[
-  #set text(size: .75em)
+  #set text(size: .7em)
   #grid(
-    columns: (1fr, 1fr),
+    columns: (3fr, 4fr),
     [
       = Typst
       ```typst
@@ -166,17 +166,82 @@
       #text("text")
       ```
     ],
-    [
+    uncover(2)[
       = #latex
       ```latex
+      \inputminted[lineos, bgcolor=gray]{rust}{ex.rs}
+      % Order-independent
+      \inputminted[bgcolor=gray, lineos]{rust}{ex.rs}
+      % Optional
+      \inputminted{rust}{ex.rs}
+      ```
+    ]
+  )
+]
+
+#slide(title: [#latex -- optional parameters])[
+  #set text(size: .7em)
+  #grid(
+    columns: (2fr, 1fr, 2fr),
+    gutter: 1em,
+    [
+      #v(1.5em)
+      ```latex
+      \newcommand{\mysum}[2][n]{
+        \sum_{i = 0}^#1 #2
+      }
+      $$
+        \mysum{x_i}
+        \mysum[\infty]{x_i}
+      $$
+      ```
+    ],
+    { v(5em); align(center, $==>$) },
+    example[
+      ```typst
+      #let mysum(exp, limit: $n$) = {
+        $sum_(i = 0)^limit exp$
+      }
+      $
+        #mysum($x_i$)
+        #mysum($x_i$, limit: $infinity$)
+      $
+      ```
+    ]
+  )
+]
+
+#slide(title: [#latex -- multiple optional parameters])[
+  #set text(size: .6em)
+  #grid(
+    columns: (3fr, 1fr, 5fr),
+    gutter: 1em,
+    [
+      #v(2em)
+      ```latex
+      \newcommand{\mysum}[3][i][n]{
+        % Missing { inserted.
+        \sum_{#1 = 0}^#2 #3
+      }
+      $$
+        \mysum{x_i}
+        \mysum[j][\infty]{x_j}
+      $$
+      ```
+    ],
+    { v(6em); align(center, $==>$) },
+    example[
+      ```typst
+      #let mysum(exp, index: $i$, limit: $n$) = {
+        $sum_(index = 0)^limit exp$
+      }
+      $
+        #mysum($x_i$)
+        #mysum($x_j$, index: $j$, limit: $infinity$)
+      $
       ```
     ]
   )
 ]
 
 #slide(title: "Performance")
-
-#slide(title: "Joining")[
-  + Everything is a function call
-  + Functions are expressions
-]

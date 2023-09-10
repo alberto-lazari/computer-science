@@ -49,3 +49,8 @@
     ]
   )
 ]
+
+#slide(title: "Joining")[
+  + Everything is a function call
+  + Functions are expressions
+]
