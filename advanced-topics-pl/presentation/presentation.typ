@@ -18,6 +18,10 @@
 
 #set text(font: "Arial")
 
+#show raw: it => {
+  set text(font: "Menlo")
+  it
+}
 // Add background to monospace text
 #show raw.where(block: false): box.with(
   fill: luma(220),
