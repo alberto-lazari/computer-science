@@ -12,6 +12,12 @@
 ]
 
 #slide(title: "Syntax modes")[
+  - Markup: `[ content ]`
+  - Math: `$ math $`
+  - Code: `{ code }`
+]
+
+#slide(title: "Syntax modes")[
   #grid(
     columns: (1fr, 1fr, 1fr),
     gutter: 1.5em,

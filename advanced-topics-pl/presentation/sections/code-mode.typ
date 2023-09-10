@@ -219,8 +219,8 @@
     [
       #v(2em)
       ```latex
+      % Missing { inserted.
       \newcommand{\mysum}[3][i][n]{
-        % Missing { inserted.
         \sum_{#1 = 0}^#2 #3
       }
       $$
@@ -243,5 +243,3 @@
     ]
   )
 ]
-
-#slide(title: "Performance")
