@@ -2,14 +2,14 @@
 
 #new-section("Markup mode")
 
-#slide(title: "Markup mode")[
+#slide[
   - Default syntax mode
   #show: pause(2)
   - Syntactic sugar for function calls
   #grid(
     columns: (1fr, auto, 1fr),
     gutter: 3em,
-    example(size: .85em)[
+    example[
       ```typst
       = Title
 
@@ -17,8 +17,8 @@
       - _item_
       ```
     ],
-    [#v(2.5em) $<==>$],
-    example(size: .85em)[
+    [#v(3.5em) $<==>$],
+    example[
       ```typst
       #{
         heading("Title"); parbreak()
