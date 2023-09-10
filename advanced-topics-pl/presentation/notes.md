@@ -64,3 +64,11 @@ It seems that the evaluation is lazy: if a variable or function is never called 
 
 # Clearly defined syntax
 Very interesting piece (p. 64 of the paper). LaTeX does not have a defined syntax for everything (ex. math mode: `$math\)`)
+
+
+# Fun fact
+Typst can be used in a simil-interactive mode with
+```bash
+cat << '#quit()' | typst compile /dev/stdin /dev/stdout | pdftotext - -
+```
+Use `#quit()` to trigger the compilation
