@@ -125,14 +125,14 @@
           ```typst
           #{
             let map = {
-              let Ω = rec => f => (..items) => {
+              let rec = map => f => (..items) => {
                 let list = items.pos()
                 if list.len() == 0 { return list }
 
                 let (x, ..rest) = list
-                ( f(x), ..rec(rec)(f)(..rest) )
+                ( f(x), ..map(map)(f)(..rest) )
               }
-              Ω(Ω)
+              rec(rec)
             }
             map(x => x + 1)(0, 1, 2)
           }
@@ -143,6 +143,40 @@
   ))
 ]
 
+#slide(title: "Parameters")[
+  #line-by-line[
+    - Positional: ```typst #f(x, y)```
+    - Currying (not idiomatic): ```typst #g(x)(y)```
+    - Variadic: ```typst #let h(..args) = { ... }```
+    - Named: ```typst #text("hello", color: red)```
+  ]
+]
+
+#slide(title: "Named parameters")[
+  #set text(size: .75em)
+  #grid(
+    columns: (1fr, 1fr),
+    [
+      = Typst
+      ```typst
+      #text(color: red, "text")
+      // Order-independent
+      #text("text", color: red)
+      // Optional
+      #text("text")
+      ```
+    ],
+    [
+      = #latex
+      ```latex
+      ```
+    ]
+  )
+]
+
 #slide(title: "Performance")
 
-#slide(title: "Parameters")
+#slide(title: "Joining")[
+  + Everything is a function call
+  + Functions are expressions
+]
