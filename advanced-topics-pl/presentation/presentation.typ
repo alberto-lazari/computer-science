@@ -18,9 +18,9 @@
 
 #set text(font: "Arial")
 
-#show raw: it => {
+#show raw: itself => {
   set text(font: "Menlo")
-  it
+  itself
 }
 // Add background to monospace text
 #show raw.where(block: false): box.with(
@@ -40,6 +40,10 @@
   itself
 }
 
+// Properly display case-insensitive matches
+#show regex("(?i)\btex\b"): tex
+#show regex("(?i)\blatex\b"): latex
+
 #slide(theme-variant: "title slide")
 
 #include("sections/markup-languages.typ")
@@ -47,3 +51,4 @@
 #include("sections/markup-mode.typ")
 #include("sections/code-mode.typ")
 #include("sections/compiler.typ")
+#include("sections/improvements.typ")
