@@ -52,3 +52,13 @@
 #include("sections/code-mode.typ")
 #include("sections/compiler.typ")
 #include("sections/improvements.typ")
+
+#slide(title: "Sources")[
+  - *Laurenz Mädje (typst co-creator) Master's thesis*: \
+    #underline("https://www.user.tu-berlin.de/laurmaedje/programmable-markup-language-for-typesetting.pdf")
+  - *Typst official documentation*: #underline("https://typst.app/docs/")
+]
+
+#wake-up[
+  Thanks for the attention
+]

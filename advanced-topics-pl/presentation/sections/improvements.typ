@@ -17,4 +17,11 @@
 
 #slide(title: "Macros")[
   - Simpler and immediate #sym.arrow more intuitive
+  - No scoping #sym.arrow side effects and package conflicts
+]
+
+#slide(title: "Error reporting")[
+]
+
+#slide(title: "Computational foundations")[
 ]
