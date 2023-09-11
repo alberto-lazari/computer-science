@@ -35,9 +35,13 @@ Actually, everything's a function and modes are just a syntactic sugar for (pure
 - Partial application
 
 # Compiler
-- Dynamic typing
-- Modules
-- Multiple rounds of compilation (introspection)
+## Evaluation
+- Markup
+- Bindings
+
+## Modules
+- Immutable
+- Caching (introspection)
 
 # New vs old
 Comparisons between the Typst way and LaTeX, highlighting the rigidity of macros and simplicity of a complete syntax
