@@ -14,3 +14,7 @@
     - Typst has a well-defined syntax
   ]
 ]
+
+#slide(title: "Macros")[
+  - Simpler and immediate #sym.arrow more intuitive
+]

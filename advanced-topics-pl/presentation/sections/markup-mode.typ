@@ -56,7 +56,7 @@
   + Functions are expressions
 
   #show: pause(2)
-  $=>$ Final document needs to be a series of `content` values
+  #sym.arrow.double Final document needs to be a series of `content` values
 
   #show: pause(3)
   #grid(

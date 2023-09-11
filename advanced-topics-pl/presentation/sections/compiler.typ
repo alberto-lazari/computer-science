@@ -18,7 +18,7 @@
 ]
 
 #slide(title: "Evaluation")[
-  No syntax errors $=>$ evaluation can happen:
+  No syntax errors #sym.arrow.double evaluation can happen:
   #line-by-line(start: 2, mode: "transparent")[
     1. Joined content value
     2. Top level bindings
@@ -27,8 +27,8 @@
 
 #slide(title: [Evaluation -- markup])[
   #line-by-line(mode: "transparent")[
-    - Markup nodes $->$ `content`
-    - Code blocks evaluated to final value (joined) $->$ `content`
+    - Markup nodes #sym.arrow `content`
+    - Code blocks evaluated to final value (joined) #sym.arrow `content`
     - Everything joined in the process
   ]
 ]
@@ -98,8 +98,8 @@
 
 #slide(title: "Modules")[
   - Evaluation of a single source file: `(content, bindings)`
-  - ```typst #include "module.typ"``` $->$ content
-  - ```typst #import  "module.typ"``` $->$ bindings
+  - ```typst #include "module.typ"``` #sym.arrow content
+  - ```typst #import  "module.typ"``` #sym.arrow bindings
   #line-by-line(start: 2)[
     - Immutability
     - Caching

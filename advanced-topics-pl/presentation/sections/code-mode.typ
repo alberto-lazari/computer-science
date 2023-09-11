@@ -4,7 +4,7 @@
 
 #slide(title: "Type system")[
   - Dynamic typing
-  - Few implicit conversions (`string` $->$ `content`)
+  - Few implicit conversions (`string` #sym.arrow `content`)
   - No custom types
   - No subtyping
 ]
