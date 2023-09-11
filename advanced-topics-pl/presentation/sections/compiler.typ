@@ -97,4 +97,11 @@
 ]
 
 #slide(title: "Modules")[
+  - Evaluation of a single source file: `(content, bindings)`
+  - ```typst #include "module.typ"``` $->$ content
+  - ```typst #import  "module.typ"``` $->$ bindings
+  #line-by-line(start: 2)[
+    - Immutability
+    - Caching
+  ]
 ]
