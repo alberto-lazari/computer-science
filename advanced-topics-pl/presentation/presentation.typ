@@ -53,6 +53,10 @@
 #include("sections/compiler.typ")
 #include("sections/improvements.typ")
 
+#slide(title: "Popularity?")[
+  _Typst in GitHub?_
+]
+
 #slide(title: "Sources")[
   - *Laurenz Mädje (typst co-creator) Master's thesis*: \
     #underline("https://www.user.tu-berlin.de/laurmaedje/programmable-markup-language-for-typesetting.pdf")
