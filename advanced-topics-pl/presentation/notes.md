@@ -63,6 +63,6 @@ Very interesting piece (p. 64 of the paper). LaTeX does not have a defined synta
 # Fun fact
 Typst can be used in a simil-interactive mode with
 ```bash
-cat << '#quit()' | typst compile /dev/stdin /dev/stdout | pdftotext - -
+cat << '#quit()' | typst compile /dev/stdin /dev/stdout | pdftotext - - | tac | tail -n +2 | tac
 ```
 Use `#quit()` to trigger the compilation
