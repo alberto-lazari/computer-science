@@ -53,8 +53,20 @@
 #include("sections/compiler.typ")
 #include("sections/improvements.typ")
 
-#slide(title: "Popularity?")[
-  _Typst in GitHub?_
+#slide(title: "GitHub support")[
+  #set text(size: .8em)
+  #grid(columns: (2fr, 3fr), gutter: 1em,
+    [
+      - Pull request to add Typst support in GitHub repos
+      - Needs more popularity
+    ],
+    figure(image("/images/popularity/comment.png"))
+  )
+]
+
+#slide(title: "Popularity")[
+  #figure(image(width: 60%, "/images/popularity/merged.png"))
+  #uncover(2, figure(image(width: 60%, "/images/popularity/search.png")))
 ]
 
 #slide(title: "Sources")[
