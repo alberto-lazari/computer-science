@@ -23,3 +23,6 @@
 [submodule "lcd/exam-exercises"]
 	path = lcd/exam-exercises
 	url = git@github.com:albertolazari/lcd-exercises.git
+[submodule "advanced-topics-pl/presentation/typst-slides"]
+	path = advanced-topics-pl/presentation/typst-slides
+	url = https://github.com/andreasKroepelin/typst-slides
