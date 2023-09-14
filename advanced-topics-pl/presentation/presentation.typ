@@ -69,6 +69,13 @@
   #uncover(2, figure(image(width: 60%, "/images/popularity/search.png")))
 ]
 
+#slide(title: "Latest news")[
+  #grid(columns: (auto, auto), gutter: 2em,
+    figure(image("/images/popularity/syntax-highlighting.png")),
+    align(center + horizon, figure(image(width: 70%, "/images/popularity/languages.png"))),
+  )
+]
+
 #slide(title: "Sources")[
   - *Laurenz Mädje (typst co-creator) Master's thesis*: \
     #underline("https://www.user.tu-berlin.de/laurmaedje/programmable-markup-language-for-typesetting.pdf")
