@@ -38,7 +38,7 @@
 #v(3em)
 
 #make_title(
-  title:    [Game theory],
+  title:    [Game Theory],
   subtitle: [Notes],
   author:   [Alberto Lazari],
   date:     [I Semester A.Y. 2023-2024],
@@ -78,3 +78,14 @@ Properties:
 
 Payoffs are the sum of the results of utility function.
 They basically represent the preference of a specific choice (the input)
+
+/ Collapse: the collapsed tree is the tree of depth 1, with each edge that is a path in the original tree
+
+= Lotteries
+== Outcomes probability
+Outcomes of the utility functions may not always be certain.
+When randomness comes in a rational player has to choose based on the probability of preferable outcomes
+
+/ Lottery: probability distribution $p$ over set of outcomes $X = {x_1, ..., x_n}$
+
+Randomness can actually be modelled as an external player _Nature_ that takes choices
