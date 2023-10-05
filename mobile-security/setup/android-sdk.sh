@@ -1,6 +1,12 @@
 #!/bin/bash
 
-arch=x86_64
+if [[ $(arch) = arm64 ]]; then
+    arch=arm64-v8a
+    emulator=emulator
+else
+    arch=x86_64
+    emulator=emulator-x86
+fi
 
 if which brew &> /dev/null; then
     prefix=$(brew --prefix)/share/android-commandlinetools
@@ -20,7 +26,7 @@ fi
 "$prefix/cmdline-tools/latest/bin/avdmanager" create avd --name Test -k "system-images;android-33;google_apis_playstore;$arch"
 
 # Download x86 emulator
-if ! [[ -d "$prefix/emulator-x86" ]]; then
+if [[ $arch = x86_64 ]] && [[ ! -d "$prefix/emulator-x86" ]]; then
     curl -L 'https://redirector.gvt1.com/edgedl/android/repository/emulator-darwin_x64-10696886.zip' | bsdtar -xpf -
     chmod +x emulator/emulator emulator/qemu/darwin-x86_64/qemu-system-x86_64
     mv emulator "$prefix/emulator-x86/"
@@ -28,8 +34,11 @@ fi
 
 # Link binaries in a PATH directory
 [[ -d ~/bin ]] || mkdir ~/bin
-[[ -f "$prefix/platform-tools/adb" ]] || ln -s "$prefix/platform-tools/adb" ~/bin/adb
-[[ -f "$prefix/emulator-x86/emulator" ]] || ln -s "$prefix/emulator-x86/emulator" ~/bin/emulator
+[[ ! -f "$prefix/platform-tools/adb" ]] || rm "$prefix/platform-tools/adb"
+ln -s "$prefix/platform-tools/adb" ~/bin/adb
+
+[[ ! -f "$prefix/$emulator/emulator" ]] || rm "$prefix/$emulator/emulator"
+ln -s "$prefix/$emulator/emulator" ~/bin/emulator
 
 # Add ~/bin to PATH
 if ! which adb &> /dev/null; then
@@ -39,12 +48,10 @@ if ! which adb &> /dev/null; then
 fi
 
 # Python scripts will need a non-trivial library
-pip3 install androguard
+pip3 list | grep androguard &> /dev/null || pip3 install androguard
 
 cat << EOF
 
 Run the Android emulator with:
   emulator -avd Test -no-snapshot -no-boot-anim -wipe-data &> /dev/null &
-
-It won't run on Apple Silicon, because Rosetta won't have VM acceleration
 EOF
