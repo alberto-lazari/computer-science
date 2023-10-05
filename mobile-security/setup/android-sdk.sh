@@ -53,5 +53,5 @@ pip3 list | grep androguard &> /dev/null || pip3 install androguard
 cat << EOF
 
 Run the Android emulator with:
-  emulator -avd Test -no-snapshot -no-boot-anim -wipe-data &> /dev/null &
+  emulator -avd Test-device-$arch -no-snapshot -no-boot-anim -wipe-data &> /dev/null &
 EOF
