@@ -10,10 +10,10 @@
 
 #lecture[1 -- 04/10]
 = Exam
-- Written test (0-28 pts)
+- Written test (0-27 pts)
 - Extra points:
   + No project (3 free points)
-  + Group project (up to 5 pts)
+  + Group project (up to 7 pts)
 - Score $>=$ 31 $=>$ 30L
 
 = Decision problems
@@ -47,3 +47,13 @@ When randomness comes in a rational player has to choose based on the probabilit
 / Lottery: probability distribution $p$ over set of outcomes $X = {x_1, ..., x_n}$
 
 Randomness can actually be modelled as an external player _Nature_ that takes choices
+
+== VNM model
+Theorem: if $pref$ on lotteries satifies:
+- Rationality
+- Continuity axiom
+- Independence
+
+= Decisions over time
+- Players and nature alternate turns in choice
+- The player will base choices over nature's ones
