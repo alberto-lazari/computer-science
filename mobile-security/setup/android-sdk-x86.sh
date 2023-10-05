@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 arch=x86_64
 prefix=/usr/local/share/android-commandlinetools
@@ -10,13 +10,15 @@ else
     [[ -d $prefix ]] || mkdir -p $prefix/cmdline-tools
 
     # Get from curl
-    curl 'https://dl.google.com/android/repository/commandlinetools-mac-10406996_latest.zip' --output cmdline-tools.zip
-    unzip cmdline-tools.zip && rm cmdline-tools.zip
+    curl 'https://dl.google.com/android/repository/commandlinetools-mac-10406996_latest.zip' | bsdtar -xf -
     mv cmdline-tools $prefix/cmdline-tools/latest
 fi
 
 arch -x86_64 "$prefix/cmdline-tools/latest/bin/sdkmanager" --install 'platform-tools' 'platforms;android-33' "system-images;android-33;google_apis_playstore;$arch"
 arch -x86_64 "$prefix/cmdline-tools/latest/bin/avdmanager" create avd --name Test -k "system-images;android-33;google_apis_playstore;$arch"
+
+# Download x86 emulator
+curl 'https://redirector.gvt1.com/edgedl/android/repository/emulator-darwin_x64-10696886.zip' --output emulator.zip
 
 # Link binaries in a PATH directory
 [[ -d ~/bin ]] || mkdir ~/bin
