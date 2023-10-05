@@ -23,7 +23,7 @@ else
 fi
 
 "$prefix/cmdline-tools/latest/bin/sdkmanager" --install 'platform-tools' 'platforms;android-33' "system-images;android-33;google_apis_playstore;$arch"
-"$prefix/cmdline-tools/latest/bin/avdmanager" create avd --name Test -k "system-images;android-33;google_apis_playstore;$arch"
+"$prefix/cmdline-tools/latest/bin/avdmanager" create avd --name Test-device-$arch -k "system-images;android-33;google_apis_playstore;$arch"
 
 # Download x86 emulator
 if [[ $arch = x86_64 ]] && [[ ! -d "$prefix/emulator-x86" ]]; then
@@ -34,10 +34,10 @@ fi
 
 # Link binaries in a PATH directory
 [[ -d ~/bin ]] || mkdir ~/bin
-[[ ! -f "$prefix/platform-tools/adb" ]] || rm "$prefix/platform-tools/adb"
+[[ ! -f ~/bin/adb ]] || rm ~/bin/adb
 ln -s "$prefix/platform-tools/adb" ~/bin/adb
 
-[[ ! -f "$prefix/$emulator/emulator" ]] || rm "$prefix/$emulator/emulator"
+[[ ! -f ~/bin/emulator ]] || rm ~/bin/emulator
 ln -s "$prefix/$emulator/emulator" ~/bin/emulator
 
 # Add ~/bin to PATH
