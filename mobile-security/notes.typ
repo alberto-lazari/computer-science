@@ -41,7 +41,7 @@
 #v(3em)
 
 #make_title(
-  title:    [Mobile programming],
+  title:    [Mobile security],
   subtitle: [Notes],
   author:   [Alberto Lazari],
   date:     [I Semester A.Y. 2023-2024],
@@ -54,20 +54,3 @@
 )
 
 #set text(font: "Arial")
-
-= Installing Android SDK on M1
-```bash
-brew install android-commandlinetools
-# Reload env to see the commands
-zsh --login || bash --login
-
-sdkmanager --install 'platform-tools' 'platforms;android-33' 'system-images;android-33;google_apis_playstore;arm64-v8a'
-avdmanager create avd --name Test -k 'system-images;android-33;google_apis_playstore;arm64-v8a'
-
-# Link binaries somewhere or include them in $PATH
-ln -s /opt/homebrew/share/android-commandlinetools/platform-tools/adb ~/bin/adb
-ln -s /opt/homebrew/share/android-commandlinetools/emulator/emulator ~/bin/emulator
-
-# The python script will need a non-trivial library
-pip3 install androguard
-```
