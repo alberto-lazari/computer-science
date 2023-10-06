@@ -22,7 +22,7 @@ else
     fi
 fi
 
-"$prefix/cmdline-tools/latest/bin/sdkmanager" --install 'platform-tools' 'platforms;android-33' "system-images;android-33;google_apis_playstore;$arch"
+"$prefix/cmdline-tools/latest/bin/sdkmanager" --install 'platform-tools' 'platforms;android-33' 'build-tools;33.0.0' "system-images;android-33;google_apis_playstore;$arch"
 "$prefix/cmdline-tools/latest/bin/avdmanager" create avd --name Test-device-$arch -k "system-images;android-33;google_apis_playstore;$arch"
 
 # Download x86 emulator
