@@ -43,5 +43,8 @@ if [[ ! -f $key ]]; then
 	EOF
     exit 1
 fi
-$APKSIGNER sign --ks $key bin/$app.unaligned.apk
 $ZIPALIGN -f 4 bin/$app.unaligned.apk bin/$app.apk
+$APKSIGNER sign --ks $key bin/$app.apk
+
+# Move the apk outside of the app directory
+mv bin/$app.apk ../
