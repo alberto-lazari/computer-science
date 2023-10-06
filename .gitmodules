@@ -26,3 +26,6 @@
 [submodule "advanced-topics-pl/presentation/typst-slides"]
 	path = advanced-topics-pl/presentation/typst-slides
 	url = https://github.com/andreasKroepelin/typst-slides
+[submodule "mobile-security/challenges"]
+	path = mobile-security/challenges
+	url = git@github.com:albertolazari/mobile-security-challenges.git
