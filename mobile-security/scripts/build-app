@@ -20,24 +20,19 @@ PLATFORM="$prefix/platforms/android-33/android.jar"
 
 cd $app_dir
 
-echo "Cleaning..."
-rm -rf obj/* || true
-rm src/com/example/$app/R.java || true
+rm -rf obj/* src/com/example/$app/R.java &> /dev/null || true
 
-echo "Generating R.java file..."
 $AAPT package -f -m -J src -M AndroidManifest.xml -S res -I $PLATFORM
 
-echo "Compiling..."
-javac -d obj -classpath src -bootclasspath $PLATFORM -source 1.7 -target 1.7 src/com/example/$app/MainActivity.java
-javac -d obj -classpath src -bootclasspath $PLATFORM -source 1.7 -target 1.7 src/com/example/$app/R.java
+javac -d obj -classpath src -bootclasspath $PLATFORM -source 1.8 -target 1.8 src/com/example/$app/MainActivity.java
+javac -d obj -classpath src -bootclasspath $PLATFORM -source 1.8 -target 1.8 src/com/example/$app/R.java
 
-echo "Translating in Dalvik bytecode..."
-zip -r obj obj
+zip -r obj obj > /dev/null
 $DX obj.zip && rm obj.zip
 
 echo "Making APK..."
 $AAPT package -f -m -F bin/$app.unaligned.apk -M AndroidManifest.xml -S res -I $PLATFORM
-$AAPT add bin/$app.unaligned.apk classes.dex
+$AAPT add bin/$app.unaligned.apk classes.dex > /dev/null
 
 echo "Aligning and signing APK..."
 if [[ ! -f $key ]]; then
