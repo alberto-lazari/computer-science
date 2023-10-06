@@ -2,7 +2,7 @@
 # From: https://authmane510.medium.com/how-to-build-an-apk-from-command-line-without-ide-7260e1e22676
 
 if [[ -z $1 ]]; then
-    echo usage: build-app.sh APP_DIR >&2
+    echo usage: build-app APP_DIR >&2
     return 1
 fi
 
@@ -33,7 +33,7 @@ javac -d obj -classpath src -bootclasspath $PLATFORM -source 1.7 -target 1.7 src
 
 echo "Translating in Dalvik bytecode..."
 zip -r obj obj
-$DX obj.zip
+$DX obj.zip && rm obj.zip
 
 echo "Making APK..."
 $AAPT package -f -m -F bin/$app.unaligned.apk -M AndroidManifest.xml -S res -I $PLATFORM
