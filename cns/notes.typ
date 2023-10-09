@@ -1,6 +1,6 @@
 #import "@local/unipd-doc:0.0.1": *
 
-#set text(font: "Arial")
+#show: notes()
 #show: unipd-doc(
   title:    [Advanced Topics in Computer Network and Security],
   subtitle: [Notes],

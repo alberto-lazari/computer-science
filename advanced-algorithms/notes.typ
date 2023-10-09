@@ -1,37 +1,12 @@
-#set text(
-  size: 13pt,
-  // Sans serif font
-  font: ("Arial"),
-)
-#set heading(numbering: "1.1 –")
-#set list(marker: ([•], [--]))
+#import "@local/unipd-doc:0.0.1": *
 
-#let make_title(title: none, author: none, date: none) = {
-  v(5em)
-  align(center, text(size: 20pt, title))
-  align(center, text(size: 14pt, author))
-  align(center, text(size: 14pt, date))
-  v(5em)
-}
-
-// Comment-style lecture number annotation (# Lecture n)
-#let lecture(number) = {
-  set text(gray)
-  [\# Lecture #number]
-}
-
-
-#make_title(
-  title: "Advanced Algorithms Notes",
+#show: notes()
+#show: unipd-doc(
+  title: "Advanced Algorithms",
+  subtitle: "Notes",
   author: "Alberto Lazari",
   date: "II Semester – 2023",
 )
-
-#outline(
-  title: "Index",
-  indent: true,
-)
-#pagebreak()
 
 #lecture(2)
 = DFS (Depth First Search)
