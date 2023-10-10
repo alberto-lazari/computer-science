@@ -59,3 +59,18 @@ Also motion can create 3D perception of a (2D) video:
 - Relative angular velocity: far objects appear slower
 - Radial expansion
 - Shadow movement
+
+#lecture[3 -- 10/10]
+= Passive 3D rendering
+- Lens arrays (3D cards)
+- Parallax occlusion: bands with holes, similar to lens (3DS?)
+- Anaglyph: red/blue glasses (colors are off, though)
+- Dolby 3D: slightly different colors per eye (requires wheel on projector and double the frame-rate)
+- Polarized light: need to stay still and not rotate head
+- Circular polarization: it needs:
+  - Two projectors with polarizers
+  - Special silver reflective screen
+  - Glasses
+
+== Active 3D
+Example: Nvidia glasses, alternate shutters
