@@ -297,18 +297,22 @@
 #new-section[Security considerations]
 #slide(title: [Implicit vs explicit])[
   #line-by-line[
-    - Explicit intents: managed by a known and trusted app (the one intended to receive it)
     - Implicit intents: may get caught by anyone, even malicious apps
+    - Explicit intents: managed by a known and trusted app (the one intended to receive it)
   ]
 ]
 
 #slide(title: [When is the attack effective?])[
-  #grid(
-    columns: (auto, auto),
-    [Only a single app able to receive the intent]
-    // TODO: chooser screenshot
-    // - MyFavoriteApp
-    // - UnknownApp
-    // image(height: 90%, "images/chooser.png")
-  )
+  #align(horizon, grid(
+    columns: (3fr, 2fr),
+    gutter: 1em,
+    [
+      Only a single app able to receive the intent
+
+      #uncover(2)[User less prone to share sensitive information with an unknown app]
+    ],
+    align(center, image(height: 55%, "images/chooser.png"))
+  ))
 ]
+
+#wake-up[That's all]
