@@ -268,3 +268,28 @@
     }
   ))
 ]
+
+#slide(title: [Return the result])[
+  #align(horizon, grid(
+    columns: (2fr, 3fr),
+    gutter: 1em,
+    {
+      set text(size: .9em)
+      uncover(mode: "transparent", "1-")[- Set the result and finish]
+      uncover(mode: "transparent", "2-")[- You can finally get the flag!]
+    },
+    {
+      align(center, box(height: 60%, {
+        only(1, file(name: "java/com/example/maliciousapp/HashFile.kt")[
+          ```kotlin
+          setResult(
+              Activity.RESULT_OK,
+              Intent().putExtra("hash", hash)
+          )
+          finish()
+          ```
+        ])
+      }))
+    }
+  ))
+]
