@@ -1,4 +1,5 @@
 #import "common.typ": *
+#import "@preview/xarrow:0.2.0": xarrow
 
 #show: slides.with(
   authors:        [Alberto Lazari],
@@ -41,3 +42,46 @@
 }
 
 #slide(theme-variant: "title slide")
+
+#new-section[Challenge background]
+#slide(title: [Main topics])[
+  #align(center, grid(
+    columns: (1fr, 1fr),
+    [
+      === Activities
+      #figure(image(width: 80%, "images/activities.png"))
+    ],
+    uncover(2)[
+      === Intents
+      #set text(size: .6em)
+
+      #align(horizon)[
+        `MainActivity`
+        #xarrow(text(size: .7em, font: "Menlo", "com.example.app.OtherActivity"))
+        `OtherActivity`
+      ]
+    ]
+  ))
+]
+
+#slide(title: [Implicit intents])[
+  #only("1-2", align(horizon + center, grid(
+    columns: (1fr, 1fr, 1fr),
+    gutter: 1em,
+    uncover(1, say[Hey, could you find someone that can do this for me?]),
+    none,
+    uncover(2, say[Sure!]),
+    [`VictimApp`],
+    xarrow(text(size: .7em, font: "Menlo", "com.mobiotsec.intent.action.HASH_FILE")),
+    image(width: 3em, "images/android.png"),
+  )))
+
+  #only("3-", align(horizon + center, grid(
+    columns: (1fr, 1fr),
+    gutter: 1em,
+    uncover(3, say[Can anyone do action #text(size: .85em, font: "Menlo", "com.mobiotsec.intent.action.HASH_FILE")?]),
+    uncover(4, say[I can!]),
+    image(width: 3em, "images/android.png"),
+    uncover(4)[`MaliciousApp`],
+  )))
+]

@@ -34,32 +34,7 @@
   slide(theme-variant: "wake up")[#content]
 }
 
-#let tex = text(
-  font: "New Computer Modern",
-  upper[t#h(-.13em)#sub(size: 1em, baseline: .23em, "e")#h(-.12em)x]
-)
-#let latex = text(
-  font: "New Computer Modern",
-  upper[l#h(-.35em)#super(baseline: -.25em, size: 0.74em, "a")#h(-.15em)#tex]
-)
-
-#let example(content, caption: none, size: 1em, error: none) = figure[
-  #set text(size: size)
-  = #caption
-  #grid(
-    block(width: 100%, inset: .5em, stroke: 1pt, fill: luma(220), radius: (top-left: 10pt, top-right: 10pt), {
-      show block: it => it.body
-      content
-    }),
-    block(width: 100%, inset: .5em, stroke: 1pt, radius: (bottom-left: 10pt, bottom-right: 10pt), {
-      set align(left)
-      show block: it => it.body
-      show raw: it => it.text
-      if error != none {
-        raw("error: " + error)
-      } else {
-        eval(mode: "markup", content.children.at(1).text)
-      }
-    }),
-  )
-]
+#let say(sentence) = {
+  set text(size: 0.7em)
+  emph["#sentence"]
+}
