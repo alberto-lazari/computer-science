@@ -130,4 +130,71 @@
 
 #new-section[Implementation]
 #slide(title: [Catch the intent])[
+  #align(horizon, grid(
+    columns: (2fr, 3fr),
+    gutter: 1em,
+    {
+      set text(size: .9em)
+      uncover(mode: "transparent", "1-")[- Create simple activity]
+      uncover(mode: "transparent", "2-")[- Create barebones layout]
+      uncover(mode: "transparent", "3-")[- Declare intent filter]
+      uncover(mode: "transparent", "4-")[- See the result]
+    },
+    {
+      align(center, box(height: 60%, {
+        only(1, file(name: "java/com/example/maliciousapp/HashFile.kt")[
+          ```kotlin
+          class HashFile : AppCompatActivity() {
+              override fun onCreate(savedInstanceState: Bundle?) {
+                  // Display activity layout
+                  super.onCreate(savedInstanceState)
+                  setContentView(R.layout.hash_file)
+              }
+          }
+          ```
+        ])
+
+        only(2, file(name: "res/layout/hash_file.xml")[
+          ```xml
+          <RelativeLayout
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center">
+
+              <TextView
+                  android:id="@+id/debug_text"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Debug info will appear here"
+                  android:textSize="24sp" />
+          </RelativeLayout>
+
+          ```
+        ])
+
+        only(3, file(name: "AndroidManifest.xml")[
+          ```xml
+          ...
+          <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+              <category android:name="android.intent.category.LAUNCHER" />
+              <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+          </activity>
+          <activity android:name=".HashFile" android:exported="true">
+            <intent-filter>
+              <action android:name="com.mobiotsec.intent.action.HASHFILE" />
+              <category android:name="android.intent.category.DEFAULT" />
+              <!-- Look with `adb logcat` -->
+              <data android:mimeType="text/plain" />
+            </intent-filter>
+          </activity>
+          ```
+        ])
+
+        only(4, image(height: 90%, "images/activity.png"))
+      }))
+    }
+  ))
 ]

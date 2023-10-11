@@ -38,3 +38,9 @@
   set text(size: 0.7em)
   emph["#sentence"]
 }
+
+#let file(name: none, content) = {
+  set text(size: .5em, font: "Menlo")
+  name
+  content
+}
