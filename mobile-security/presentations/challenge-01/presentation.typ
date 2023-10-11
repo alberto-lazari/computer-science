@@ -198,3 +198,39 @@
     }
   ))
 ]
+
+#slide(title: [Read the file])[
+  #align(horizon, grid(
+    columns: (2fr, 3fr),
+    gutter: 1em,
+    {
+      set text(size: .9em)
+      uncover(mode: "transparent", "1-")[- Get the intent data]
+      uncover(mode: "transparent", "2-")[- View it]
+      uncover(mode: "transparent", "3-")[- Read the file content]
+    },
+    {
+      align(center, box(height: 60%, {
+        only(1, file(name: "java/com/example/maliciousapp/HashFile.kt")[
+          ```kotlin
+          val debugTextField = findViewById<TextView>(R.id.debug_text)
+          debugTextField.text = intent.data?.toString()
+          ```
+        ])
+
+        only(2, image(height: 90%, "images/file-uri.png"))
+
+        only(3, file(name: "java/com/example/maliciousapp/HashFile.kt")[
+          ```kotlin
+          val fileUri = intent.data
+          if (fileUri != null) {
+              val bytes = contentResolver
+                  .openInputStream(fileUri)
+                  ?.readAllBytes()
+          }
+          ```
+        ])
+      }))
+    }
+  ))
+]
