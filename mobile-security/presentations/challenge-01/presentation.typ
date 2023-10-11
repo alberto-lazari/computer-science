@@ -234,3 +234,37 @@
     }
   ))
 ]
+
+#slide(title: [Hash the file])[
+  #align(horizon, grid(
+    columns: (2fr, 3fr),
+    gutter: 1em,
+    {
+      set text(size: .9em)
+      uncover(mode: "transparent", "1-")[- Hash the bytes]
+      uncover(mode: "transparent", "2-")[- Get a string representation of the hashed bytes]
+      uncover(mode: "transparent", "3-")[- Print the hash #uncover(4)[(looks like a legit hash)]]
+    },
+    {
+      align(center, box(height: 60%, {
+        only(1, file(name: "java/com/example/maliciousapp/HashFile.kt")[
+          ```kotlin
+          val hashedBytes = MessageDigest
+              .getInstance("SHA-256")
+              .apply { update(bytes) }
+              .digest()
+          ```
+        ])
+
+        only(2, file(name: "java/com/example/maliciousapp/HashFile.kt")[
+          ```kotlin
+          val hash = Hex.toHexString(hashedBytes)
+          debugTextField.text = "The hash is: $hash"
+          ```
+        ])
+
+        only("3-", image(height: 90%, "images/hash.png"))
+      }))
+    }
+  ))
+]
