@@ -29,6 +29,3 @@
 [submodule "mobile-security/challenges"]
 	path = mobile-security/challenges
 	url = git@github.com:albertolazari/mobile-security-challenges.git
-[submodule "mobile-security/presentations/challenge-01/typst-slides"]
-	path = mobile-security/presentations/challenge-01/typst-slides
-	url = https://github.com/andreasKroepelin/polylux.git
