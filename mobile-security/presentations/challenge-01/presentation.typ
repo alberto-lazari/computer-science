@@ -10,7 +10,7 @@
   date:           [October 13, 2023],
   theme: bristol-theme(
     color:      unipd-red,
-    logo:       "/images/unipd-logo.png",
+    logo:       "/images/unipd-logo.svg",
     // Don't use watermarks, by using a blank image (`none` can't be used)
     watermark:  "/images/blank.png",
     secondlogo: "/images/blank.png",
