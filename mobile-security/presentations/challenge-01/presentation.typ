@@ -93,12 +93,41 @@
   #align(horizon + center, grid(
     columns: (1fr, 1fr, 1fr),
     gutter: 1em,
-    uncover(1, say[Can someone generate the hash of a file for me, please?]),
+    {
+      only("1-4", uncover(1, say[Can someone generate the hash of a file for me, please?]))
+      only(5, say[Thanks, the flag is #strong[FLAG{...}]])
+    },
     none,
-    uncover(2, say[Of course!]),
+    {
+      only("1-2", uncover(2, say[Of course!]))
+      only(3, text(size: .7em, "*doing stuff*"))
+      only(4, say[Here's your hash])
+    },
 
     [`VictimApp`],
-    xarrow(text(size: .7em, font: "Menlo", "com.mobiotsec.intent.action.HASH_FILE")),
-    uncover(2)[`MaliciousApp`]
+    {
+      only("1-2", xarrow(text(size: .7em, font: "Menlo", "com.mobiotsec.intent.action.HASH_FILE")))
+      only(4, xarrow(
+        sym: sym.arrow.l,
+        width: 10em,
+        text(size: .7em, font: "Menlo", "hash")
+      ))
+    },
+    {
+      uncover("2-")[`MaliciousApp`]
+    }
   ))
+]
+
+#slide(title: "#TODO")[
+  #line-by-line(mode: "transparent")[
+    1. Catch the intent
+    2. Read the file
+    3. Hash the file
+    4. Return the result
+  ]
+]
+
+#new-section[Implementation]
+#slide(title: [Catch the intent])[
 ]
