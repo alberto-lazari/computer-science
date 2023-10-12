@@ -57,3 +57,22 @@ Theorem: if $pref$ on lotteries satifies:
 = Decisions over time
 - Players and nature alternate turns in choice
 - The player will base choices over nature's ones
+
+#lecture[2 -- 12/10]
+= Static games
+Players move at the same time (turn-based)
+
+/ Normal form game: $GG = { S_1, S_2, ..., S_n; v_1, v_2, ..., v_n }$ \
+  It can be represented as a table
+
+== Best response
+Best possible action for a player: the one that maximizes the outcome, based on other players actions
+
+/ Belief: other players' possible strategies
+
+== Nash equilibrium
+Joint strategy that, if played, leaves no player with regrets
+
+Similar to Pareto efficiency, but from a different perspective:
+- Pareto efficiency: global best payoff (of all the players at the same time)
+- Nash equilibrium: local best payoff (of every player, egoistic)
