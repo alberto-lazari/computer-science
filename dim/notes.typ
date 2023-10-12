@@ -74,3 +74,8 @@ Also motion can create 3D perception of a (2D) video:
 
 == Active 3D
 Example: Nvidia glasses, alternate shutters
+
+#lecture[4 Lab -- 12/10]
+= Stereo images
+- Disparity map shows intensity of parallax effect between two images (two eyes)
+- Stereo images have to be rectificated #sym.arrow point the object in focus
