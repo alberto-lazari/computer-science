@@ -8,7 +8,7 @@
   date:     [I Semester A.Y. 2023-2024],
 )
 
-#lecture(1)
+#lecture(2)
 = Android OS
 - Single user OS
 - Custom Linux kernel at its core #sym.arrow multi-user support:
@@ -16,7 +16,7 @@
   - Every app has a GID corresponding to the permission it has
   - App ID = UID GID1 GID2 GID3...
 
-#lecture(2)
+#lecture(3)
 = Binder driver
 Android driver extension over Linux
 
@@ -39,3 +39,30 @@ Protection levels:
 - They couldn't disable them
 
 Permissions come in groups. Granting a specific actions grants the entire group
+
+#lecture(4)
+= Signatures
+- Used to sign certificates, to prove identity
+- Hash of the data to sign, encoded with the user's private key
+
+== Certificates
+/ Certificate Authority (CA): entity responsible to release certificates (within a hierarchy)
+
+- Certificates contain:
+  - User and CA metadata
+  - User's public key (to decode signature)
+
+Signing data: attaching a certificate and signature to a file.
+Guarantees:
+  - Sender identity: he's the only one who could encrypt with his private key
+  - Integrity of data: hash produced from received data has to be the same one obtained from the signature
+
+There are two types:
+- Public (trusted): generated from a CA
+- Private (untrusted): self-signed
+
+== Android
+- Android keys are private certificates (untrusted and self-signed).
+  They are not released by a CA (unlike websites)
+- Purpose of keys is to distinguish developers, not confirming identity
+- Keys are also used to check application integrity (app not compromised: the files are the original ones, or at least signed by the official developer)
