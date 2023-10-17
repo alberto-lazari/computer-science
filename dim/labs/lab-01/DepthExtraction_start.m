@@ -12,50 +12,42 @@ imshowpair(IL,IR,'montage');
 title('Extracted Portion of Original Images');
 
 %%%%%%% Rectify the Images%%%%%%%%%%%%%%%%
-load('stereoParams.mat');
-
+% Load Stereo Parameters
+load stereoParams;
 
 %%%%%%%%Rectify the images%%%%%%%%%%%%%%%%
-[rectL, rectR, reprojectionMatrix] = rectifyStereoImages(IL, IR, stereoParams);
-
+[rectL, rectR] = rectifyStereoImages(IL, IR, stereoParams);
 
 %%%%%%%%%Generate Disparity Map%%%%%%%%%%%
-% use disparity function and disparity range from [0 64]
-disparityMap = disparity(rgb2gray(rectL), rgb2gray(rectR), 'DisparityRange', [0 64]);
-% disparityMap = disparityBM(rgb2gray(rectL), rgb2gray(rectR));
-% disparityMap = disparitySGM(rgb2gray(rectL), rgb2gray(rectR));
-
+disparityRange = [0 64];
+disparityMap = disparity(rgb2gray(rectL), rgb2gray(rectR), 'disparityRange', disparityRange);
 
 %%%%%%%%%View the disparity map%%%%%%%%%%%
-%use imshow with disparity range
-%use color map of jet type
-%use color bar
-image = imshow(disparityMap);
+figure;
+imshow(disparityMap, disparityRange);
+title('Disparity Map');
 colormap('jet');
-colorbar('eastoutside');
-
+colorbar;
 
 %%%%%%%%% Reconstruct Point Cloud%%%%%%%%%
-% Create point cloud using reconstructScene
-xyzPoints = reconstructScene(disparityMap, reprojectionMatrix);
-
-
-%%% Convert from millimeters to meters%%%%
-xyzPoints = xyzPoints / 1000;
-
+ptcloud = reconstructScene(disparityMap,stereoParams) / 1000;
 
 %%% Limit the range of Z and X for display using thresholds = [-5 5;-5 10;0 30]
-%use thresholdPC function inside the folder of work
-PC = thresholdPC(xyzPoints, [-5 5;-5 10;0 30]);
-
+PC = thresholdPC(ptcloud, [-5 5; -5 10; 0 30]);
 
 %%%%%%%View point cloud%%%%%%%%%%%%%%%%%%%
-%use pcshow function to view point cloud
-pcshow(PC)
-
+figure;
+pcshow(PC, rectL);
+title('3D Point Cloud');
 
 %% Extract Image corresponding to the distance 20 to 30 meters
-%use repmat function and z axis
-
+z_min = 20;
+z_max = 30;
+z = PC(:, :, 3);
+mask = repmat(z > z_min & z < z_max, [1, 1, 3]);
+k = rectL;
+k(~mask) = 0;
 
 %%%%%%%%%%%%%%%%% Print the result %%%%%%%
+figure;
+imshow(k);
