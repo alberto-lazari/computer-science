@@ -52,3 +52,16 @@ Having access to it means to be able to control the entire containers through AP
 Container orchestrator from Google: cluster of physical machines that run a single container (distributed container)
 
 Very poor security defaults
+
+#lecture[18/10 (Videogames)]
+= Videogames security
+How to identify a player? Playstyle fingerprint
+
+Playstyle can be deduced from:
+- Camera movements
+- Player movement
+
+Done with machine learning techniques
+
+== Attribute inference attack 101
+Map public data (playstyle info) to private data that some users reveal (name, age, gender, ...)
