@@ -76,3 +76,9 @@ Joint strategy that, if played, leaves no player with regrets
 Similar to Pareto efficiency, but from a different perspective:
 - Pareto efficiency: global best payoff (of all the players at the same time)
 - Nash equilibrium: local best payoff (of every player, egoistic)
+
+Nash equilibrium can be broken by external factors (R in grade problem)
+
+#lecture[5 -- 18/10]
+= Elections winner
+...
