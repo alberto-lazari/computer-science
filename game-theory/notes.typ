@@ -20,7 +20,7 @@
 Can be represented with *decision trees*
 
 == 1-player problems
-#let pref = $eq.succ$
+#let pref = $succ.eq$
 / Preference: $a pref b -->$ $a$ is preferred over $b$
 
 Properties:
@@ -80,5 +80,26 @@ Similar to Pareto efficiency, but from a different perspective:
 Nash equilibrium can be broken by external factors (R in grade problem)
 
 #lecture[5 -- 18/10]
-= Elections winner
-...
+= Electoral systems
+Particular systems can advantage certain types of candidates
+
+Systems:
+- Plurality voting: relative majority
+- Two-phase run-off
+- Borda counting: points based on the preference (last 0 pts, second-last 1 pt, ...)
+- Approval voting: most approval wins
+- Instant run-off:
+  - Least preferred is eliminated
+  - Repeat until one candidate
+  - May lead to paradoxes (increasing preference to candidate may lead to him losing)
+
+#lecture[6 -- 19/10]
+#let maj = pref
+#let iff = $<==>$
+/ Majority rule: $a maj b iff$ more people prefer a to b
+
+= Cournot duopoly
+Duopolys lead to better outcome for the environment
+
+= Tragedy of commons
+Common resources get misused when private interest prevails
