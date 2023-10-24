@@ -35,7 +35,7 @@ Protection levels:
 + SignatureOrSystem: granted to system apps
 
 == Dangerous permissions
-- Before device's API level 23 or app's targetSdkVersion 23 they were granted at install-time
+- Before device's API level 23 or app's `targetSdkVersion` 23 they were granted at install-time
 - They couldn't disable them
 
 Permissions come in groups. Granting a specific actions grants the entire group
@@ -66,3 +66,20 @@ There are two types:
   They are not released by a CA (unlike websites)
 - Purpose of keys is to distinguish developers, not confirming identity
 - Keys are also used to check application integrity (app not compromised: the files are the original ones, or at least signed by the official developer)
+
+#lecture(5)
+= Services
+- Components without a UI (running in the background)
+- Started with ```java startService(explicitIntent)```
+- Replies with broadcast intents (easiest way)
+- Can be foreground with ```java startForeground()``` #sym.arrow makes visible operations
+
+== Bound services
+Allows a client-server communication between a component and its service
+
+== Broadcast receivers
+- Catch broadcast intents
+- Can declare filters at runtime, no need to declare in manifest file
+
+== Content provider
+Exposes private data to the environment, through a URI resolved by a content resolver
