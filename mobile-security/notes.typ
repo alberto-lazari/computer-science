@@ -83,3 +83,27 @@ Allows a client-server communication between a component and its service
 
 == Content provider
 Exposes private data to the environment, through a URI resolved by a content resolver
+
+#lecture(6)
+= Compilation
+Android apps use a specific JVM, which is meant to be used on a mobile OS and device, the Dalvik Virtual Machine (DVM)
+
+The DVM provides limitations and optimizations over the standard JVM bytecode, and it is directly derived from it, not from actual source code
+
+Compilation steps of Android code:
++ *Source code* (`.java` / `.kt`)
++ *Java bytecode* (`.class` / `.jar`): compiled by `javac` or `kotlinc` compilers
++ *Dalvik bytecode* (`.dex`): compiled by `dx`, the DEX compiler
+
+== Shared Object files
+Native C/C++ code compiled to `.so` files
+
+== JIT vs AOT
+- The DVM was used up to Android 4.4 and used JIT
+- From Android 5 Dalvik bytecode is compiled AOT during installation
+- From Android 7 only _hot_ methods get compiled (reduce installation time)
+
+== Decompilation
+- Apk files are actually zip files with a different extension
+- `apktool` can disassemble _smali_ code from `.dex` files
+- `jadx` can be used to decompile bytecode to java code
