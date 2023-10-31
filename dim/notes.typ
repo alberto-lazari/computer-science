@@ -79,3 +79,11 @@ Example: Nvidia glasses, alternate shutters
 = Stereo images
 - Disparity map shows intensity of parallax effect between two images (two eyes)
 - Stereo images have to be rectificated #sym.arrow point the object in focus
+
+#lecture[5 -- 31/10]
+= Camera parameters
+- Intrinsic: depend on the camera itself
+- Extrinsic: camera location/orientation
+
+== Direct Linear Transform (DLT)
+Infer the 11 intrinsic and extrinsic parameters from image
