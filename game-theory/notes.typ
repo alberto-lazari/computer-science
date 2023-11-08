@@ -103,3 +103,9 @@ Duopolys lead to better outcome for the environment
 
 = Tragedy of commons
 Common resources get misused when private interest prevails
+
+#lecture[08/11]
+= Exercises
+- Find NEs: find all best strategies. If they match in some cases there is a pure NE
+- Find mixed NEs: calculate probabilities for all players. If probabilities are $0 <= p <= 1$ then there is a mixed NE
+- Pareto dominant strategies
