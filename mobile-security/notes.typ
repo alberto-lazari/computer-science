@@ -107,3 +107,29 @@ Native C/C++ code compiled to `.so` files
 - Apk files are actually zip files with a different extension
 - `apktool` can disassemble _smali_ code from `.dex` files
 - `jadx` can be used to decompile bytecode to java code
+
+#lecture(7)
+= Reverse engineering
+Static analysis: understand without running the app
+
+== Dynamic analysis
+- Debugging: control execution flow. *Requires source code*
+- Instrumentation: modify app's code or run it in a custom emulator/art
+
+=== Instrumentation
+- Repackaging
+- Frida framework: injects JS code. Can be detected and requires root
+- Xposed
+
+=== Program analysis
+Automate analysis.
+Possibly static or dynamic
+
+=== Evasion
+Make static analysis more challenging with techniques:
+- Use of reflection
+- Load code dynamically
+- Obfuscation
+- Use native code
+
+Identify if the app is running in an analysis environment
