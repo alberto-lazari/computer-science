@@ -109,3 +109,15 @@ Common resources get misused when private interest prevails
 - Find NEs: find all best strategies. If they match in some cases there is a pure NE
 - Find mixed NEs: calculate probabilities for all players. If probabilities are $0 <= p <= 1$ then there is a mixed NE
 - Pareto dominant strategies
+
+= Linear transformations
+== NE invariance
+NEs are invariant to (positive) linear transformations on utility functions: \
+if utility $u_i (s)$ is changed with $u'_i (s) = alpha u_i (s) + x$, with $alpha > 0$ the NAs are the same
+
+#lecture[11 -- 09/11]
+= Dynamic games
+There is an order in the moves: one players moves first, the other later and is aware of the previous moves
+
+== Perfect information
+No Nature moves (simultaneous) involved
