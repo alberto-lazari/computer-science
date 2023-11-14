@@ -29,3 +29,6 @@
 [submodule "mobile-security/challenges"]
 	path = mobile-security/challenges
 	url = git@github.com:albertolazari/mobile-security-challenges.git
+[submodule "dim/labs/lab-04/LFToolbox"]
+	path = dim/labs/lab-04/LFToolbox
+	url = https://github.com/doda42/LFToolbox
