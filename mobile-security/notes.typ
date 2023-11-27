@@ -133,3 +133,15 @@ Make static analysis more challenging with techniques:
 - Use native code
 
 Identify if the app is running in an analysis environment
+
+#lecture(8)
+= Malwares
+Roles:
+- Developer: writes the malware
+- Customer: commissions a malware to developer
+- Operator: actually starts the malware
+
+== Make users install apps
+- Social engineering: free version of paid app. Similar name
+- Repackaging: pirated paid apps with added malware
+- Turning bad: legit app gets updated to malware (example: XcodeGhost)
