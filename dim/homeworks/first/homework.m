@@ -141,23 +141,23 @@ I1 = imread(imageFileNames1{1});
 
 L = imread('Street/L.jpg');
 R = imread('Street/R.jpg');
-[rectL, rectR] = rectifyStereoImages(im2gray(L), im2gray(R), stereoParams);
+[rectL, rectR] = rectifyStereoImages(L, R, stereoParams);
 
 disparityRange = [0 64];
 disparityMap = disparity(im2gray(rectL), im2gray(rectR), 'disparityRange', disparityRange);
 
 %%%%%%%%%View the disparity map%%%%%%%%%%%
-figure
-imshow(disparityMap, disparityRange)
-title('Disparity Map')
-colormap('jet')
-colorbar
+% figure
+% imshow(disparityMap, disparityRange)
+% title('Disparity Map')
+% colormap('jet')
+% colorbar
 
 %%%%%%%%% Reconstruct Point Cloud%%%%%%%%%
 ptcloud = reconstructScene(disparityMap, stereoParams) / 1000;
 
 %%% Limit the range of Z and X for display
-PC = thresholdPC(ptcloud, [-15 15; -10 4; 0 40]);
+PC = thresholdPC(ptcloud, [-10 15; -10 4; 0 40]);
 
 %%%%%%%View point cloud%%%%%%%%%%%%%%%%%%%
 figure
