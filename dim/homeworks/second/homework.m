@@ -1,23 +1,23 @@
 clc
 close all
 
-addpath 'LFToolbox'
-LFMatlabPathSetup
+addpath 'LFToolbox';
+LFMatlabPathSetup;
 
 % Build white image database
-LFUtilProcessWhiteImages
+LFUtilProcessWhiteImages;
 
 % Decode Images
 % DecodeOptions.OptionalTasks = 'Rectify'
 % Don't use color correction, it's terrible
 % DecodeOptions.OptionalTasks = 'ColourCorrect'
 % LFUtilDecodeLytroFolder([], [], DecodeOptions)
-LFUtilDecodeLytroFolder()
+LFUtilDecodeLytroFolder();
 
 load('Images/IMG_0751__Decoded.mat', 'LF');
-% LFDisp(LF)
+% LFDisp(LF);
 RenderOptions.PathRadius_percent = 50;
 RenderOptions.FrameDelay = 1/25;
-LFDispVidCirc(LF, RenderOptions)
-% LFDispMousePan(LF)
-% LFDispLawnmower(LF)
+LFDispVidCirc(LF, RenderOptions);
+% LFDispMousePan(LF);
+% LFDispLawnmower(LF);
