@@ -145,3 +145,22 @@ Roles:
 - Social engineering: free version of paid app. Similar name
 - Repackaging: pirated paid apps with added malware
 - Turning bad: legit app gets updated to malware (example: XcodeGhost)
+
+#lecture(9)
+= Vulnerabilities
+== Types
+- EOP: Elevation Of Privilege, run code that requires root privileges (from a third-party app). \
+  Ex:
+  - Run code in TEE (Trusted Execution Environment)
+  - Arbitrary files access
+- RCE: Remote Code Execution, download and run code (e.g. from sms, web page, ...)
+- ID: Information Disclosure, leak sensitive data
+- DOS: e.g. brick, crash device
+
+== Score
+CCVS: Common Vulnerability Scoring System
+
+== Tracking
+CVE: Common Vulnerabilities and Exposures
+
+Format: `CVE-{YYYY}-{ID}`
