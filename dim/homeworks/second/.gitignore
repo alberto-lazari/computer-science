@@ -1,2 +1,3 @@
-Cameras
-Images
+Cameras/*.grid.json
+Cameras/*.mat
+Images/*__Decoded*

@@ -8,16 +8,13 @@ LFMatlabPathSetup;
 LFUtilProcessWhiteImages;
 
 % Decode Images
-% DecodeOptions.OptionalTasks = 'Rectify'
-% Don't use color correction, it's terrible
-% DecodeOptions.OptionalTasks = 'ColourCorrect'
-% LFUtilDecodeLytroFolder([], [], DecodeOptions)
-LFUtilDecodeLytroFolder();
+DecodeOptions = [];
+% I won't use color correction, because the result is terrible
+% DecodeOptions.OptionalTasks = 'ColourCorrect';
+LFUtilDecodeLytroFolder([], [], DecodeOptions);
 
-load('Images/IMG_0751__Decoded.mat', 'LF');
-% LFDisp(LF);
+load('Images/test-image__Decoded.mat', 'LF');
 RenderOptions.PathRadius_percent = 50;
-RenderOptions.FrameDelay = 1/25;
+RenderOptions.FrameDelay = 1/22;
 LFDispVidCirc(LF, RenderOptions);
 % LFDispMousePan(LF);
-% LFDispLawnmower(LF);
