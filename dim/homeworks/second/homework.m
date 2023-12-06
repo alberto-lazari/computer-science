@@ -15,6 +15,6 @@ LFUtilDecodeLytroFolder([], [], DecodeOptions);
 
 load('Images/test-image__Decoded.mat', 'LF');
 RenderOptions.PathRadius_percent = 50;
-RenderOptions.FrameDelay = 1/22;
-LFDispVidCirc(LF, RenderOptions);
+RenderOptions.FrameDelay = 1/17;
+LFDispVidCirc(LF, RenderOptions, 1.5);
 % LFDispMousePan(LF);
