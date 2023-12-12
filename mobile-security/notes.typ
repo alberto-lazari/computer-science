@@ -164,3 +164,27 @@ CCVS: Common Vulnerability Scoring System
 CVE: Common Vulnerabilities and Exposures
 
 Format: `CVE-{YYYY}-{ID}`
+
+#lecture(10)
+= Attacks subject
+- User: social engineering
+
+== Apps
+- Permissions abuse
+- Sensitive informations leak
+
+Possible attacks:
+- Man in the middle, to catch communications between network backend
+- Dynamic code loading
+- External library vulnerability (cryptography)
+- Confused deputy problem: an external app is able to access sensitive data of another:
+  - Component hijacking: exploit exported components
+  - Permission leak: exploit a permission through another app (that has it)
+- Zip path traversal: exploit relative files in zip archives (`../../file`), to overwrite existing files
+- Native code: every system language vulnerability (buffer overflow, ...)
+
+== System
+Android framework or OS itself
+
+Examples:
+- Media framework: automatically trigger code execution, by remote attack (send sms with contrived media content)
