@@ -27,8 +27,8 @@ images = {
     'I15_JPEG2K_25' im2double(imread('compressed/I15_JPEG2K_25.jp2'))
 };
 
-fprintf('Image\t\tPSNR\t\tSSIM\t\tBRIQUE\t\tNIQE\n')
+fprintf('Image\t\tPSNR\tSSIM\tBRIQUE\tNIQE\n')
 for i = 1:6
     image = images{i, 2};
-    fprintf("%s\t%f\t%f\t%f\t%f\n", images{i, 1}, psnr(image, im), ssim(image, im), brisque(image), niqe(image))
+    fprintf("%s\t%.3f\t%.3f\t%.3f\t%.3f\n", images{i, 1}, psnr(image, im), ssim(image, im), brisque(image), niqe(image))
 end
