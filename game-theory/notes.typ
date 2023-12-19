@@ -121,3 +121,9 @@ There is an order in the moves: one players moves first, the other later and is 
 
 == Perfect information
 No Nature moves (simultaneous) involved
+
+= Zero-sum games
+== Minmax theorem
+Game $GG$ has NE in pure strategies $<==> "maximin"_i = "minimax"_i (= u_i("NE")) forall "players" i$
+
+Same for $"minimax"^p$ theorem in mixed strategies
