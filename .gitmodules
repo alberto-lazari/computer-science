@@ -35,3 +35,6 @@
 [submodule "dim/homeworks/second/LFToolbox"]
 	path = dim/homeworks/second/LFToolbox
 	url = https://github.com/doda42/LFToolbox
+[submodule "cns/project"]
+	path = cns/project
+	url = git@github.com:albertolazari/cns-project.git
