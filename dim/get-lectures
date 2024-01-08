@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+cd "$(dirname "$BASH_SOURCE")"
+
+cookie=$(cat cookie)
+course_link='https://stem.elearning.unipd.it/course/view.php?id=6776'
+file_link_regex='https://stem.elearning.unipd.it/mod/resource/view.php?id=[0-9]*'
+links=$(curl -s $course_link --cookie "$cookie" | grep -o $file_link_regex)
+
+i=1
+for link in $links; do
+    redirect=$(curl -s $link --cookie "$cookie" | grep -o 'https.*\DIM_Lecture[0-9]*.pdf') ||
+        continue
+    file=lecture-$(printf %02d $i).pdf
+
+    echo Downloading $file
+    curl -s --cookie "$cookie" $redirect -o $file
+
+    # Need to manually adjust lecture numbers, because don't make any sense :)
+    case $i in
+        5)  i=9 ;;
+        11) i=13 ;;
+        13) i=17 ;;
+        19) i=22 ;;
+        *)  let i++ ;;
+    esac
+done
