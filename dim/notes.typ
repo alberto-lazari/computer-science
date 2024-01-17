@@ -233,3 +233,26 @@ Alternatively use graph-based solutions:
 - Point properties difficult to compress (color)
 
 #lecture(17)
+= Objective evaluation (QoS)
+Subjective tests are too complicated, expensive, difficult...
+
+== Full reference
+Requires a reference of the original picture (?)
+- PSNR/MSE: not consistent with human perception (blur looks not destructive)
+- SSIM $in [0, 1]$: improvement, measures similarity between two images.
+  It compares luminance
+- VMAF $in [0, 100]$: for video
+
+== Reduced reference
+Uses feature extraction
+
+== No reference
+Brisque and NIQE (lower is better)
+
+= QoE
+Depends on many factors:
+- Technological
+- Multi-sensory
+- Emotions (frustration, surprise)
+
+#lecture(18)

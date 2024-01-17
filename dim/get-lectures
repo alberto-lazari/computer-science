@@ -21,7 +21,8 @@ for link in $links; do
         5)  i=9 ;;
         11) i=13 ;;
         13) i=17 ;;
-        19) i=22 ;;
+        18) i=22 ;;
+        22) break ;;
         *)  let i++ ;;
     esac
 done
