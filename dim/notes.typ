@@ -234,6 +234,8 @@ Alternatively use graph-based solutions:
 
 #lecture(17)
 = Objective evaluation (QoS)
+Image quality assessment: compare and provide evidence of improvement
+
 Subjective tests are too complicated, expensive, difficult...
 
 == Full reference
@@ -256,3 +258,106 @@ Depends on many factors:
 - Emotions (frustration, surprise)
 
 #lecture(18)
+= Subjective assessment
+Most reliable way of measuring multimedia quality
+
+In order to be reliable needs:
+- Large number of users (at least 15, screened for visual acuity)
+- Description of:
+  + Laboratory equipment: screen, distance, illumination, ...
+  + Data set: contents used
+  + Methodology: rating target (quality, comparison, impairment) and scale, stimuli (single/double)
+  + Score processing: mean, outlier detection, ...
+- Introduction to method, training sequence.
+  Consider a break after that (to answer questions)
+- No more than 30 mins sessions
+
+/ Spatial Information (SI): complexity in image (spatial detail present)
+/ Temporal Information (TI): frequency of changes in video
+
+== Learning effect
+Calibrate time to balance:
+- Training: user becomes more sensitive
+- Tiredness: user becomes less sensitive
+
+Control it by:
+- Showing full range of stimuli (SI/TI)
+- Short sessions
+- Pay participant
+- Randomize stimuli
+
+== Methods
+- Single-Stimulus/Absolute Category Rating (SS/ACR): single image at a time, index of presentation
+- ACR with Hidden Reference (ACR-HR): a picture is secretly a reference.
+  Differential MOS between scores (against the reference)
+- Double-Stimulus Impairment Scale (DSIS): rate degradation of image, given a non-impaired reference (first, then the other is showed)
+- Double-Stimulus Continuous Quality-Scale (DSCQS): two images, one is reference (don't know which).
+  Vote on whole presentation, on vertical scale.
+
+  Results are to be considered as differences from reference
+- Single-Stimulus Continuous Quality Evaluation (SSCQE): continuously rate video quality, with slider
+- Simultaneous Double-Stimulus for Continuous Evaluation (SDSCE): continuously rate side-by-side video, knowing which is reference
+- Subjective Assessment of Multimedia Video Quality (SAMVIQ): various different sequences, with explicit and hidden references.
+  User can go backward etc...
+- Pair-wise Comparison (PC): two videos, one after other.
+  Select the best
+- Simulator Sickness Questionnaire (SSQ): 360° video, 0-3 rating.
+  At least 28 subjects, no more than 25 continuous mins, no more 50 rating mins.
+  < 1.5 h participation
+
+=== Comparison
+- Methods that use explicit references measure fidelty (DSIS)
+- ACR is easier to implement
+- ACR-HR is even better, because it only considers the difference between the reference (no bias towards specific pictures)
+- PC can be used as a last resort for the items that have the same rating (direct comparison, 1v1)
+
+=== Designs
+Need to show all pairs to compare:
+- Full design: $O (n^2)$
+- Reduced design: assume transitivity + make sorting algorithm: test becomes human merge sort $O (n dot log n)$
+
+== MOS process
+/ Mean Opinion Score (MOS): average observer rate
+
+/ Standard error: $"SE" = s / sqrt(N)$, where $s$: standard deviation, $N$: sample size
+
+/ Confidence Interval: 95% probability that user's average is within confidence interval
+
+== Crowdsourcing
+Alternative method, ask people from internet, under compensation:
+- No controlled environment
+
+#lecture(22)
+= Augmentation/Mediation
+/ Augmentation: amount of virtual content on top of real world
+Examples:
+- Information overlay
+- Spatial anchor of virtual objects
+
+/ Mediation: change surroundings
+Examples:
+- Beautification
+- Diminished reality
+
+== AR
+- Strong AR: full surroundings knowledge (precise tracking, semantic understanding)
+- Weak AR: little tracking/interaction
+
+Technological solutions:
+- Marker-based AR: very precise tracking, if light conditions are good.
+  When no marking the experience disappears
+- Marker-less AR: more flexible, might not be suitable for the experience (not enough space/does not make sense)
+- Location-based AR: Google Maps, not always accurate, because of technologies/sensors
+
+=== SLAM algorithm
+Combine visual + inertial sensors to:
+- Create map of environment
+- Continuously position device
+
+System:
++ Sensors
++ Front-end: feature extraction of real environment
++ Back-end: localize POV, reconstruct model, analyze frames
++ Estimate: reconstruction of environment, with locations of features + POV
+
+3D maps are usually meshes
