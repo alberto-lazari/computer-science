@@ -319,9 +319,14 @@ Need to show all pairs to compare:
 == MOS process
 / Mean Opinion Score (MOS): average observer rate
 
-/ Standard error: $"SE" = s / sqrt(N)$, where $s$: standard deviation, $N$: sample size
+/ Standard deviation: $display( s = sqrt(1 /n sum_(i = 0)^N (x_i - m)^2) )$,
+  where $N$: sample size, $m$: mean
 
-/ Confidence Interval: 95% probability that user's average is within confidence interval
+/ Standard error: $display( "SE" = s / sqrt(N) )$
+
+/ Confidence Interval: $"ci" = m plus.minus 0.95 dot "SE"$
+
+95% probability that user's average is within confidence interval
 
 == Crowdsourcing
 Alternative method, ask people from internet, under compensation:
