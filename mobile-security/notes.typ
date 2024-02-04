@@ -132,7 +132,9 @@ Make static analysis more challenging with techniques:
 - Obfuscation
 - Use native code
 
-Identify if the app is running in an analysis environment
+Dynamic analysis can be evaded as well:
+- Identify if the app is running in an analysis environment (and behave differently)
+- Reflection to hide logging of function calls
 
 #lecture(8)
 = Malwares
