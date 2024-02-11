@@ -38,3 +38,6 @@
 [submodule "cns/project"]
 	path = cns/project
 	url = git@github.com:albertolazari/qrfuzz
+[submodule "cns/report"]
+	path = cns/report
+	url = git@github.com:albertolazari/cns-report.git
