@@ -41,3 +41,6 @@
 [submodule "cns/report"]
 	path = cns/report
 	url = git@github.com:albertolazari/cns-report.git
+[submodule "lcd/project"]
+	path = lcd/project
+	url = git@github.com:albertolazari/vccs-compiler.git
