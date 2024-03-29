@@ -1,5 +1,4 @@
-#import "@preview/polylux:0.3.1": *
-#import "theme.typ": *
+#import "/common.typ": *
 
 #set text(font: "Roboto")
 
@@ -16,15 +15,4 @@
   date:     [April 4, 2024]
 )
 
-#new-section-slide[Begin]
-
-#slide(title: [With a title])[
-  Some content
-
-  This is a list:
-  - with items
-]
-
-#slide(title: [Another one])[
-  Hello
-]
+#include "sections/syntax.typ"
