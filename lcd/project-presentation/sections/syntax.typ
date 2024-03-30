@@ -1,12 +1,12 @@
 #import "/common.typ": *
 
 #new-section-slide[Syntax]
-#slide(title: [Syntax I defined])[
-  - vCCS adapted syntax, for parser
-  - CCS syntax, for output pretty printing
+#slide(title: [Syntax to define])[
+  - vCCS, for the parser
+  - CCS, for encoding and output printing
 
   #pause
-  All inspired from CAAL's syntax
+  Inspired from CAAL's syntax
 ]
 
 #new-section-slide[Value-passing CCS syntax]

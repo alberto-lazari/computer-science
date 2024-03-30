@@ -17,5 +17,21 @@
   }
 }
 
+#let to = {
+  h(.5em)
+  sym.arrow
+  h(.5em)
+}
+
+#let encode(..elements) = {
+  let exp = $space$
+
+  if elements.pos().len() > 0 {
+    exp = elements.pos().join[,]
+  }
+
+  $[| space.punct exp space.punct |]$
+}
+
 #let nil = $Ø$
 #let tick = "'"

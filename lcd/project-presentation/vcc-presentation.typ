@@ -15,5 +15,5 @@
   date:     [April 4, 2024]
 )
 
-#include "sections/components.typ"
 #include "sections/syntax.typ"
+#include "sections/components.typ"
