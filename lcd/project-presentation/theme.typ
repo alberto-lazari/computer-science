@@ -161,10 +161,13 @@
 
 
   let content = block(inset: ( x: .5em ), {
-    if title != none {
-      heading(level: 2, text(unipd-red, title))
-    }
-    block(height: 87%, align(horizon, body))
+    block(height: 100%, breakable: false, {
+      if title != none {
+        heading(level: 2, text(unipd-red, title))
+      }
+      set align(horizon)
+      body
+    })
   })
 
   logic.polylux-slide(content)

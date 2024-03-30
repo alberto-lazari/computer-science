@@ -1,8 +1,12 @@
 #import "/common.typ": *
 
 #new-section-slide[Syntax]
-#slide(title: [Syntax I used])[
-  Let's talk about some syntax
+#slide(title: [Syntax I defined])[
+  - vCCS adapted syntax, for parser
+  - CCS syntax, for output pretty printing
+
+  #pause
+  All inspired from CAAL's syntax
 ]
 
 #new-section-slide[Value-passing CCS syntax]
@@ -43,7 +47,7 @@
 #slide(title: [Processes])[
   #grid(
     columns: (1fr, 1fr),
-    rule("P", $nil$,
+    rule("P", $0$,
       $(P)$,
       $"act". P$,
       $k | k("args")$,
@@ -96,7 +100,7 @@
 #slide(title: [Processes])[
   #grid(
     columns: (1fr, 1fr),
-    rule("P", $nil$,
+    rule("P", $0$,
       $(P)$,
       $"act". P$,
       $k$,
