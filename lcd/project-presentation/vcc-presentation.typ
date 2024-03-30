@@ -17,3 +17,4 @@
 
 #include "sections/syntax.typ"
 #include "sections/components.typ"
+#include "sections/stack.typ"
