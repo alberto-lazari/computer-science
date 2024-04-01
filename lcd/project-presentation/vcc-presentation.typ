@@ -35,3 +35,4 @@
 #include "sections/components.typ"
 #include "sections/stack.typ"
 #include "sections/implementation.typ"
+#include "sections/encoder.typ"

@@ -16,7 +16,7 @@
 ]
 
 #slide(title: [Parser generator])[
-  OCaml versions of yacc and lex available
+  OCaml versions of lex and yacc available
   - ocamllex, the standard
   - Menhir, more recent twist on ocamlyacc
 ]
