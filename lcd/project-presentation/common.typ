@@ -42,3 +42,5 @@
 
 #let nil = $Ø$
 #let tick = "'"
+#let evale = $"eval"_e$
+#let evalb = $"eval"_b$

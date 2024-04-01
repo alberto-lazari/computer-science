@@ -2,31 +2,40 @@
 
 #new-section-slide[Encoder]
 #slide(title: [Trivial cases])[
-  #case($pi$,
-    $P to encode(P)$,
-    $k() = P; pi to k = encode(P); encode(pi)$,
-  )
-  #pause
+  #set text(.9em)
+  #let grid = grid.with(columns: (3fr, 2fr))
+  #box(stroke: (bottom: 1.5pt), inset: (y: 15pt), grid(
+    $"encode" : "Prog"_"vCCS" to "Prog"$,
+    $encode() : "Proc"_"vCCS" to "Proc"$
+  ))
 
-  #case($P$,
-    $0 to 0$,
-    $tau. P to tau. encode(P)$,
-    $k() to k$,
-    $P + Q to encode(P) + encode(Q)$,
-    $P | Q to encode(P) | encode(Q)$,
+  #set align(top)
+  #grid(
+    $"encode"(P) = encode(P) \
+      "encode"(k = P; pi) =
+        ( k = encode(P); "encode"(pi) )
+    $,
+    pause + $encode(0) = 0 \
+      encode(tau. P) = tau. encode(P) \
+      encode(k) = k \
+      encode(P + Q) = encode(P) + encode(Q) \
+      encode(P | Q) = encode(P) | encode(Q)
+    $
   )
 ]
 
 #slide(title: [Evaluation -- expressions])[
-  $"eval"_e : "expr" to NN$
+  #box(width: 100%, stroke: (bottom: 1.5pt), inset: (y: 15pt), grid(
+    $evale : "expr" to NN$
+  ))
   #pause
 
-  $"eval"_e (n) = n \
-    "eval"_e (e_1 "op" e_2) = "eval"_e (e_1) "op" "eval"_e (e_2) \
+  $evale (n) = n \
+    evale (e_1 "op" e_2) = evale (e_1) "op" evale (e_2) \
     #uncover("3-")[
       // Fix indent
       #h(0pt)
-      $"eval"_e (x) = thin ? #uncover(4)[#to `error: unbound variable x`]$
+      $evale (x) = thin ? #uncover(4)[#to `error: unbound variable x`]$
     ]
   $
 
@@ -38,14 +47,16 @@
 ]
 
 #slide(title: [Evaluation -- booleans])[
-  $"eval"_b : "boolean" to {"true", "false"}$
+  #box(width: 100%, stroke: (bottom: 1.5pt), inset: (y: 15pt), grid(
+    $evalb : "boolean" to {"true", "false"}$
+  ))
   #pause
 
-  $"eval"_b ("true") = "true" & "eval"_b ("false") = "false" \
-    "eval"_b ("not" b) = not b \
-    "eval"_b (b_1 "or" b_2) = b_1 or b_2 #h(3em) &
-    "eval"_b (b_1 "and" b_2) = b_1 and b_2 \
-    "eval"_b (e_1 "op" e_2) = "eval"_e (e_1) "op" "eval"_e (e_2) \
+  $evalb ("true") = "true" & evalb ("false") = "false" \
+    evalb ("not" b) = not b \
+    evalb (b_1 "or" b_2) = b_1 or b_2 #h(3em) &
+    evalb (b_1 "and" b_2) = b_1 and b_2 \
+    evalb (e_1 "op" e_2) = evale (e_1) "op" evale (e_2) \
   $
 
   #align(center, box(stroke: 1.5pt, inset: .5em, inline-rule("op",
@@ -53,4 +64,23 @@
     $<$, $>$,
     $lt.eq.slant$, $gt.eq.slant$,
   )))
+]
+
+#slide(title: [Evaluation])[
+  #let grid = grid.with(columns: (4fr, 3fr))
+  #grid($encode(tick a(e). P) = tick a_n. encode(P)$, $n = evale(e)$)
+
+  #grid($encode(k(e_1, ..., e_h)) = k_(n_1, ..., n_h)$, $n_i = evale(e_i)$)
+
+  #grid(inset: (y: 5pt),
+    $encode("if" b "then" P) =
+      display(cases(
+        encode(P) \ 0
+      ))
+    $,
+    $evalb(b) = "true" \ evalb(b) = "false"$
+  )
+]
+
+#slide(title: [Variable substitution])[
 ]
