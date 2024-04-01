@@ -161,7 +161,7 @@
 
 
   let content = block(inset: ( x: .5em ), {
-    block(height: 100%, breakable: false, {
+    block(height: 100%, width: 100%, breakable: false, {
       if title != none {
         heading(level: 2, text(unipd-red, title))
       }
