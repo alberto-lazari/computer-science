@@ -135,3 +135,15 @@
     $
   )
 ]
+
+#slide(title: [Variable expansion])[
+  Problem: cannot expand for infinite number of values
+
+  $"in"(x). k(x) space --> space
+    "in"_0. k_0 + "in"_1. k_1 + "in"_2. k_2 + "in"_3. k_3 + ...$
+  #pause
+
+  $==>$ Finite value domain needed
+
+  $"in"(x). k(x) -->^(D = {0, 1, 2}) "in"_0. k_0 + "in"_1. k_1 + "in"_2. k_2$
+]
