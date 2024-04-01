@@ -40,6 +40,11 @@
   $[| space.punct exp space.punct |]$
 }
 
+#let sub(val, var) = {
+  let slash = rotate(30deg, "|")
+  $attach(slash, tl: val, br: var)$
+}
+
 #let nil = $Ø$
 #let tick = "'"
 #let evale = $"eval"_e$
