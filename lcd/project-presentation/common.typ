@@ -54,14 +54,14 @@
 
   $attach(angle.l space.punct exp space.punct angle.r, tl: domain)$
 }
-#let expandpi(domain, ..elements) = {
+#let expandk(domain, ..elements) = {
   let exp = $space$
 
   if elements.pos().len() > 0 {
     exp = elements.pos().join[,]
   }
 
-  $attach(angle.l space.punct exp space.punct angle.r_pi, tl: domain)$
+  $attach(angle.l space.punct exp space.punct angle.r_k, tl: domain)$
 }
 
 #let nil = $Ø$

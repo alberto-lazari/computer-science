@@ -153,12 +153,15 @@
   #pause
 
   #box(width: 100%, stroke: (bottom: 1pt), inset: (bottom: 15pt),
-    $expandpi(D, k) : 2^NN to "Prog"_"vCCS" to "Prog"_"vCCS"$
+    $expandk(D,) : 2^NN to "Prog"_"vCCS" to "Prog"_"vCCS"$
   )
   #pause
 
-  $expandpi("Ø", k(x_1, ..., x_h) = P ";" pi) = pi$
+  $expandk("Ø", k(x_1, ..., x_h) = P ";" pi) = pi
+    #h(8em)
+    expandk(D, pi) = pi
+  $
 
-  $expandpi({n} thin union thin S, k(x_1, x_2, ..., x_h) = P ";" pi) = \
-    quad k_n (x_2, ..., x_h) = P{sub(n, x_1)}; expandpi(S, k(x_1, x_2, ..., x_h) = P ";" pi)$
+  $expandk({n} thin union thin S, k(x_1, x_2, ..., x_h) = P ";" pi) = \
+    quad k_n (x_2, ..., x_h) = P{sub(n, x_1)}; expandk(S, k(x_1, x_2, ..., x_h) = P ";" pi)$
 ]
