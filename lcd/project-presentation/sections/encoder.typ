@@ -153,7 +153,7 @@
   #pause
 
   #box(width: 100%, stroke: (bottom: 1pt), inset: (bottom: 15pt),
-    $expandk(D,) : 2^NN to "Prog"_"vCCS" to "Prog"_"vCCS"$
+    $expandk(D) : 2^NN to "Prog"_"vCCS" to "Prog"_"vCCS"$
   )
   #pause
 
@@ -164,4 +164,20 @@
 
   $expandk({n} thin union thin S, k(x_1, x_2, ..., x_h) = P ";" pi) = \
     quad k_n (x_2, ..., x_h) = P{sub(n, x_1)}; expandk(S, k(x_1, x_2, ..., x_h) = P ";" pi)$
+]
+
+#slide(title: [Expansion -- input parameter])[
+  #box(width: 100%, stroke: (bottom: 1pt), inset: (bottom: 15pt),
+    $expanda(D) : 2^NN to "Proc"_"vCCS" to "Proc"_"vCCS"$
+  )
+  #pause
+
+  $expanda("Ø", a(x). P) = 0
+    #h(12em)
+    expanda(D, P) = P
+  $
+
+  $expanda({n}, a(x). P) = a_n (x). P{sub(n, x)}$
+
+  $expanda({n} thin union thin S, a(x). P) = a_n (x). P{sub(n, x)} + expanda(S, a(x). P)$
 ]

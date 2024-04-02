@@ -45,24 +45,17 @@
   $attach(slash, tl: val, br: var)$
 }
 
-#let expand(domain, ..elements) = {
+#let expand(s, domain, ..elements) = {
   let exp = $space$
 
   if elements.pos().len() > 0 {
     exp = elements.pos().join[,]
   }
 
-  $attach(angle.l space.punct exp space.punct angle.r, tl: domain)$
+  $attach(angle.l space.punct exp space.punct angle.r_#s, tl: domain)$
 }
-#let expandk(domain, ..elements) = {
-  let exp = $space$
-
-  if elements.pos().len() > 0 {
-    exp = elements.pos().join[,]
-  }
-
-  $attach(angle.l space.punct exp space.punct angle.r_k, tl: domain)$
-}
+#let expandk(domain, ..elements) = expand($k$, domain, ..elements)
+#let expanda(domain, ..elements) = expand($a$, domain, ..elements)
 
 #let nil = $Ø$
 #let tick = "'"
