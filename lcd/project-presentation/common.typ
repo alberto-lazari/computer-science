@@ -1,6 +1,11 @@
 #import "@preview/polylux:0.3.1": *
 #import "theme.typ": *
 
+#let focus-slide = content => focus-slide(background: unipd-red)[
+  #set align(center)
+  #content
+]
+
 #let inline-rule(name, ..cases) = {
   let space = .5em
   $name ::= #h(space) #cases.pos().join[#h(space) | #h(space)]$
