@@ -45,7 +45,27 @@
   $attach(slash, tl: val, br: var)$
 }
 
+#let expand(domain, ..elements) = {
+  let exp = $space$
+
+  if elements.pos().len() > 0 {
+    exp = elements.pos().join[,]
+  }
+
+  $attach(angle.l space.punct exp space.punct angle.r, tl: domain)$
+}
+#let expandpi(domain, ..elements) = {
+  let exp = $space$
+
+  if elements.pos().len() > 0 {
+    exp = elements.pos().join[,]
+  }
+
+  $attach(angle.l space.punct exp space.punct angle.r_pi, tl: domain)$
+}
+
 #let nil = $Ø$
 #let tick = "'"
 #let evale = $"eval"_e$
 #let evalb = $"eval"_b$
+#let encodepi(..elements) = $#encode(..elements)_pi$

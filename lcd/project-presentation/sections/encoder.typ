@@ -3,16 +3,16 @@
 #new-section-slide[Encoder]
 #slide(title: [Trivial cases])[
   #set text(.9em)
-  #let grid = grid.with(columns: (3fr, 2fr))
+  #let grid = grid.with(columns: (4fr, 3fr))
   #box(stroke: (bottom: 1pt), inset: (y: 15pt), grid(
-    $"encode" : "Prog"_"vCCS" to "Prog"$,
+    $encodepi() : "Prog"_"vCCS" to "Prog"$,
     $encode() : "Proc"_"vCCS" to "Proc"$
   ))
 
   #set align(top)
   #grid(
-    $"encode"(P) = encode(P) \
-      "encode"(k = P; pi) =
+    $encodepi(P) = encode(P) \
+      encodepi(k = P ";" pi) =
         ( k = encode(P); "encode"(pi) )
     $,
     pause + $encode(0) = 0 \
@@ -146,4 +146,19 @@
   $==>$ Finite value domain needed
 
   $"in"(x). k(x) -->^(D = {0, 1, 2}) "in"_0. k_0 + "in"_1. k_1 + "in"_2. k_2$
+]
+
+#slide(title: [Expansion -- constant parameter])[
+  Expand first parameter: $k(x_1, x_2) -->^(D = {0, 1}) k_0 (x_2); k_1 (x_2)$
+  #pause
+
+  #box(width: 100%, stroke: (bottom: 1pt), inset: (bottom: 15pt),
+    $expandpi(D, k) : 2^NN to "Prog"_"vCCS" to "Prog"_"vCCS"$
+  )
+  #pause
+
+  $expandpi("Ø", k(x_1, ..., x_h) = P ";" pi) = pi$
+
+  $expandpi({n} thin union thin S, k(x_1, x_2, ..., x_h) = P ";" pi) = \
+    quad k_n (x_2, ..., x_h) = P{sub(n, x_1)}; expandpi(S, k(x_1, x_2, ..., x_h) = P ";" pi)$
 ]
