@@ -166,7 +166,7 @@
     quad k_n (x_2, ..., x_h) = P{sub(n, x_1)}; expandk(S, k(x_1, x_2, ..., x_h) = P ";" pi)$
 ]
 
-#slide(title: [Expansion -- input parameter])[
+#slide(title: [Expansion -- input variable])[
   #box(width: 100%, stroke: (bottom: 1pt), inset: (bottom: 15pt),
     $expanda(D) : 2^NN to "Proc"_"vCCS" to "Proc"_"vCCS"$
   )
@@ -180,4 +180,34 @@
   $expanda({n}, a(x). P) = a_n (x). P{sub(n, x)}$
 
   $expanda({n} thin union thin S, a(x). P) = a_n (x). P{sub(n, x)} + expanda(S, a(x). P)$
+]
+
+#slide(title: [Expansion -- redirection function])[
+  #box(width: 100%, stroke: (bottom: 1pt), inset: (bottom: 15pt),
+    $expandf(D) : 2^NN to "Proc"_"vCCS" to "Proc"_"vCCS"$
+  )
+  #pause
+
+  $expandf("Ø", P[f]) = P$
+
+  $expandf({n_1, n_2, ..., n_h}, P[f]) = P[f_n_1, f_n_2, ..., f_n_h]$
+
+  $expandf(D, P) = P$
+
+  Where $f = a"/"b, c"/"d, ... space ==> space f_n = a_n"/"b_n, c_n"/"d_n, ...$
+]
+
+#slide(title: [Expansion -- restricted channels])[
+  #box(width: 100%, stroke: (bottom: 1pt), inset: (bottom: 15pt),
+    $expandL(D) : 2^NN to "Proc"_"vCCS" to "Proc"_"vCCS"$
+  )
+  #pause
+
+  $expandL("Ø", P \\ L) = P$
+
+  $expandL({n_1, n_2, ..., n_h}, P \\ L) = P \\ (L_n_1 union L_n_2 union ... union L_n_h)$
+
+  $expandL(D, P) = P$
+
+  Where $L = a, b, ... space ==> space L_n = a_n, b_n ...$
 ]

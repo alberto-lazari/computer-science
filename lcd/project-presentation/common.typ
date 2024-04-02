@@ -56,6 +56,8 @@
 }
 #let expandk(domain, ..elements) = expand($k$, domain, ..elements)
 #let expanda(domain, ..elements) = expand($a$, domain, ..elements)
+#let expandf(domain, ..elements) = expand($f$, domain, ..elements)
+#let expandL(domain, ..elements) = expand($L$, domain, ..elements)
 
 #let nil = $Ø$
 #let tick = "'"
