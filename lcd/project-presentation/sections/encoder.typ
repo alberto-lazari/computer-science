@@ -93,17 +93,41 @@
   #utils.register-section[Encoder]
 ]
 
-#slide(title: [Expansion])[
+#slide(title: [Expansion -- constants])[
   Given a finite domain $D subset.eq NN$
 
-  $encodepi(k(x_1, ..., x_n) = P ";" pi) = encodepi(expandk(D, k(x_1, ..., x_n) = P) ";" pi)$
+  $encodepi(k(x_1, ..., x_h) = P ";" pi) = encodepi(expandk(D, k(x_1, ..., x_h) = P) ";" pi)$
+  #pause
 
-  $encode(a_n (x). P) = a_n. encode(P)
-    #h(8em)
-    encode(a(x). P) = expanda(D, a(x). P)$
+  $--> encodepi(k_n_1 (x_2, ..., x_h) = P ";" k_n_2 (x_2, ..., x_h) = P ";" ... ";" pi) \
+    --> encodepi(k_(n_1, m_1) (x_3, ..., x_h) = P ";" k_(n_1, m_2) (x_3, ..., x_h) = P ";" ... ";" pi) \
+    ... \
+    --> encodepi(k_(n_1, m_1, ...) = P ";" ... ";" pi)
+  $
+]
 
-  $encode(P[f]) = expandf(D, P[f])
-    #h(3em)
-    encode(P[f_n_1, ..., f_n_h]) = encode(P)[f_n_1, ..., f_n_h]
+#slide(title: [Expansion -- input])[
+  Given a finite domain $D subset.eq NN$
+
+  $encode(a(x). P) = encode(expanda(D, a(x). P))$
+
+  $encode(a_n (x). P) = a_n. encode(P)$
+]
+
+#slide(title: [Expansion -- redirection])[
+  Given a finite domain $D subset.eq NN$
+
+  $encode(P[f]) = encode(expandf(D, P[f]))$
+
+  $encode(P[f_n_1, ..., f_n_h]) = encode(P)[f_n_1, ..., f_n_h]$
+]
+
+#slide(title: [Expansion -- restriction])[
+  Given a finite domain $D subset.eq NN$
+
+  $encode(P \\ L) = encode(expandL(D, P \\ L))$
+
+  $encode(P \\ (L_n_1 union L_n_2 union ... union L_n_h)) =
+    encode(P) \\ (L_n_1 union L_n_2 union ... union L_n_h)
   $
 ]
