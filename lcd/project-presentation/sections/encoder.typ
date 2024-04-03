@@ -131,3 +131,18 @@
     encode(P) \\ (L_n_1 union L_n_2 union ... union L_n_h)
   $
 ]
+
+#slide(title: [Bounded evaluation])[
+  Given a finite domain $D subset.eq NN$
+
+  #box(width: 100%, stroke: (bottom: 1pt), inset: (y: 15pt),
+    $Devale : 2^NN to "expr" to NN$
+  )
+  #pause
+
+  $Devale (e) = evale(e), quad evale(e) in D$
+
+  $Devale (e) = evale(e), quad evale(e) in.not D$
+
+  #uncover(3)[#to `error: out of bounds value evaluated`]
+]

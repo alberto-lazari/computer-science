@@ -68,4 +68,5 @@
 #let tick = "'"
 #let evale = $"eval"_e$
 #let evalb = $"eval"_b$
+#let Devale = $attach("eval"_e, tl: D)$
 #let encodepi(..elements) = $#encode(..elements)_pi$
