@@ -1,6 +1,24 @@
 #import "/common.typ": *
 
 #new-section-slide[Expansion]
+#slide(title: [Missing cases])[
+  #let grid = grid.with(columns: (1fr, 1fr), gutter: 2em)
+  #grid([
+    #uncover("2-")[Variable binders]
+
+    $encodepi(k(x_1, ..., x_h) = P ";" pi) = space ?$
+
+    $encode(a(x). P) = space ?$
+  ],
+  uncover(3)[
+    Also channel manipulators
+
+    $encode(P \\ L) = space ?$
+
+    $encode(P[f]) = space ?$
+  ])
+]
+
 #slide(title: [The problem])[
   Cannot expand for infinite number of values
 
