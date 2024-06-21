@@ -10,11 +10,7 @@
 
 #include "chapters/computational-model.typ"
 #include "chapters/amplitude-amplification.typ"
-
-= Phase estimation
-
-== Quantum Fourier transform
-
+#include "chapters/qft.typ"
 
 = Gradient estimation
 
