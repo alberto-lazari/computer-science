@@ -20,14 +20,6 @@ $ D := A tensor B = mat(
   )
 $
 
-Tensor product has many properties to take into account:
-+ $(A tensor C) (B tensor D) = A B tensor C D$
-+ $(A tensor C) (u tensor w) = A u tensor C w$
-+ $(u + v) tensor w = u tensor w + v tensor w$
-+ $u tensor (v + w) = u tensor v + u tensor w$
-+ $(a u) tensor (b w) = a b (u tensor w)$
-+ $(A tensor B)^dagger = A^dagger tensor B^dagger$
-
 == Primitive constructs
 / Bra-kets: Ket $ket(psi)$ denotes a column vector in $CC^n$, while bra $bra(psi)$ denotes a row vector in $(CC^n)^dagger$, such that $bra(psi) = ket(psi)^dagger$
 
@@ -48,13 +40,12 @@ A register of $q$ qubits can be represented with a vector $ket(psi)$ in $(CC^2)^
 
 A state $ket(psi)$ can be represented as $display(sum_(jstr in {0, 1}^q)) alpha_j ket(jstr)$, $alpha_i in CC$,
 which is equivalent to
-$ display(mat(
+$display(mat(
   alpha_1;
   alpha_2;
-  alpha_3;
   dots.v;
   alpha_(2^q);
-)) $
+))$
 
 / Basis states / superpositions: A $q$-qubits register $ket(psi)$ represents a basis state if
   $ket(psi) = ket(jstr)$, for some $jstr in {0, 1}^q$.
@@ -83,7 +74,7 @@ There are some basic gates that are used to create more complex operations:
 - $H$ (Hadamard) gate: returns uniform superposition of basis states (when run in parallel on all qubits):
   $ H^(tensor q)#ket($arrow(0)$) = 1 / (sqrt(2^q)) display(sum_(jstr in {0, 1}^q)) ket(jstr) $
 - $"CX"$ (Controlled $X$/NOT) gate: two-qubit gate that can create or destroy entanglement.
-  
+
   $"CX"_12$ flips target qubit (qubit 2), when control qubit (qubit 1) is $ket(1)$, leaves qubit 2 as it is otherwise:
   $"CX"_21#ket(01) = ket(01),
     "CX"_21#ket(11) = ket(10)
