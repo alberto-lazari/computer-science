@@ -9,11 +9,7 @@
 #pagebreak()
 
 #include "chapters/computational-model.typ"
-
-= Amplitude amplification
-
-== Grover's black-box search algorithm
-
+#include "chapters/amplitude-amplification.typ"
 
 = Phase estimation
 
