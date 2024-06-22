@@ -12,5 +12,4 @@
 #include "chapters/amplitude-amplification.typ"
 #include "chapters/qft.typ"
 #include "chapters/gradient.typ"
-
-= Quantum linear systems
+#include "chapters/linear-systems.typ"
