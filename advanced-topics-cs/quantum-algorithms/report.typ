@@ -13,3 +13,4 @@
 #include "chapters/qft.typ"
 #include "chapters/gradient.typ"
 #include "chapters/linear-systems.typ"
+#include "chapters/deepening.typ"
