@@ -11,8 +11,6 @@
 #include "chapters/computational-model.typ"
 #include "chapters/amplitude-amplification.typ"
 #include "chapters/qft.typ"
-
-= Gradient estimation
-
+#include "chapters/gradient.typ"
 
 = Quantum linear systems
