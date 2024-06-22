@@ -19,3 +19,9 @@ The high-level steps of Shor's algorithm are:
 + Post processing process: uses the period $r$ to find the factorization of $n$
 
 == Implications
+Implementing this quantum algorithm would lead to severe consequences in a big section of current cryptography and cyber security in general.
+It could be used to break various cryptography mechanisms, like private/public-key schemes, most notably:
+- The RSA algorithm
+- Diffie-Hellman key exchange
+
+However, current quantum computers seem to lack a sufficient number of qubits and results are not so stable due to noise and errors, for Shor's algorithm to pose a serious threat in real-world scenarios.
