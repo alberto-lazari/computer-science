@@ -44,3 +44,6 @@
 [submodule "lcd/project"]
 	path = lcd/project
 	url = git@github.com:albertolazari/vccs-compiler.git
+[submodule "thesis"]
+	path = thesis
+	url = git@github.com:alberto-lazari/masters-thesis.git
